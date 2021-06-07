@@ -6,7 +6,7 @@
     <div class="row">
       <div class="container">
         <div align="center" style="margin-top: 80px">
-          <img src="../images/gemsLogo.png" class="" style="width: 80%" />
+          <img src="../images/gemsLogo.png" class="" style="width: 60%" />
         </div>
 
         <div class="q-pa-md q-mt-sm" align="center">
