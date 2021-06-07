@@ -2,7 +2,7 @@
 const routes = [
   {
     path: '/',
-    component: () => import('src/layouts/login.vue'),
+    component: () => import('src/pages/form.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') }
     ]
