@@ -1,12 +1,13 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="bg-brand">
     <q-header elevated class="bgColor">
-      <q-toolbar>
+      <q-toolbar style="height: 65px">
         <q-toolbar-title class="absolute-center headFontColor"
           >GEMS</q-toolbar-title
         >
         <q-btn
-          class="absolute-right headFontColor"
+          class="absolute-right"
+          style="color: #ffdd02"
           flat
           dense
           label="log out"
@@ -25,27 +26,17 @@
     </q-page-container>
     <div class="fixed-bottom-right text-right q-mb-lg">
       <div class="q-mb-md">
-        <q-btn
-          class="mapMenu"
-          rounded
-          label="สถานะ"
-          icon-right="fa fa-filter"
-        />
+        <q-btn class="mapMenu" rounded label="สถานะ" icon-right="filter_list" />
       </div>
       <div class="q-mb-md">
-        <q-btn
-          class="mapMenu"
-          rounded
-          label="เพิ่มหมุด"
-          icon-right="fa fa-plus"
-        />
+        <q-btn class="mapMenu" rounded label="เพิ่มหมุด" icon-right="add" />
       </div>
       <div>
         <q-btn
           class="mapMenu"
           rounded
           label="ตำแหน่งของคุณ"
-          icon-right="ti-target"
+          icon-right="adjust"
         />
       </div>
     </div>
@@ -61,6 +52,8 @@
 }
 .headFontColor {
   color: #ffdd02;
+  font-size: 35px;
+  font-weight: bold;
 }
 .bgColor {
   background-color: #010135;
