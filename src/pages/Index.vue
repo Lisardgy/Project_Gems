@@ -222,7 +222,8 @@
                 <div class="col">@Gems</div>
               </div>
               <div class="row">
-                <div class="col">ช่องทางติดต่อเพิ่มเติม :</div>
+                <div class="col-4">ช่องทางติดต่อเพิ่มเติม :</div>
+                <div class="col-2"></div>
                 <div class="col">Facebook : Gems</div>
               </div>
               <div class="row">
