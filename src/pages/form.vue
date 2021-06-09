@@ -335,16 +335,32 @@
             <div class="col">
               <div class="row justify-between">
                 <div class="col-4 dataTitle">
-                  <div class="padInputBox"></div>
+                  <div class="padInputBox">
+                    <img
+                      style="height: 80px; max-width: 100px"
+                      src="../images/pik1.jpg"
+                    />
+                  </div>
                 </div>
                 <div class="col-4 dataTitle">
-                  <div class="padInputBox"></div>
+                  <div class="padInputBox">
+                    <img
+                      style="height: 80px; max-width: 100px"
+                      src="../images/pik2.jpg"
+                    />
+                  </div>
                 </div>
                 <div class="col-4 dataTitle">
-                  <div class="padInputBox"></div>
+                  <div class="padInputBox">
+                    <img
+                      style="height: 80px; max-width: 100px"
+                      src="../images/pik3.jpg"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+            <q-btn class="" color="secondary" label="Secondary" />
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
@@ -689,5 +705,8 @@ export default {
 }
 .padInputBox {
   padding-left: 10px;
+}
+.chooseIm {
+  text-align: center;
 }
 </style>
