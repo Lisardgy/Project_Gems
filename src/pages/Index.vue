@@ -15,13 +15,9 @@
         </div>
         <div class="col">
           <div class="row justify-end">
-            <div class="operationBtn row items-center justify-center">
-              <div class="operationText">ลบ</div>
-            </div>
+            <q-btn class="operationBtn row items-center justify-center" label="ลบ" @click="deletePin" />
             <div class="q-mx-xs"></div>
-            <div class="operationBtn row items-center justify-center">
-              <div class="operationText">แก้ไข</div>
-            </div>
+            <q-btn class="operationBtn row items-center justify-center" label="แก้ไข" @click="editPin" />
           </div>
         </div>
       </div>
@@ -40,12 +36,12 @@
         </div>
         <div class="col items-center">
           <div class="row justify-end">
-            <div
+            <q-btn
               class="downloadIamges row items-centers justify-center"
               style="font-size: 28px"
             >
               <span class="material-icons">file_download</span>
-            </div>
+            </q-btn>
           </div>
         </div>
       </div>
@@ -317,6 +313,8 @@ export default {
   data() {
     return {
       slide: 1,
+      deletePin: false,
+      editPin: false,
     };
   },
 };
@@ -339,11 +337,10 @@ export default {
   border: solid #ffff01 2px;
   width: 53px;
   height: 30px;
+  color: #ffff01;
+  font-weight: bold;
 }
 
-.operationText {
-  color: #ffff01;
-}
 
 .title {
   color: white;
@@ -366,6 +363,7 @@ export default {
   border-radius: 5px;
   background: #ffff01;
   padding-right: 1px;
+  color:#010135;
 }
 
 .q-carousel__slide,
