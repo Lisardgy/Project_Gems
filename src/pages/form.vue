@@ -330,18 +330,18 @@
             </div>
           </div>
           <q-separator class="q-my-lg" color="white" inset />
-          <div class="col">
-            <div class="row justify-between dataArea">
-              <div class="col dataTitle">
-                รูปภาพ
-                <div class="padInputBox">
-                  <q-uploader
-                    class="full-width"
-                    label="เลือกรูปภาพที่ต้องการ"
-                    color="amber"
-                    text-color="black"
-                    multiple
-                  />
+          <div class="dataTitle dataArea">
+            รูปภาพ
+            <div class="col">
+              <div class="row justify-between">
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox"></div>
+                </div>
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox"></div>
+                </div>
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox"></div>
                 </div>
               </div>
             </div>
@@ -563,6 +563,57 @@
             </div>
           </div>
           <div class="col">
+            <div class="row justify-around dataArea">
+              <div class="col-6 dataTitle">
+                วันที่ได้ทรัพย์มา
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="date" dense>
+                    <template v-slot:append>
+                      <q-icon
+                        name="event"
+                        class="cursor-pointer"
+                        color="primary"
+                      >
+                        <q-popup-proxy
+                          ref="qDateProxy"
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date label-color="primary" v-model="date"></q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+              <div class="col-6 dataTitle">
+                วันที่อัพเดทข้อมูล
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="upDate" dense>
+                    <template v-slot:append>
+                      <q-icon
+                        name="event"
+                        class="cursor-pointer"
+                        color="primary"
+                      >
+                        <q-popup-proxy
+                          ref="qDateProxy"
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date
+                            label-color="primary"
+                            v-model="upDate"
+                          ></q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 หมายเหตุเพิ่มเติม
@@ -591,6 +642,8 @@ export default {
       text: "",
       model: "one",
       shape: "line",
+      upDate: "",
+      date: "",
     };
   },
 };
@@ -614,6 +667,11 @@ export default {
   color: black;
   background-color: white;
   border-radius: 5px;
+}
+.imageBox {
+  background-color: white;
+  border-radius: 5px;
+  height: 80px;
 }
 .dataHeader {
   font-size: 24px;
