@@ -1,7 +1,7 @@
  <template>
   <q-layout view="lHh Lpr lFf" class="bg-brand">
     <q-header elevated>
-      <q-toolbar style="height: 60px" class="bg-button">
+      <q-toolbar style="height: 50px" class="bg-button">
         <q-btn
           class="absolute-center font-button full-width"
           flat
@@ -372,6 +372,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
@@ -551,13 +552,25 @@
               <div class="col-5 dataTitle">
                 ยอดติดจำนอง
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ราคาประเมิน
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
             </div>
@@ -567,13 +580,25 @@
               <div class="col-5 dataTitle">
                 ราคาตลาด
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ราคา Last Match
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
             </div>
@@ -583,13 +608,25 @@
               <div class="col-5 dataTitle">
                 ราคาขาย
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ราคาเช่า
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
             </div>
@@ -599,13 +636,25 @@
               <div class="col-5 dataTitle">
                 ราคาต่ำสุดที่ลดได้
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ค่าภาษีธุรกิจเฉพาะ
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
             </div>
@@ -615,13 +664,25 @@
               <div class="col-5 dataTitle">
                 อัตราคอมฯ
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 อากร
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="฿"
+                  />
                 </div>
               </div>
             </div>
@@ -652,6 +713,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
@@ -711,6 +773,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
