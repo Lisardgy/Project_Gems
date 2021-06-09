@@ -25,61 +25,105 @@
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
-          <div class="col dataArea">
-            <div class="dataTitle">ประเภท</div>
-            <div class="justify-center">
-              <div class="q-gutter-y-md">
-                <q-btn-toggle
-                  size="16px"
-                  v-model="model"
-                  toggle-color="primary"
-                  class="datafont"
-                  spread
-                  :options="[
-                    { label: 'บ้านเดี่ยว', value: 'บ้านเดี่ยว' },
-                    { label: 'บ้านแฝด', value: 'บ้านแฝด' },
-                    { label: 'คอนโดฯ', value: 'คอนโดฯ' },
-                  ]"
-                />
+          <div class="dataTitle dataArea">
+            ประเภท
+            <div class="col">
+              <div class="row justify-between q-pt-sm">
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="บ้านเดี่ยว" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="บ้านแฝด" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push dense>
+                      <div class="col">
+                        <div style="margin-top: -5px">หอพัก/</div>
+                        <div style="margin-top: -10px">อพาร์ทเม้นท์</div>
+                      </div>
+                    </q-btn>
+                  </div>
+                </div>
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="คอนโดฯ" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push dense>
+                      <div class="col">
+                        <div style="margin-top: -5px">ทาวน์</div>
+                        <div style="margin-top: -10px">เฮาส์</div>
+                      </div>
+                    </q-btn>
+                  </div>
+                </div>
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push dense>
+                      <div class="col">
+                        <div style="margin-top: -5px">อาคาร</div>
+                        <div style="margin-top: -10px">พานิชย์</div>
+                      </div>
+                    </q-btn>
+                  </div>
+                </div>
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="โรงแรม" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="พูลวิล่า" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="อื่นๆ" dense />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col dataArea">
-            <div class="dataTitle">สถานะ</div>
-            <div class="q-gutter-y-md">
-              <q-btn-toggle
-                size="16px"
-                v-model="model"
-                toggle-color="primary"
-                class="datafont"
-                spread
-                :options="[
-                  { label: 'บ้านเดี่ยว', value: 'บ้านเดี่ยว' },
-                  { label: 'บ้านแฝด', value: 'บ้านแฝด' },
-                  { label: 'คอนโดฯ', value: 'คอนโดฯ' },
-                ]"
-              />
-            </div>
-          </div>
+          <div class="dataTitle dataArea">
+            สถานะ
+            <div class="col q-pt-sm">
+              <div class="row justify-between">
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="รอขาย" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="รอเช่า" dense />
+                  </div>
+                </div>
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push dense>
+                      <div style="margin-top: -5px">รอเช่า/</div>
 
-          <div class="col">
-            <div class="row justify-between dataArea">
-              <div class="col-5 dataTitle">
-                บ้านเลขที่/เลขที่ห้อง
-                <div style="padding-left: 10px">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                      <div style="margin-top: -10px">รอขาย</div>
+                    </q-btn>
+                  </div>
                 </div>
-              </div>
-              <div class="col-3 dataTitle">
-                อาคาร/ตึก
-                <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="col-3 dataTitle">
+                  <div class="padInputBox">
+                    <q-btn class="statBtn" push label="ขายแล้ว" dense />
+                  </div>
                 </div>
-              </div>
-              <div class="col-3 dataTitle">
-                หมู่ที่/ชั้น
-                <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="col-3 dataTitle padSecRow">
+                  <div class="padInputBox q-pt-sm">
+                    <q-btn class="statBtn" push label="เช่าแล้ว" dense />
+                  </div>
                 </div>
               </div>
             </div>
@@ -332,12 +376,12 @@
           <q-separator class="q-my-lg" color="white" inset />
           <div class="dataTitle dataArea">
             รูปภาพ
-            <div class="col">
+            <div class="col q-pt-md">
               <div class="row justify-between">
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
-                      style="height: 80px; max-width: 100px"
+                      style="height: 90px; max-width: 100px"
                       src="../images/pik1.jpg"
                     />
                   </div>
@@ -345,7 +389,7 @@
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
-                      style="height: 80px; max-width: 100px"
+                      style="height: 90px; max-width: 100px"
                       src="../images/pik2.jpg"
                     />
                   </div>
@@ -353,7 +397,31 @@
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
-                      style="height: 80px; max-width: 100px"
+                      style="height: 90px; max-width: 100px"
+                      src="../images/pik3.jpg"
+                    />
+                  </div>
+                </div>
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox">
+                    <img
+                      style="height: 90px; max-width: 100px"
+                      src="../images/pik1.jpg"
+                    />
+                  </div>
+                </div>
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox">
+                    <img
+                      style="height: 90px; max-width: 100px"
+                      src="../images/pik2.jpg"
+                    />
+                  </div>
+                </div>
+                <div class="col-4 dataTitle">
+                  <div class="padInputBox">
+                    <img
+                      style="height: 90px; max-width: 100px"
                       src="../images/pik3.jpg"
                     />
                   </div>
@@ -363,8 +431,7 @@
             <div class="q-gutter-sm" align="center" style="margin-top: 20px">
               <q-btn
                 class="chooseIm"
-                style="width: 60%"
-                color="#"
+                style="width: 70%"
                 push
                 label="เลือกรูปจากครังรูปภาพ"
               />
@@ -593,11 +660,7 @@
                 <div class="padInputBox">
                   <q-input class="inputBox" outlined v-model="date" dense>
                     <template v-slot:append>
-                      <q-icon
-                        name="event"
-                        class="cursor-pointer"
-                        color="primary"
-                      >
+                      <q-icon name="event" class="cursor-pointer" color="black">
                         <q-popup-proxy
                           ref="qDateProxy"
                           transition-show="scale"
@@ -615,11 +678,7 @@
                 <div class="padInputBox">
                   <q-input class="inputBox" outlined v-model="upDate" dense>
                     <template v-slot:append>
-                      <q-icon
-                        name="event"
-                        class="cursor-pointer"
-                        color="primary"
-                      >
+                      <q-icon name="event" class="cursor-pointer" color="black">
                         <q-popup-proxy
                           ref="qDateProxy"
                           transition-show="scale"
@@ -703,7 +762,6 @@ export default {
 }
 .dataTitle {
   font-size: 14px;
-  font-weight: bolder;
 }
 .datafont {
   font-size: 14px;
@@ -713,8 +771,25 @@ export default {
 }
 .padInputBox {
   padding-left: 10px;
+  padding-top: 5px;
 }
 .chooseIm {
-  text-align: center;
+  font-size: 16px;
+  font-weight: bolder;
+  color: black;
+  background-color: #ffff01;
+}
+.statBtn {
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  font-weight: bolder;
+  margin-top: -5px;
+}
+.padSecRow {
+  padding-top: 10px;
 }
 </style>
