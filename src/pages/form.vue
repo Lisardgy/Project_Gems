@@ -16,7 +16,12 @@
           <div class="col dataArea">
             <div class="dataTitle">ชื่อโครงการ</div>
             <div class="padInputBox">
-              <q-input class="inputBox" outlined v-model="text" dense />
+              <q-input
+                class="inputBox textCenter"
+                outlined
+                v-model="text"
+                dense
+              />
             </div>
           </div>
           <div class="col dataArea">
@@ -791,5 +796,8 @@ export default {
 }
 .padSecRow {
   padding-top: 10px;
+}
+.textCenter {
+  text-align: center;
 }
 </style>
