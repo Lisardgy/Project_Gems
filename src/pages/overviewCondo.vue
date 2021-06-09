@@ -21,10 +21,11 @@
           </div>
         </div>
       </div>
-      <div class="row q-px-md" style="margin: 1rem 0">
-        <div class="col">
-          <div class="title">อิราวดี</div>
-        </div>
+      <div class="row q-px-md justify-center">
+          <div class="condoTitle">อิราวดีคอนโด</div>
+      </div>
+      <div class="row q-px-md q-mb-md">
+          <div class="projectTitle">อิราวดี</div>
       </div>
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
@@ -342,11 +343,18 @@ export default {
 }
 
 
-.title {
+.projectTitle {
   color: white;
   font-size: 19px;
   font-weight: bold;
   margin-left: 1rem;
+}
+
+.condoTitle {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+
 }
 
 .tagsStyle {
