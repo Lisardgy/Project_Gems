@@ -15,13 +15,13 @@
           ข้อมูลทรัพย์
           <div class="col dataArea">
             <div class="dataTitle">ชื่อโครงการ</div>
-            <div>
+            <div class="padInputBox">
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
           <div class="col dataArea">
             <div class="dataTitle">ชื่อคอนโด</div>
-            <div>
+            <div class="padInputBox">
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -64,65 +64,96 @@
 
           <div class="col">
             <div class="row justify-between dataArea">
-              <div class="col-7 dataTitle">
+              <div class="col-5 dataTitle">
                 บ้านเลขที่/เลขที่ห้อง
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div style="padding-left: 10px">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-4 dataTitle">
+              <div class="col-3 dataTitle">
                 อาคาร/ตึก
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row justify-between dataArea">
               <div class="col-3 dataTitle">
                 หมู่ที่/ชั้น
-                <q-input class="inputBox" outlined v-model="text" dense />
-              </div>
-              <div class="col-4 dataTitle">
-                ซอย/ถนน
-                <q-input class="inputBox" outlined v-model="text" dense />
-              </div>
-              <div class="col-4 dataTitle">
-                ตำบล
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="row justify-between dataArea">
-              <div class="col-5 dataTitle" style="padding: 0px">
+              <div class="col-6 dataTitle">
+                ซอย/ถนน
+                <div class="padInputBox">
+                  <q-input
+                    style="width: 92%"
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                  />
+                </div>
+              </div>
+              <div class="col-6 dataTitle">
+                ตำบล
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-between dataArea">
+              <div class="col-6 dataTitle" style="padding: 0px">
                 อำเภอ
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input
+                    style="width: 92%"
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                  />
+                </div>
               </div>
               <div class="col-6 dataTitle" style="padding: 0px">
                 จังหวัด
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="row justify-between dataArea">
-              <div class="col-5 dataTitle">
+              <div class="col-6 dataTitle">
                 เนื้อที่บ้าน/ห้อง
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  suffix="ตร.ม."
-                />
+                <div class="padInputBox">
+                  <q-input
+                    style="width: 92%"
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="ตร.ม."
+                  />
+                </div>
               </div>
               <div class="col-6 dataTitle">
                 เนื่อที่ทีดิน
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  suffix="ตร.วา"
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="ตร.วา"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -130,15 +161,21 @@
             <div class="row justify-between dataArea">
               <div class="col-4 dataTitle">
                 จำนวนชั้น
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
               <div class="col-4 dataTitle">
                 ห้องนอน
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
               <div class="col-3 dataTitle">
                 ห้องน้ำ
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -146,39 +183,43 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 วิวโดยรอบ
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="row justify-between dataArea">
-              <div class="col-4 dataTitle">
+              <div class="col-3 dataTitle">
                 OCC Rate
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  suffix="%"
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="%"
+                  />
+                </div>
               </div>
-              <div class="col-7 dataTitle">
+              <div class="col-5 dataTitle">
                 ความกว้างหน้าบ้าน
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  suffix="ม."
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    suffix="ม."
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row justify-between dataArea">
-              <div class="col dataTitle">
+              <div class="col-3 dataTitle">
                 ทิศหน้าบ้าน
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -186,7 +227,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 เฟอร์นิเจอร์ที่ได้
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -194,7 +237,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 เครื่องใช้ไฟฟ้าที่ได้
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -202,7 +247,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 ค่าส่วนกลางตลอดปี
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -210,7 +257,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 อายุบ้าน/คอนโด
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -218,7 +267,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 Facility
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -226,7 +277,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 เหตุผลที่ขาย
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -234,7 +287,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 ระบบความปลอดภัย
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -242,7 +297,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 จุดเด่นทำเล
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -250,7 +307,9 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 ระบบน้ำ/ไฟ
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -258,13 +317,15 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 อื่นๆ
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  type="textarea"
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    type="textarea"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -273,13 +334,15 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 รูปภาพ
-                <q-uploader
-                  class="full-width"
-                  label="เลือกรูปภาพที่ต้องการ"
-                  color="amber"
-                  text-color="black"
-                  multiple
-                />
+                <div class="padInputBox">
+                  <q-uploader
+                    class="full-width"
+                    label="เลือกรูปภาพที่ต้องการ"
+                    color="amber"
+                    text-color="black"
+                    multiple
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -289,8 +352,11 @@
           ข้อมูลสำหรับ Agent
           <div class="col">
             <div class="row justify-between dataArea">
-              <div class="col-12 dataTitle">Agent/เจ้าของทรัพย์</div>
-              <div class="col-6 dataTitle">
+              <div class="col-4 dataTitle">
+                Agent
+                <div>เจ้าของทรัพย์</div>
+              </div>
+              <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
                   style="width: 95%"
@@ -300,7 +366,7 @@
                   dense
                 />
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
                   outlined
@@ -312,9 +378,9 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
-              <div class="col-12 dataTitle">ชื่อเจ้าของทรัพย์</div>
-              <div class="col-6 dataTitle">
+            <div class="row justify-between dataArea items-center">
+              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
+              <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
                   style="width: 95%"
@@ -324,7 +390,7 @@
                   dense
                 />
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
                   outlined
@@ -337,170 +403,146 @@
           </div>
 
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 เบอรติดต่อที่ 1
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 เบอรติดต่อที่ 2
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 ID Line
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ติดต่อเพิ่มเติม
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 วันที่เริ่มจำนอง
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ธนาคารที่ติดจำนอง
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 ยอดติดจำนอง
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ราคาประเมิน
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 ราคาตลาด
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ราคา Last Match
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 ราคาขาย
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ราคาเช่า
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 ราคาต่ำสุดที่ลดได้
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ค่าภาษีธุรกิจเฉพาะ
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 อัตราคอมฯ
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
-                ภาษีอากร
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+              <div class="col-5 dataTitle">
+                อากร
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="row justify-evenly dataArea">
-              <div class="col-6 dataTitle">
+            <div class="row justify-around dataArea">
+              <div class="col-5 dataTitle">
                 เงื่อนไขการโอน
-                <q-input
-                  style="width: 95%"
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
-              <div class="col-6 dataTitle">
+              <div class="col-5 dataTitle">
                 ค่าธรรมเนียมโอน
-                <q-input class="inputBox" outlined v-model="text" dense />
+                <div class="padInputBox">
+                  <q-input class="inputBox" outlined v-model="text" dense />
+                </div>
               </div>
             </div>
           </div>
@@ -508,13 +550,15 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 อื่นๆ
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  type="textarea"
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    type="textarea"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -522,13 +566,15 @@
             <div class="row justify-between dataArea">
               <div class="col dataTitle">
                 หมายเหตุเพิ่มเติม
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="text"
-                  dense
-                  type="textarea"
-                />
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="text"
+                    dense
+                    type="textarea"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -567,20 +613,23 @@ export default {
   font-size: 16px;
   color: black;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .dataHeader {
   font-size: 24px;
   font-weight: bolder;
 }
 .dataTitle {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bolder;
 }
 .datafont {
-  font-size: 16px;
+  font-size: 14px;
 }
 .dataArea {
-  padding: 8px 15px 10px 15px;
+  padding: 5px 10px 10px 10px;
+}
+.padInputBox {
+  padding-left: 10px;
 }
 </style>
