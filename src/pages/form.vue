@@ -360,7 +360,15 @@
                 </div>
               </div>
             </div>
-            <q-btn class="" color="secondary" label="Secondary" />
+            <div class="q-gutter-sm" align="center" style="margin-top: 20px">
+              <q-btn
+                class="chooseIm"
+                style="width: 60%"
+                color="#"
+                push
+                label="เลือกรูปจากครังรูปภาพ"
+              />
+            </div>
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
