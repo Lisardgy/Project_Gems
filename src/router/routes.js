@@ -2,7 +2,7 @@
 const routes = [
   {
     path: '/',
-    component: () => import('src/pages/form.vue'),
+    component: () => import('src/pages/editForm.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') }
     ]
