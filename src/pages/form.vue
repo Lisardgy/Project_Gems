@@ -3,8 +3,7 @@
     <q-header elevated>
       <q-toolbar style="height: 60px" class="bg-button">
         <q-btn
-          style="width: 100%"
-          class="absolute-center font-button"
+          class="absolute-center font-button full-width"
           flat
           label="ยืนยัน"
         />
@@ -210,7 +209,7 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              อายุบ้าน/คอนโด
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -218,7 +217,7 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              Facility
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -226,7 +225,7 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              เหตุผลที่ขาย
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -234,7 +233,7 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              ระบบความปลอดภัย
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -242,7 +241,7 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              จุดเด่นทำเล
               <q-input class="inputBox" outlined v-model="text" dense />
             </div>
           </div>
@@ -250,8 +249,22 @@
         <div class="col">
           <div class="row justify-between dataArea">
             <div class="col dataTitle">
-              เฟอร์นิเจอร์ที่ได้
+              ระบบน้ำ/ไฟ
               <q-input class="inputBox" outlined v-model="text" dense />
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row justify-between dataArea">
+            <div class="col dataTitle">
+              อื่นๆ
+              <q-input
+                class="inputBox"
+                outlined
+                v-model="text"
+                dense
+                type="textarea"
+              />
             </div>
           </div>
         </div>
@@ -292,7 +305,7 @@ export default {
   border-radius: 10px;
 }
 .dataHeader {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bolder;
 }
 .dataTitle {
