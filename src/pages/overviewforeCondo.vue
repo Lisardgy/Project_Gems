@@ -15,17 +15,25 @@
         </div>
         <div class="col">
           <div class="row justify-end">
-            <q-btn class="operationBtn row items-center justify-center" label="ลบ" @click="deletePin" />
+            <q-btn
+              class="operationBtn row items-center justify-center"
+              label="ลบ"
+              @click="deletePin"
+            />
             <div class="q-mx-xs"></div>
-            <q-btn class="operationBtn row items-center justify-center" label="แก้ไข" @click="editPin" />
+            <q-btn
+              class="operationBtn row items-center justify-center"
+              label="แก้ไข"
+              @click="editPin"
+            />
           </div>
         </div>
       </div>
       <div class="row q-px-md justify-center">
-          <div class="condoTitle">อิราวดีคอนโด</div>
+        <div class="condoTitle">อิราวดีคอนโด</div>
       </div>
       <div class="row q-px-md q-mb-md">
-          <div class="projectTitle">อิราวดี</div>
+        <div class="projectTitle">อิราวดี</div>
       </div>
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
@@ -101,6 +109,125 @@
           </div>
         </div>
       </div>
+      <div class="row overviewTab items-center">
+        <div class="overviewText q-ml-md">ห้อง</div>
+      </div>
+
+      <div class="q-pa-md row justify-center q-gutter-md">
+        <q-card class="my-card" flat>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-caption text-grey">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </q-card-section>
+          <q-card-actions>
+            <q-space />
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+              label="ดูข้อมูลเพิ่มเติม..."
+              @click="expanded = !expanded"
+            />
+          </q-card-actions>
+        </q-card>
+      </div>
+      <div class="q-pa-md row justify-center q-gutter-md">
+        <q-card class="my-card" flat>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-caption text-grey">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </q-card-section>
+          <q-card-actions>
+            <q-space />
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+              label="ดูข้อมูลเพิ่มเติม..."
+              @click="expanded = !expanded"
+            />
+          </q-card-actions>
+        </q-card>
+      </div>
+      <div class="q-pa-md row justify-center q-gutter-md">
+        <q-card class="my-card" flat>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-caption text-grey">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </q-card-section>
+          <q-card-actions>
+            <q-space />
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+              label="ดูข้อมูลเพิ่มเติม..."
+              @click="expanded = !expanded"
+            />
+          </q-card-actions>
+        </q-card>
+      </div>
+      <div class="q-pa-md row justify-center q-gutter-md">
+        <q-card class="my-card" flat>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-caption text-grey">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </q-card-section>
+          <q-card-actions>
+            <q-space />
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+              label="ดูข้อมูลเพิ่มเติม..."
+              @click="expanded = !expanded"
+            />
+          </q-card-actions>
+        </q-card>
+      </div>
+      <div class="q-pa-md row justify-center q-gutter-md">
+        <q-card class="my-card" flat>
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-caption text-grey">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+          </q-card-section>
+          <q-card-actions>
+            <q-space />
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+              label="ดูข้อมูลเพิ่มเติม..."
+              @click="expanded = !expanded"
+            />
+          </q-card-actions>
+        </q-card>
+      </div>
     </div>
   </q-layout>
 </template>
@@ -113,12 +240,18 @@ export default {
       slide: 1,
       deletePin: false,
       editPin: false,
+      expanded: false,
     };
   },
 };
 </script>
 
 <style scoped>
+.my-card {
+  width: 100%;
+  max-width: 350px;
+}
+
 .q-layout {
   background: #010135;
 }
@@ -139,7 +272,6 @@ export default {
   font-weight: bold;
 }
 
-
 .projectTitle {
   color: white;
   font-size: 19px;
@@ -151,7 +283,6 @@ export default {
   color: white;
   font-size: 24px;
   font-weight: bold;
-
 }
 
 .tagsStyle {
@@ -168,7 +299,7 @@ export default {
   border-radius: 5px;
   background: #ffff01;
   padding-right: 1px;
-  color:#010135;
+  color: #010135;
 }
 
 .q-carousel__slide,
