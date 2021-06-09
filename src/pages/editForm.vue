@@ -1,7 +1,7 @@
- <template>
+<template>
   <q-layout view="lHh Lpr lFf" class="bg-brand">
     <q-header elevated>
-      <q-toolbar style="height: 60px" class="bg-button">
+      <q-toolbar style="height: 50px" class="bg-button">
         <q-btn
           class="absolute-center font-button full-width"
           flat
@@ -17,7 +17,7 @@
           style="font-size: 12px; margin-left: -25px"
           label="ย้อนกลับ"
         />
-        <div class="dataHeader q-pt-md">
+        <div class="dataHeader">
           ข้อมูลทรัพย์
           <div class="col dataArea">
             <div class="dataTitle">ชื่อโครงการ</div>
@@ -378,6 +378,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
@@ -718,6 +719,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
@@ -777,6 +779,7 @@
                     outlined
                     v-model="text"
                     dense
+                    autogrow
                     type="textarea"
                   />
                 </div>
@@ -867,3 +870,5 @@ export default {
   text-align: center;
 }
 </style>
+
+      
