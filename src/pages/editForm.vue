@@ -586,7 +586,7 @@
                   class="inputBox"
                   style="width: 95%"
                   outlined
-                  v-model="agent"
+                  v-model="agent.agentName"
                   label="ชื่อ"
                   dense
                 />
@@ -595,7 +595,7 @@
                 <q-input
                   class="inputBox"
                   outlined
-                  v-model="agent"
+                  v-model="agent.agentLastName"
                   label="สกุล"
                   dense
                 />
@@ -610,7 +610,7 @@
                   class="inputBox"
                   style="width: 95%"
                   outlined
-                  v-model="agent.agentName"
+                  v-model="agent.propertyOwnerName"
                   label="ชื่อ"
                   dense
                 />
@@ -619,7 +619,7 @@
                 <q-input
                   class="inputBox"
                   outlined
-                  v-model="agent.propertyOwnerName"
+                  v-model="agent.propertyOwnerLastName"
                   label="สกุล"
                   dense
                 />
@@ -984,7 +984,9 @@ export default {
       },
       agent: {
         agentName: null,
+        agentLastName: null,
         propertyOwnerName: null,
+        propertyOwnerLastName: null,
         phoneNumber1: null,
         phoneNumber2: null,
         idLine: null,
