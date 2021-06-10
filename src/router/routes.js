@@ -5,8 +5,8 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: 'ovs', name: "overviewStd", component: () => import('pages/overviewStandard.vue') },
-      { path: '/ovc', name: "overviewCnd", component: () => import('pages/overviewCondo.vue') },
-      { path: '/', name: "overview4Cnd", component: () => import('pages/overviewforeCondo.vue') },
+      { path: '/', name: "overviewCnd", component: () => import('pages/overviewCondo.vue') },
+      { path: '/ov4c', name: "overview4Cnd", component: () => import('pages/overviewforeCondo.vue') },
     ]
   },
 

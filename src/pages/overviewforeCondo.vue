@@ -4,13 +4,18 @@
       <div class="row items-center q-pt-md q-px-md">
         <div class="col">
           <div class="row items-center">
-            <img
-              src="../images/white_back.png"
-              alt=""
-              width="45px"
-              height="45px"
-            />
-            <span class="backText">ย้อนกลับ</span>
+            <q-btn
+              @click="$router.push({ name: 'overview4Cnd' })"
+              style="overflow: hidden"
+            >
+              <img
+                src="../images/white_back.png"
+                alt=""
+                width="45px"
+                height="45px"
+              />
+              <span class="backText">ย้อนกลับ</span>
+            </q-btn>
           </div>
         </div>
         <div class="col">
@@ -114,11 +119,14 @@
       </div>
 
       <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="my-card" flat>
+        <q-card class="card2" flat @click="$router.push({name:'overviewCnd'})">
           <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
           <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
+            <div class="text-h6 q-mt-sm q-mb-xs text-bold">
+              หมายเลขห้อง: 5555
+              <span style="font-size: 14px">(ชั้น : 5 - ตึก : 3)</span>
+            </div>
             <div class="text-caption text-grey">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </div>
@@ -131,99 +139,7 @@
               flat
               dense
               label="ดูข้อมูลเพิ่มเติม..."
-              @click="expanded = !expanded"
-            />
-          </q-card-actions>
-        </q-card>
-      </div>
-      <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="my-card" flat>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
-
-          <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
-            <div class="text-caption text-grey">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-          </q-card-section>
-          <q-card-actions>
-            <q-space />
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-              label="ดูข้อมูลเพิ่มเติม..."
-              @click="expanded = !expanded"
-            />
-          </q-card-actions>
-        </q-card>
-      </div>
-      <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="my-card" flat>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
-
-          <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
-            <div class="text-caption text-grey">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-          </q-card-section>
-          <q-card-actions>
-            <q-space />
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-              label="ดูข้อมูลเพิ่มเติม..."
-              @click="expanded = !expanded"
-            />
-          </q-card-actions>
-        </q-card>
-      </div>
-      <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="my-card" flat>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
-
-          <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
-            <div class="text-caption text-grey">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-          </q-card-section>
-          <q-card-actions>
-            <q-space />
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-              label="ดูข้อมูลเพิ่มเติม..."
-              @click="expanded = !expanded"
-            />
-          </q-card-actions>
-        </q-card>
-      </div>
-      <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="my-card" flat>
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
-
-          <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">หมายเลขห้อง : 555 <span style="font-size:12px">(ชั้น : 5 - ตึก : 3)</span></div>
-            <div class="text-caption text-grey">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </div>
-          </q-card-section>
-          <q-card-actions>
-            <q-space />
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-              label="ดูข้อมูลเพิ่มเติม..."
-              @click="expanded = !expanded"
+              
             />
           </q-card-actions>
         </q-card>
@@ -243,14 +159,14 @@ export default {
       expanded: false,
     };
   },
+  methods(){
+
+  }
 };
 </script>
 
-<style scoped>
-.my-card {
-  width: 100%;
-  max-width: 350px;
-}
+<style lang="scss" scoped>
+
 
 .q-layout {
   background: #010135;
@@ -352,5 +268,18 @@ export default {
 
 .marginAftSep {
   margin-left: 1.2em;
+}
+
+.card2 {
+  display: block;
+  top: 0px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+
+  &:hover {
+    transition: all 0.2s ease-out;
+    top: -5px;
+  }
 }
 </style>

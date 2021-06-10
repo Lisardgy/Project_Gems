@@ -4,6 +4,7 @@
       <div class="row items-center q-pt-md q-px-md">
         <div class="col">
           <div class="row items-center">
+            <q-btn  @click="$router.push({name: 'overview4Cnd'})" style="overflow:hidden" >
             <img
               src="../images/white_back.png"
               alt=""
@@ -11,6 +12,7 @@
               height="45px"
             />
             <span class="backText">ย้อนกลับ</span>
+            </q-btn>
           </div>
         </div>
         <div class="col">
@@ -316,8 +318,31 @@ export default {
       slide: 1,
       deletePin: false,
       editPin: false,
+
     };
   },
+  mounted(){
+    this.showLoading();
+  },
+   methods: {
+    showLoading () {
+      this.$q.loading.show()
+
+      // hiding in 2s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide()
+        this.timer = void 0
+      }, 500)
+    }
+  },
+
+  beforeDestroy () {
+    if (this.timer !== void 0) {
+      clearTimeout(this.timer)
+      this.$q.loading.hide()
+    }
+  }
+  
 };
 </script>
 
@@ -425,4 +450,9 @@ export default {
 .marginAftSep {
   margin-left: 1.2em;
 }
+
+.backBtn{
+  overflow: hidden;
+}
+
 </style>
