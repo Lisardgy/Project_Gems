@@ -25,7 +25,7 @@
               <q-input
                 class="inputBox textCenter"
                 outlined
-                v-model="text"
+                v-model="property.projectName"
                 dense
               />
             </div>
@@ -33,7 +33,12 @@
           <div class="col dataArea">
             <div class="dataTitle">ชื่อคอนโด</div>
             <div class="padInputBox">
-              <q-input class="inputBox" outlined v-model="text" dense />
+              <q-input
+                class="inputBox"
+                outlined
+                v-model="property.name"
+                dense
+              />
             </div>
           </div>
           <div class="dataTitle dataArea">
@@ -148,7 +153,7 @@
                     style="width: 92%"
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                   />
                 </div>
@@ -156,7 +161,7 @@
               <div class="col-6 dataTitle">
                 ตำบล
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -170,7 +175,7 @@
                     style="width: 92%"
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                   />
                 </div>
@@ -178,7 +183,7 @@
               <div class="col-6 dataTitle" style="padding: 0px">
                 จังหวัด
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -192,7 +197,7 @@
                     style="width: 92%"
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                     suffix="ตร.ม."
                   />
@@ -204,7 +209,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                     suffix="ตร.วา"
                   />
@@ -217,19 +222,19 @@
               <div class="col-4 dataTitle">
                 จำนวนชั้น
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
               <div class="col-4 dataTitle">
                 ห้องนอน
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
               <div class="col-3 dataTitle">
                 ห้องน้ำ
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -239,7 +244,7 @@
               <div class="col dataTitle">
                 วิวโดยรอบ
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -252,7 +257,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                     suffix="%"
                   />
@@ -264,7 +269,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                     suffix="ม."
                   />
@@ -273,7 +278,7 @@
               <div class="col-3 dataTitle">
                 ทิศหน้าบ้าน
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -293,7 +298,7 @@
               <div class="col dataTitle">
                 เครื่องใช้ไฟฟ้าที่ได้
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -303,7 +308,7 @@
               <div class="col dataTitle">
                 ค่าส่วนกลางตลอดปี
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -313,7 +318,7 @@
               <div class="col dataTitle">
                 อายุบ้าน/คอนโด
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -323,7 +328,7 @@
               <div class="col dataTitle">
                 Facility
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -333,7 +338,7 @@
               <div class="col dataTitle">
                 เหตุผลที่ขาย
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -343,7 +348,7 @@
               <div class="col dataTitle">
                 ระบบความปลอดภัย
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -353,7 +358,7 @@
               <div class="col dataTitle">
                 จุดเด่นทำเล
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -363,7 +368,7 @@
               <div class="col dataTitle">
                 ระบบน้ำ/ไฟ
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="property" dense />
                 </div>
               </div>
             </div>
@@ -376,7 +381,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="property"
                     dense
                     autogrow
                     type="textarea"
@@ -464,7 +469,7 @@
                   class="inputBox"
                   style="width: 95%"
                   outlined
-                  v-model="text"
+                  v-model="agent"
                   label="ชื่อ"
                   dense
                 />
@@ -473,7 +478,7 @@
                 <q-input
                   class="inputBox"
                   outlined
-                  v-model="text"
+                  v-model="agent"
                   label="สกุล"
                   dense
                 />
@@ -488,7 +493,7 @@
                   class="inputBox"
                   style="width: 95%"
                   outlined
-                  v-model="text"
+                  v-model="agent"
                   label="ชื่อ"
                   dense
                 />
@@ -497,7 +502,7 @@
                 <q-input
                   class="inputBox"
                   outlined
-                  v-model="text"
+                  v-model="agent"
                   label="สกุล"
                   dense
                 />
@@ -510,13 +515,13 @@
               <div class="col-5 dataTitle">
                 เบอรติดต่อที่ 1
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 เบอรติดต่อที่ 2
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
             </div>
@@ -526,13 +531,13 @@
               <div class="col-5 dataTitle">
                 ID Line
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ติดต่อเพิ่มเติม
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
             </div>
@@ -542,13 +547,13 @@
               <div class="col-5 dataTitle">
                 วันที่เริ่มจำนอง
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ธนาคารที่ติดจำนอง
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
             </div>
@@ -561,7 +566,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -573,7 +578,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -589,7 +594,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -601,7 +606,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -617,7 +622,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -629,7 +634,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -645,7 +650,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -657,7 +662,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -673,7 +678,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -685,7 +690,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     suffix="฿"
                   />
@@ -698,13 +703,13 @@
               <div class="col-5 dataTitle">
                 เงื่อนไขการโอน
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
               <div class="col-5 dataTitle">
                 ค่าธรรมเนียมโอน
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="text" dense />
+                  <q-input class="inputBox" outlined v-model="agent" dense />
                 </div>
               </div>
             </div>
@@ -717,7 +722,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     autogrow
                     type="textarea"
@@ -728,28 +733,10 @@
           </div>
           <div class="col">
             <div class="row justify-around dataArea">
-              <div class="col-6 dataTitle">
+              <div class="col dataTitle">
                 วันที่ได้ทรัพย์มา
                 <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="date" dense>
-                    <template v-slot:append>
-                      <q-icon name="event" class="cursor-pointer" color="black">
-                        <q-popup-proxy
-                          ref="qDateProxy"
-                          transition-show="scale"
-                          transition-hide="scale"
-                        >
-                          <q-date label-color="primary" v-model="date"></q-date>
-                        </q-popup-proxy>
-                      </q-icon>
-                    </template>
-                  </q-input>
-                </div>
-              </div>
-              <div class="col-6 dataTitle">
-                วันที่อัพเดทข้อมูล
-                <div class="padInputBox">
-                  <q-input class="inputBox" outlined v-model="upDate" dense>
+                  <q-input class="inputBox" outlined v-model="agent" dense>
                     <template v-slot:append>
                       <q-icon name="event" class="cursor-pointer" color="black">
                         <q-popup-proxy
@@ -759,7 +746,7 @@
                         >
                           <q-date
                             label-color="primary"
-                            v-model="upDate"
+                            v-model="agent"
                           ></q-date>
                         </q-popup-proxy>
                       </q-icon>
@@ -777,7 +764,7 @@
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="text"
+                    v-model="agent"
                     dense
                     autogrow
                     type="textarea"
@@ -801,6 +788,62 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      property: {
+        projectName: null,
+        name: null, //ชื่อคอนโด
+        type: null,
+        status: null,
+        houseNumber: null,
+        building: null, //อาคาร
+        swine: null, //หมู่
+        alley: null, //ซอย
+        distict: null, //อำเภอ
+        subDistict: null, //ตำบล
+        province: null, //จังหวัด
+        houseSize: null, //ขนาดพื้นที่บ้าน
+        areaSize: null, //ที่ดิน
+        floor: null, //ชั้นที่
+        bedRoom: null, //ห้องนอน
+        toilet: null,
+        occRate: null, //ค่าไรหนิ
+        widthFrontHouse: null, //ความกว้างหน้าบ้าน
+        directionHouse: null, //ทิศหน้าบ้าน
+        furniture: null,
+        electronic: null, //เตรื่องใช้ไฟฟ้าที่ได้
+        commonFee: null, //ค่าส่วนกลางต่อปี
+        houserAge: null, //อายุบ้าน
+        facility: null,
+        reasonSale: null, //เหตุผลที่ขาย
+        securitySystem: null, //ระบบความปลอดภัย
+        areaHighlight: null, //จุดเด่นของสถานที่
+        waterFireSystem: null, // ระบบน้ำ/ไฟ4
+        otherProperty: null, // อื่น ๆ ของทรัพย์
+      },
+      agent: {
+        agentName: null,
+        propertyOwnerName: null,
+        phoneNumber1: null,
+        phoneNumber2: null,
+        idLine: null,
+        otherContact: null, //ช่องทางติดต่อเพิ่มเติม
+        mortgageDate: null, //วันที่จำนอง
+        mortgageBank: null, //ธนาคารที่ติดจำนอง
+        mortgagePrice: null, //ยอดจำนอง
+        appraisalPrice: null, //ราคาประเมิน
+        marketPrice: null,
+        lastMatch: null, //ราคา Last Match
+        sellPrice: null, //ราคาขาย
+        rentalPrice: null, //ราคาเช่า
+        minDicount: null, //ราคาต่ำสุดที่ลดได้
+        specificTax: null, //ค่าภาษีธุรกิจเฉพาะ
+        commissionRate: null, //อัตราคอมฯ
+        taxation: null, //ภาษีอากร
+        transterCondition: null, //เงื่อนไขการโอน
+        transferFee: null, //ค่าธรรมเนียมโอน
+        otherAgent: null, //ค่าธรรมเนียมโอน
+        acquisitionDate: null, //วันที่ได้ทรัพย์มา
+        additionalNote: null, //หมายเหตุเพิ่มเติม
+      }, //
     };
   },
 };
