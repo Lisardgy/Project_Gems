@@ -2,7 +2,7 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/pages/map.vue'),
     children: [
       { path: 'ovs', name: "overviewStd", component: () => import('pages/overviewStandard.vue') },
       { path: '/', name: "overviewCnd", component: () => import('pages/overviewCondo.vue') },
