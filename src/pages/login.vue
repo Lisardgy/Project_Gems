@@ -4,6 +4,7 @@
     <div class="cities">
       
     </div>
+    <div class="bgbottom"></div>
   </q-layout>
 </template>
 
@@ -20,19 +21,16 @@ export default {
 
 <style scoped>
   .q-layout{
-    background: #ffdd02;
+    background: url('../images/cities.png'),#ffdd02;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 30% ,contain;
+    
     
   }
 
   .cities{
-    background: url('../images/cities.png');
-    min-height: 812px;
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size:contain;
-    
     
   }
-  
 
 </style>
