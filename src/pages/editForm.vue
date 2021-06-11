@@ -11,6 +11,12 @@
     </q-header>
     <q-page-container>
       <q-page class="q-pa-md" style="color: white">
+        <q-btn
+          flat
+          icon="arrow_back_ios"
+          style="font-size: 12px; margin-left: -25px"
+          label="ย้อนกลับ"
+        />
         <div class="dataHeader">
           ข้อมูลทรัพย์
           <div class="col dataArea">
