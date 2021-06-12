@@ -37,11 +37,11 @@
         <div class="q-gutter-sm q-mt-xl" align="center">
           <q-btn
             style="background-color: white;color:black; width: 70%;height:3rem"
-            
             back
             class="LoginButton"
             push
             label="Sign in"
+            @click="$router.push({name : 'map'})"
           />
         </div>
       </div>

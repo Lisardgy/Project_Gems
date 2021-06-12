@@ -15,31 +15,18 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-page class="q-pa-md">
-        <p v-for="n in 15" :key="n">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil
-          praesentium molestias a adipisci, dolore vitae odit, quidem
-          consequatur optio voluptates asperiores pariatur eos numquam rerum
-          delectus commodi perferendis voluptate?
-        </p>
-      </q-page>
-    </q-page-container>
-    <div class="fixed-bottom-right text-right q-mb-lg">
-      <div class="q-mb-md">
-        <q-btn class="mapMenu" rounded label="สถานะ" icon-right="filter_list" />
-      </div>
-      <div class="q-mb-md">
-        <q-btn class="mapMenu" rounded label="เพิ่มหมุด" icon-right="add" />
-      </div>
-      <div>
-        <q-btn
-          class="mapMenu"
-          rounded
-          label="ตำแหน่งของคุณ"
-          icon-right="adjust"
-        />
-      </div>
+      <div class="row justify-around q-mt-xl">
+        <div class="toForm">
+       <q-btn color="white" text-color="black" label="form" @click="$router.push({name : 'form'})" />
     </div>
+    <div class="toOV">
+      <q-btn color="white" text-color="black" label="overview" @click="$router.push({name : 'overview'})" />
+    </div>
+    <div class="toOV4C">
+      <q-btn color="white" text-color="black" label="toOV4C" @click="$router.push({name : 'overviewCondo'})" />
+    </div>
+      </div>
+    </q-page-container>
   </q-layout>
 </template>
 <script>

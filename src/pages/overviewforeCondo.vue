@@ -2,20 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <div class="body">
       <div class="row items-center q-pt-md q-px-md">
-        <div class="col">
+        <div style="color: white">
           <div class="row items-center">
             <q-btn
-              @click="$router.push({ name: 'overview4Cnd' })"
-              style="overflow: hidden"
-            >
-              <img
-                src="../images/white_back.png"
-                alt=""
-                width="45px"
-                height="45px"
-              />
-              <span class="backText">ย้อนกลับ</span>
-            </q-btn>
+          flat
+          icon="arrow_back_ios"
+          style="font-size: 12px; margin-left: -25px"
+          label="ย้อนกลับ"
+          @click="$router.push({ name: 'map'})"
+        />
           </div>
         </div>
         <div class="col">
@@ -119,7 +114,7 @@
       </div>
 
       <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="card2" flat @click="$router.push({name:'overviewCnd'})">
+        <q-card class="card2" flat @click="$router.push({name:'overviewInCondo'})">
           <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
           <q-card-section>

@@ -2,16 +2,14 @@
   <q-layout view="lHh Lpr lFf">
     <div class="body">
       <div class="row items-center q-pt-md q-px-md">
-        <div class="col">
-          <div class="row items-center">
-            <img
-              src="../images/white_back.png"
-              alt=""
-              width="45px"
-              height="45px"
-            />
-            <span class="backText">ย้อนกลับ</span>
-          </div>
+        <div style="color: white">
+          <q-btn
+          flat
+          icon="arrow_back_ios"
+          style="font-size: 12px; margin-left: -25px"
+          label="ย้อนกลับ"
+          @click="$router.push({ name: 'map'})"
+        />
         </div>
         <div class="col">
           <div class="row justify-end">
