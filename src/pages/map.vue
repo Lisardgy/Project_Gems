@@ -6,20 +6,20 @@
           >GEMS</q-toolbar-title
         >
         <q-btn
-          round
           class="absolute-right q-pr-xs"
           style="color: #ffdd02"
           flat
           dense
           icon="logout"
+          @click="$router.go(-1)"
         />
       </q-toolbar>
     </q-header>
     <q-page-container>
       <q-page>
         <GmapMap
-          :center="Currentposition"
-          :zoom="15"
+          :center="myCoordinates"
+          :zoom="13"
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
         >
           <GmapMarker
@@ -29,6 +29,7 @@
             :clickable="true"
             :title="m.title"
             @click="markerEvent(m)"
+            ref="mapRef"
           />
         </GmapMap>
         <div class="fixed-bottom-left text-left q-mb-lg q-pl-sm">
@@ -95,16 +96,19 @@ Vue.use(VueGeolocation);
 
 import * as VueGoogleMaps from "vue2-google-maps";
 Vue.use(VueGoogleMaps, {
-  load: { key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc" },
+  load: {
+    key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc",
+  },
   installComponents: true,
 });
 
 export default {
   data() {
     return {
-      Currentposition: {
-        lat: 0,
-        lat: 0,
+      map: null,
+      myCoordinates: {
+        lat: 7.9015,
+        lng: 98.3541,
       },
       markers: [
         {
@@ -135,7 +139,7 @@ export default {
     };
   },
   created() {
-    // does the user have a saved center? use it instead of the default
+    //does the user have a saved center? use it instead of the default
     if (!localStorage.center) {
       this.Currentposition = JSON.parse(localStorage.center);
     } else {

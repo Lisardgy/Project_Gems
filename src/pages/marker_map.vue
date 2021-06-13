@@ -62,8 +62,8 @@ export default {
     return {
       map: null,
       myCoordinates: {
-        lat: 0,
-        lng: 0,
+        lat: 7.9015,
+        lng: 98.3541,
       },
       marker: {
         lat: 0,
@@ -73,20 +73,20 @@ export default {
   },
   created() {
     // does the user have a saved center? use it instead of the default
-    if (!localStorage.center) {
-      this.myCoordinates = JSON.parse(localStorage.center);
-    } else {
-      // get user's coordinates from browser request
-      this.$getLocation({})
-        .then((coordinates) => {
-          this.myCoordinates = coordinates;
-        })
-        .catch((error) => alert(error));
-    }
-    // does the user have a saved zoom? use it instead of the default
-    if (localStorage.zoom) {
-      this.zoom = parseInt(localStorage.zoom);
-    }
+    // if (!localStorage.center) {
+    //   this.myCoordinates = JSON.parse(localStorage.center);
+    // } else {
+    //   // get user's coordinates from browser request
+    //   this.$getLocation({})
+    //     .then((coordinates) => {
+    //       this.myCoordinates = coordinates;
+    //     })
+    //     .catch((error) => alert(error));
+    // }
+    // // does the user have a saved zoom? use it instead of the default
+    // if (localStorage.zoom) {
+    //   this.zoom = parseInt(localStorage.zoom);
+    // }
   },
   mounted() {
     // add the map to a data object
