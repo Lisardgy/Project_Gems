@@ -1,19 +1,19 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <div class="body">
-      <div class="row items-center q-pt-md q-px-md">
-        <div style="color: white">
-          <div class="row items-center">
-            <q-btn
-          flat
-          icon="arrow_back_ios"
-          style="font-size: 12px; margin-left: -25px"
-          label="ย้อนกลับ"
-          @click="$router.push({ name: 'map'})"
-        />
-          </div>
+      <div class="row items-center">
+        <div class="col q-pt-md">
+          <q-btn
+            align="left"
+            size="20px"
+            icon="arrow_back_ios"
+            style="color: #ffff01"
+            @click="$router.go(-1)"
+          >
+            <div style="padding-left: 0px">ย้อนกลับ</div>
+          </q-btn>
         </div>
-        <div class="col">
+        <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
             <q-btn
               class="operationBtn row items-center justify-center"
@@ -114,7 +114,11 @@
       </div>
 
       <div class="q-pa-md row justify-center q-gutter-md">
-        <q-card class="card2" flat @click="$router.push({name:'overviewInCondo'})">
+        <q-card
+          class="card2"
+          flat
+          @click="$router.push({ name: 'overviewInCondo' })"
+        >
           <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
           <q-card-section>
@@ -128,14 +132,7 @@
           </q-card-section>
           <q-card-actions>
             <q-space />
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-              label="ดูข้อมูลเพิ่มเติม..."
-              
-            />
+            <q-btn color="grey" round flat dense label="ดูข้อมูลเพิ่มเติม..." />
           </q-card-actions>
         </q-card>
       </div>
@@ -154,15 +151,11 @@ export default {
       expanded: false,
     };
   },
-  methods(){
-
-  }
+  methods() {},
 };
 </script>
 
 <style lang="scss" scoped>
-
-
 .q-layout {
   background: #010135;
 }

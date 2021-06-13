@@ -1,64 +1,171 @@
 <template>
-  <div class="map_container">
+  <q-layout view="lHh Lpr lFf" class="bg-brand">
     <q-header elevated class="bgColor">
-      <q-toolbar style="height: 65px">
+      <q-toolbar style="height: 50px">
         <q-toolbar-title class="absolute-center headFontColor"
           >GEMS</q-toolbar-title
         >
         <q-btn
-          class="absolute-right"
+          round
+          class="absolute-right q-pr-xs"
           style="color: #ffdd02"
           flat
           dense
-          label="log out"
+          icon="logout"
         />
       </q-toolbar>
     </q-header>
-    <GmapMap
-      :center="Currentposition"
-      :zoom="15"
-      map-type-id="terrain"
-      style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
-    >
-    </GmapMap>
-  </div>
+    <q-page-container>
+      <q-page>
+        <GmapMap
+          :center="Currentposition"
+          :zoom="15"
+          style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
+        >
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :title="m.title"
+            @click="markerEvent(m)"
+          />
+        </GmapMap>
+        <div class="fixed-bottom-left text-left q-mb-lg q-pl-sm">
+          <div class="q-mb-md">
+            <q-btn
+              class="mapMenu"
+              rounded
+              label="สถานะ"
+              icon-right="filter_list"
+              @click="statusModal = true"
+            />
+          </div>
+          <div class="q-mb-md">
+            <q-btn
+              class="mapMenu"
+              rounded
+              label="เพิ่มหมุด"
+              icon-right="add"
+              @click="$router.push({ name: 'markermap' })"
+            />
+          </div>
+          <div>
+            <q-btn
+              class="mapMenu"
+              rounded
+              label="ตำแหน่งของคุณ"
+              icon-right="adjust"
+            />
+          </div>
+          <q-dialog v-model="statusModal">
+            <q-card style="background: #010135; color: white">
+              <q-card-section class="row justify-center q-pb-none">
+                <div class="col-12 text-center">
+                  <div class="text-h4 text-weight-bold" style="color: #ffdd02">
+                    สถานะ
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-section>
+                <div class="column items-center q-px-xl text-h6 text-white">
+                  <div class="q-my-xs">รอขาย</div>
+                  <div class="q-my-xs">รอเช่า</div>
+                  <div class="q-my-xs">รอเช่า/รอขาย</div>
+                  <div class="q-my-xs">ขายแล้ว</div>
+                  <div class="q-my-xs">เช่าแล้ว</div>
+                  <div class="q-my-xs">ทั้งหมด</div>
+                </div>
+              </q-card-section>
+            </q-card>
+          </q-dialog>
+        </div>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
 import Vue from "vue";
+
+Vue.config.productionTip = false;
+
+import VueGeolocation from "vue-browser-geolocation";
+Vue.use(VueGeolocation);
+
 import * as VueGoogleMaps from "vue2-google-maps";
 Vue.use(VueGoogleMaps, {
-  load: { key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc", libraries: "places" },
+  load: { key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc" },
   installComponents: true,
 });
+
 export default {
   data() {
     return {
-      Currentposition: {},
+      Currentposition: {
+        lat: 0,
+        lat: 0,
+      },
+      markers: [
+        {
+          position: {
+            lat: 7.9015,
+            lng: 98.3541,
+          },
+          title: "บ้านเดี่ยว",
+          type: "single_house",
+        },
+        {
+          position: {
+            lat: 7.8711,
+            lng: 98.3577,
+          },
+          title: "คอนโด",
+          type: "condo",
+        },
+      ],
+      statusModal: false,
+      slide: 1,
+      lorem:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, ratione eum minus fuga, quasi dicta facilis corporis magnam, suscipit at quo nostrum!",
+      stars: 3,
+      slideVol: 39,
+      slideAlarm: 56,
+      slideVibration: 63,
     };
   },
-  mounted() {},
-  methods: {},
   created() {
-    const success = (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
-      console.log(latitude + "  " + longitude);
-      const Currentposition = { lat: latitude, lng: longitude };
-      this.Currentposition = Currentposition;
-    };
-
-    const error = (err) => {
-      console.log(error);
-    };
-
-    // This will open permission popup
-    navigator.geolocation.getCurrentPosition(success, error);
+    // does the user have a saved center? use it instead of the default
+    if (!localStorage.center) {
+      this.Currentposition = JSON.parse(localStorage.center);
+    } else {
+      // get user's coordinates from browser request
+      this.$getLocation({})
+        .then((coordinates) => {
+          this.Currentposition = coordinates;
+        })
+        .catch((error) => alert(error));
+    }
+  },
+  methods: {
+    async markerEvent(data) {
+      switch (data.type) {
+        case "condo":
+          this.$router.push({ name: "overviewCondo" });
+          break;
+        case "single_house":
+          this.$router.push({ name: "overview" });
+          break;
+      }
+    },
   },
 };
 </script>
 <style>
+/* div {
+  border: dashed;
+} */
+
 body,
 html,
 #GmapMap {
@@ -77,7 +184,7 @@ html,
 }
 .headFontColor {
   color: #ffdd02;
-  font-size: 35px;
+  font-size: 32px;
   font-weight: bold;
 }
 .bgColor {
