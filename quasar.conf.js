@@ -18,7 +18,8 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v1.quasar.dev/quasar-cli/boot-files
     boot: [
-
+      'firebase',
+      'auth',
       'axios',
     ],
 
@@ -80,8 +81,8 @@ module.exports = function (/* ctx */) {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
       config: {
-        loading:{
-          
+        loading: {
+
         }
       },
 
