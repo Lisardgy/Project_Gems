@@ -13,7 +13,7 @@
             <div style="padding-left: 0px">ย้อนกลับ</div>
           </q-btn>
         </div>
-        <div class="col q-pt-md q-px-md">
+        <!-- <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
             <q-btn
               class="operationBtn row items-center justify-center"
@@ -27,7 +27,7 @@
               @click="editPin"
             />
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="row q-px-md justify-center">
         <div class="condoTitle">อิราวดีคอนโด</div>
@@ -126,7 +126,7 @@
               หมายเลขห้อง: 5555
               <span style="font-size: 14px">(ชั้น : 5 - ตึก : 3)</span>
             </div>
-            <div class="text-caption text-grey">
+            <div class="text-caption">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </div>
           </q-card-section>

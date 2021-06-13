@@ -1,26 +1,36 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <div class="body">
-      <div class="row items-center q-pt-md q-px-md">
-        <div style="color: white">
+      <div class="row items-center">
+        <div class="col q-pt-md">
           <q-btn
-          flat
-          icon="arrow_back_ios"
-          style="font-size: 12px; margin-left: -25px"
-          label="ย้อนกลับ"
-          @click="$router.push({ name: 'map'})"
-        />
+            align="left"
+            size="20px"
+            icon="arrow_back_ios"
+            style="color: #ffff01"
+            @click="$router.go(-1)"
+          >
+            <div style="padding-left: 0px">ย้อนกลับ</div>
+          </q-btn>
         </div>
-        <div class="col">
+        <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
-            <q-btn class="operationBtn row items-center justify-center" label="ลบ" @click="deletePin" />
+            <q-btn
+              class="operationBtn row items-center justify-center"
+              label="ลบ"
+              @click="deletePin"
+            />
             <div class="q-mx-xs"></div>
-            <q-btn class="operationBtn row items-center justify-center" label="แก้ไข" @click="editPin" />
+            <q-btn
+              class="operationBtn row items-center justify-center"
+              label="แก้ไข"
+              @click="$router.push({ name: 'editform' })"
+            />
           </div>
         </div>
       </div>
       <div class="row q-px-md" style="margin: 1rem 0">
-          <div class="title">อิราวดี</div>
+        <div class="title">อิราวดี</div>
       </div>
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
@@ -293,7 +303,10 @@
               </div>
               <div class="row">
                 <div class="col">หมายเหตุเพิ่มเติม</div>
-                <div class="col">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a lectus tincidunt sem accumsan.</div>
+                <div class="col">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Vivamus a lectus tincidunt sem accumsan.
+                </div>
               </div>
             </div>
           </div>
@@ -337,7 +350,6 @@ export default {
   font-weight: bold;
 }
 
-
 .title {
   color: white;
   font-size: 19px;
@@ -359,7 +371,7 @@ export default {
   border-radius: 5px;
   background: #ffff01;
   padding-right: 1px;
-  color:#010135;
+  color: #010135;
 }
 
 .q-carousel__slide,

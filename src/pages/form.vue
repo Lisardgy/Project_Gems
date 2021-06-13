@@ -1032,8 +1032,14 @@ export default {
   font-weight: bolder;
   color: black;
 }
+.q-field__native,
+.q-field__prefix,
+.q-field__suffix,
+.q-field__input {
+  font-weight: bold;
+}
 .inputBox {
-  font-size: 16px;
+  font-size: 18px;
   color: black;
   background-color: white;
   border-radius: 5px;

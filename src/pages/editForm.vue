@@ -11,9 +11,21 @@
     </q-header>
     <q-page-container>
       <q-page class="q-pa-md" style="color: white">
-        
         <div class="dataHeader">
-          ข้อมูลทรัพย์
+          <div class="row justify-between items-center">
+            <div class="col-12">
+              <q-btn
+                size="20px"
+                icon="arrow_back_ios"
+                style="color: #ffffff"
+                @click="$router.go(-1)"
+              >
+                <div class="text-white text-weight-bold text-h5">
+                  ข้อมูลทรัพย์
+                </div>
+              </q-btn>
+            </div>
+          </div>
           <div class="col dataArea">
             <div class="dataTitle">ชื่อโครงการ</div>
             <div class="padInputBox">

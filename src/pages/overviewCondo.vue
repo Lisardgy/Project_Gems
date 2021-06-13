@@ -24,7 +24,7 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="แก้ไข"
-              @click="editPin"
+              @click="$router.push({ name: 'editform' })"
             />
           </div>
         </div>
