@@ -8,6 +8,7 @@
             size="20px"
             icon="arrow_back_ios"
             style="color: #ffff01"
+            class="overflow-hidden"
             @click="$router.go(-1)"
           >
             <div style="padding-left: 0px">ย้อนกลับ</div>

@@ -6,11 +6,12 @@
           class="absolute-center font-button full-width"
           flat
           label="ยืนยัน"
+          @click="$router.go(-2)"
         />
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-page class="q-pa-md" style="color: white">
+      <q-page style="color: white; padding: 15px 15px 15px 15px">
         <div class="dataHeader">
           <div class="row justify-between items-center">
             <div class="col-12">
@@ -18,6 +19,7 @@
                 size="20px"
                 icon="arrow_back_ios"
                 style="color: #ffffff"
+                class="overflow-hidden"
                 @click="$router.go(-1)"
               >
                 <div class="text-white text-weight-bold text-h5">
@@ -51,7 +53,7 @@
           <div class="dataTitle dataArea">
             ประเภท
             <div class="col">
-              <div class="row justify-between q-pt-sm">
+              <div class="row q-pt-sm q-col-gutter-sm">
                 <div class="col-3 dataTitle">
                   <div class="padInputBox">
                     <q-btn class="statBtn" push label="บ้านเดี่ยว" dense />
@@ -118,7 +120,7 @@
           <div class="dataTitle dataArea">
             สถานะ
             <div class="col q-pt-sm">
-              <div class="row justify-between">
+              <div class="row q-col-gutter-sm">
                 <div class="col-3 dataTitle">
                   <div class="padInputBox">
                     <q-btn class="statBtn" push label="รอขาย" dense />
@@ -152,7 +154,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row q-col-gutter-sm dataArea">
               <div class="col-5 dataTitle">
                 บ้านเลขที่/เลขที่ห้อง
                 <div class="padInputBox">
@@ -164,7 +166,7 @@
                   />
                 </div>
               </div>
-              <div class="col-3 dataTitle">
+              <div class="col-4 dataTitle">
                 อาคาร/ตึก
                 <div class="padInputBox">
                   <q-input
@@ -189,12 +191,11 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row q-col-gutter-sm dataArea">
               <div class="col-6 dataTitle">
                 ซอย/ถนน
                 <div class="padInputBox">
                   <q-input
-                    style="width: 92%"
                     class="inputBox"
                     outlined
                     v-model="property.alley"
@@ -216,12 +217,11 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
-              <div class="col-6 dataTitle" style="padding: 0px">
+            <div class="row q-col-gutter-sm dataArea">
+              <div class="col-6 dataTitle">
                 อำเภอ
                 <div class="padInputBox">
                   <q-input
-                    style="width: 92%"
                     class="inputBox"
                     outlined
                     v-model="property.distict"
@@ -229,7 +229,7 @@
                   />
                 </div>
               </div>
-              <div class="col-6 dataTitle" style="padding: 0px">
+              <div class="col-6 dataTitle">
                 จังหวัด
                 <div class="padInputBox">
                   <q-input
@@ -243,12 +243,11 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row q-col-gutter-sm dataArea">
               <div class="col-6 dataTitle">
                 เนื้อที่บ้าน/ห้อง
                 <div class="padInputBox">
                   <q-input
-                    style="width: 92%"
                     class="inputBox"
                     outlined
                     v-model="property.houseSize"
@@ -272,7 +271,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row q-col-gutter-sm dataArea">
               <div class="col-4 dataTitle">
                 จำนวนชั้น
                 <div class="padInputBox">
@@ -295,7 +294,7 @@
                   />
                 </div>
               </div>
-              <div class="col-3 dataTitle">
+              <div class="col-4 dataTitle">
                 ห้องน้ำ
                 <div class="padInputBox">
                   <q-input
@@ -309,7 +308,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row dataArea">
               <div class="col dataTitle">
                 วิวโดยรอบ
                 <div class="padInputBox">
@@ -324,7 +323,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row q-col-gutter-sm dataArea">
               <div class="col-3 dataTitle">
                 OCC Rate
                 <div class="padInputBox">
@@ -349,7 +348,7 @@
                   />
                 </div>
               </div>
-              <div class="col-3 dataTitle">
+              <div class="col-4 dataTitle">
                 ทิศหน้าบ้าน
                 <div class="padInputBox">
                   <q-input
@@ -1034,8 +1033,14 @@ export default {
   font-weight: bolder;
   color: black;
 }
+.q-field__native,
+.q-field__prefix,
+.q-field__suffix,
+.q-field__input {
+  font-weight: bold;
+}
 .inputBox {
-  font-size: 16px;
+  font-size: 18px;
   color: black;
   background-color: white;
   border-radius: 5px;
@@ -1059,9 +1064,9 @@ export default {
   padding: 5px 10px 10px 10px;
 }
 .padInputBox {
-  padding-left: 10px;
   padding-top: 5px;
 }
+
 .chooseIm {
   font-size: 16px;
   font-weight: bolder;

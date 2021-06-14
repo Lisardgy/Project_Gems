@@ -19,6 +19,7 @@
                 size="20px"
                 icon="arrow_back_ios"
                 style="color: #ffffff"
+                class="overflow-hidden"
                 @click="$router.go(-1)"
               >
                 <div class="text-white text-weight-bold text-h5">
