@@ -47,10 +47,9 @@
           <div class="row justify-end">
             <q-btn
               class="downloadIamges row items-centers justify-center"
-              style="font-size: 28px"
-            >
-              <span class="material-icons">file_download</span>
-            </q-btn>
+              size="17px"
+              icon="file_download"
+            />
           </div>
         </div>
       </div>
