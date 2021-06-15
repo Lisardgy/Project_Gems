@@ -53,66 +53,69 @@
           <div class="dataTitle dataArea">
             ประเภท
             <div class="col">
-              <div class="row q-pt-sm q-col-gutter-sm">
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านเดี่ยว" dense />
-                  </div>
+              <div class="row wrapper q-col-gutter-sm">
+                <div class="col-3">
+                  <input type="radio" name="select" id="type1" checked />
+                  <label for="type1" class="option option-type1">
+                    <div>บ้านเดี่ยว</div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านแฝด" dense />
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type2" />
+                  <label for="type2" class="option option-type2">
+                    <div>บ้านแฝด</div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">หอพัก/</div>
-                        <div style="margin-top: -10px">อพาร์ทเม้นท์</div>
-                      </div>
-                    </q-btn>
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type3" />
+                  <label for="type3" class="option option-type3">
+                    <div class="col">
+                      <div>หอพัก/</div>
+                      <div style="margin-top: -5px">อพาร์ทเม้นท์</div>
+                    </div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="คอนโดฯ" dense />
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type4" />
+                  <label for="type4" class="option option-statustype4">
+                    <div>คอนโดฯ</div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">ทาวน์</div>
-                        <div style="margin-top: -10px">เฮาส์</div>
-                      </div>
-                    </q-btn>
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type5" />
+                  <label for="type5" class="option option-type5">
+                    <div class="col">
+                      <div>ทาวน์</div>
+                      <div style="margin-top: -2px">เฮาส์</div>
+                    </div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">อาคาร</div>
-                        <div style="margin-top: -10px">พานิชย์</div>
-                      </div>
-                    </q-btn>
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type6" />
+                  <label for="type6" class="option option-type6">
+                    <div class="col">
+                      <div>อาคาร</div>
+                      <div style="margin-top: -5px">พานิชย์</div>
+                    </div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="โรงแรม" dense />
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type7" />
+                  <label for="type7" class="option option-type7">
+                    <div>โรงแรม</div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="พูลวิล่า" dense />
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type8" />
+                  <label for="type8" class="option option-type8">
+                    <div>พูลวิลล่า</div>
+                  </label>
                 </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="อื่นๆ" dense />
-                  </div>
+                <div class="col-3">
+                  <input type="radio" name="select" id="type9" />
+                  <label for="type9" class="option option-type9">
+                    <div>อื่นๆ</div>
+                  </label>
                 </div>
               </div>
             </div>
@@ -120,7 +123,44 @@
           <div class="dataTitle dataArea">
             สถานะ
             <div class="col q-pt-sm">
-              <div class="row q-col-gutter-sm">
+              <div class="col">
+                <div class="row wrapper q-col-gutter-sm">
+                  <div class="col-3">
+                    <input type="radio" name="select" id="st1" checked />
+                    <label for="st1" class="option option-status1">
+                      <div>บ้านเดี่ยว</div>
+                    </label>
+                  </div>
+                  <div class="col-3">
+                    <input type="radio" name="select" id="st2" />
+                    <label for="st2" class="option option-status2">
+                      <div>บ้านแฝด</div>
+                    </label>
+                  </div>
+                  <div class="col-3">
+                    <input type="radio" name="select" id="st3" />
+                    <label for="st3" class="option option-status3">
+                      <div class="col">
+                        <div>หอพัก/</div>
+                        <div style="margin-top: -5px">อพาร์ทเม้นท์</div>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="col-3">
+                    <input type="radio" name="select" id="st4" />
+                    <label for="st4" class="option option-status4">
+                      <div>คอนโดฯ</div>
+                    </label>
+                  </div>
+                  <div class="col-3">
+                    <input type="radio" name="select" id="st5" />
+                    <label for="st5" class="option option-status4">
+                      <div>คอนโดฯ</div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row q-col-gutter-sm">
                 <div class="col-3 dataTitle">
                   <div class="padInputBox">
                     <q-btn class="statBtn" push label="รอขาย" dense />
@@ -150,7 +190,7 @@
                     <q-btn class="statBtn" push label="เช่าแล้ว" dense />
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col">
@@ -956,6 +996,7 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      model: null,
       property: {
         projectName: null,
         name: null, //ชื่อคอนโด
@@ -1083,11 +1124,83 @@ export default {
   font-weight: bolder;
   margin-top: -5px;
 }
+
 .padSecRow {
   padding-top: 10px;
 }
 .textCenter {
   text-align: center;
+}
+
+.wrapper {
+  color: #000;
+  padding-top: 5px;
+  align-items: center;
+}
+.wrapper .option {
+  background: #fff;
+  display: flex;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 40px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+input[type="radio"] {
+  display: none;
+}
+input#type1:checked ~ .option-type1,
+input#type2:checked ~ .option-type2 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type3:checked ~ .option-type3 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type4:checked ~ .option-type4 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type5:checked ~ .option-type5 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type6:checked ~ .option-type6 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type7:checked ~ .option-type7 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type8:checked ~ .option-type8 {
+  background-color: #fff091;
+  color: #000;
+}
+input#type9:checked ~ .option-type9 {
+  background-color: #fff091;
+  color: #000;
+}
+input#st1:checked ~ .option-status1,
+input#st2:checked ~ .option-status2 {
+  background-color: #fff091;
+  color: #000;
+}
+input#st3:checked ~ .option-status3 {
+  background-color: #fff091;
+  color: #000;
+}
+input#st4:checked ~ .option-status4 {
+  background-color: #fff091;
+  color: #000;
+}
+input#st5:checked ~ .option-status5 {
+  background-color: #fff091;
+  color: #000;
+}
+.wrapper .option span {
+  font-size: 14px;
 }
 </style>
 
