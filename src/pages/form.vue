@@ -508,7 +508,7 @@
           <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
-              <div class="row justify-between">
+              <!-- <div class="row justify-between">
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
@@ -557,16 +557,26 @@
                     />
                   </div>
                 </div>
+              </div> -->
+              <div class="row">
+                <q-uploader
+                  url="http://localhost:4444/upload"
+                  text-color="black"
+                  label="เพิ่มรูปภาพ"
+                  multiple
+                  batch
+                  style="max-width: 100%; min-width: 100%"
+                />
               </div>
             </div>
-            <div class="q-gutter-sm" align="center" style="margin-top: 20px">
+            <!-- <div class="q-gutter-sm" align="center" style="margin-top: 20px">
               <q-btn
                 class="chooseIm"
                 style="width: 70%"
                 push
                 label="เลือกรูปจากครังรูปภาพ"
               />
-            </div>
+            </div> -->
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
@@ -1136,6 +1146,14 @@ input[type="radio"] {
 #option-status4:checked:checked ~ .option-status4 span,
 #option-status5:checked:checked ~ .option-status5 span {
   color: #000;
+}
+.q-uploader__header {
+  position: relative;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: #ffdd02;
+  color: rgb(0, 0, 0);
+  width: 100%;
 }
 </style>
 
