@@ -11,7 +11,7 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-page style="color: white; padding: 15px 15px 15px 15px">
+      <q-page style="color: white; padding: 15px">
         <div class="dataHeader">
           <div class="row justify-between items-center">
             <div class="col-12">
@@ -52,129 +52,96 @@
           </div>
           <div class="dataTitle dataArea">
             ประเภท
-            <div class="row padInputBox">
-              <div class="col-3">
-                <input
-                  type="radio"
-                  name="selectType"
-                  id="option-type1"
-                  checked
-                />
-                <label for="option-type1" class="option option-type1">
-                  <span>บ้านเดี่ยว</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type2" />
-                <label for="option-type2" class="option option-type2">
-                  <span>บ้านแฝด</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type3" />
-                <label for="option-type3" class="option option-type3">
-                  <span
-                    ><div>หอพัก/</div>
-                    <div style="margin-top: -5px">อพาร์ทเม้นท์</div></span
-                  >
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type4" />
-                <label for="option-type4" class="option option-type4">
-                  <span>คอนโดฯ</span>
-                </label>
-              </div>
-              <div class="col-3" style="">
-                <input
-                  type="radio"
-                  name="selectType"
-                  id="option-type5"
-                  checked
-                />
-                <label for="option-type5" class="option option-type5">
-                  <span>
-                    <div>ทาวน์</div>
-                    <div style="margin-top: -5px">เฮาส์</div></span
-                  >
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type6" />
-                <label for="option-type6" class="option option-type6">
-                  <span>
-                    <div>อาคาร</div>
-                    <div style="margin-top: -5px">พานิชย์</div></span
-                  >
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type7" />
-                <label for="option-type7" class="option option-type7">
-                  <span>โรงแรม</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type8" />
-                <label for="option-type8" class="option option-type8">
-                  <span>พูลวิลล่า</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectType" id="option-type9" />
-                <label for="option-type9" class="option option-type9">
-                  <span>อื่นๆ</span>
-                </label>
-              </div>
+            <div class="row justify-start padInputBox q-gutter-sm">
+              <input type="radio" name="selectType" id="option-type1" checked />
+              <label for="option-type1" class="option option-type1">
+                <span>บ้านเดี่ยว</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type2" />
+              <label for="option-type2" class="option option-type2">
+                <span>บ้านแฝด</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type3" />
+              <label for="option-type3" class="option option-type3">
+                <span>
+                  <div class="col">
+                    <div class="row justify-center">หอพัก/</div>
+                    <div class="row justify-center" style="margin-top: -5px">
+                      อพาร์ทเม้นท์
+                    </div>
+                  </div>
+                </span>
+              </label>
+              <input type="radio" name="selectType" id="option-type4" />
+              <label for="option-type4" class="option option-type4">
+                <span>คอนโดฯ</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type5" checked />
+              <label for="option-type5" class="option option-type5">
+                <span>
+                  <div>ทาวน์</div>
+                  <div style="margin-top: -5px">เฮาส์</div></span
+                >
+              </label>
+
+              <input type="radio" name="selectType" id="option-type6" />
+              <label for="option-type6" class="option option-type6">
+                <span>
+                  <div>อาคาร</div>
+                  <div style="margin-top: -5px">พานิชย์</div></span
+                >
+              </label>
+              <input type="radio" name="selectType" id="option-type7" />
+              <label for="option-type7" class="option option-type7">
+                <span>โรงแรม</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type8" />
+              <label for="option-type8" class="option option-type8">
+                <span>พูลวิลล่า</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type9" />
+              <label for="option-type9" class="option option-type9">
+                <span>อื่นๆ</span>
+              </label>
             </div>
           </div>
           <div class="dataTitle dataArea">
             สถานะ
-            <div class="row padInputBox">
-              <div class="col-3">
-                <input
-                  type="radio"
-                  name="selectStatus"
-                  id="option-status1"
-                  checked
-                />
-                <label for="option-status1" class="option option-status1">
-                  <span>รอขาย</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectStatus" id="option-status2" />
-                <label for="option-status2" class="option option-status2">
-                  <span>รอเช่า</span>
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectStatus" id="option-status3" />
-                <label for="option-status3" class="option option-status3">
-                  <span>
-                    <div>รอเช่า/</div>
+            <div class="row padInputBox justify-start q-gutter-sm">
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status1"
+                checked
+              />
+              <label for="option-status1" class="option option-status1">
+                <span>รอขาย</span>
+              </label>
+              <input type="radio" name="selectStatus" id="option-status2" />
+              <label for="option-status2" class="option option-status2">
+                <span>รอเช่า</span>
+              </label>
+              <input type="radio" name="selectStatus" id="option-status3" />
+              <label for="option-status3" class="option option-status3">
+                <span>
+                  <div>รอเช่า/</div>
 
-                    <div style="margin-top: -5px">รอขาย</div></span
-                  >
-                </label>
-              </div>
-              <div class="col-3">
-                <input type="radio" name="selectStatus" id="option-status4" />
-                <label for="option-status4" class="option option-status4">
-                  <span>ขายแล้ว</span>
-                </label>
-              </div>
-              <div class="col-3" style="">
-                <input
-                  type="radio"
-                  name="selectStatus"
-                  id="option-status5"
-                  checked
-                />
-                <label for="option-status5" class="option option-status5">
-                  <span>เช่าแล้ว</span>
-                </label>
-              </div>
+                  <div style="margin-top: -5px">รอขาย</div></span
+                >
+              </label>
+              <input type="radio" name="selectStatus" id="option-status4" />
+              <label for="option-status4" class="option option-status4">
+                <span>ขายแล้ว</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status5"
+                checked
+              />
+              <label for="option-status5" class="option option-status5">
+                <span>เช่าแล้ว</span>
+              </label>
             </div>
           </div>
           <div class="col">
@@ -1116,17 +1083,13 @@ export default {
   text-align: center;
 }
 
-/* .wrapper {
-  display: inline-flex;
-  height: auto;
-  width: 100%;
-  align-items: center;
-} */
 .option {
   background: #fff;
   display: flex;
   height: 35px;
-  width: 85%;
+  width: 30%;
+  min-width: 80px;
+  max-width: 120px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
@@ -1151,7 +1114,7 @@ input[type="radio"] {
 #option-status3:checked:checked ~ .option-status3,
 #option-status4:checked:checked ~ .option-status4,
 #option-status5:checked:checked ~ .option-status5 {
-  background: #fff091;
+  background: #ffff01;
   color: #000;
 }
 .option span {
