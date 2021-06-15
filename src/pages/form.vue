@@ -1126,7 +1126,8 @@ export default {
   background: #fff;
   display: flex;
   height: 35px;
-  justify-content: space-evenly;
+  width: 85%;
+  justify-content: center;
   align-items: center;
   border-radius: 5px;
   cursor: pointer;
