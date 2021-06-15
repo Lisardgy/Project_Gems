@@ -70,12 +70,35 @@
               </q-card-section>
               <q-card-section>
                 <div class="column items-center q-px-xl text-h6 text-white">
-                  <div class="q-my-xs">รอขาย</div>
-                  <div class="q-my-xs">รอเช่า</div>
+                  <q-btn
+                    class="font-button-status full-width"
+                    flat
+                    label="รอขาย"
+                  />
+                  <q-btn
+                    class="font-button-status full-width"
+                    flat
+                    label="รอเช่า"
+                  /><q-btn
+                    class="font-button-status full-width"
+                    flat
+                    label="รอเช่า/รอขาย"
+                  /><q-btn
+                    class="font-button-status full-width"
+                    flat
+                    label="ขายแล้ว"
+                  />
+                  <q-btn
+                    class="font-button-status full-width"
+                    flat
+                    label="เช่าแล้ว"
+                  />
+                  <q-btn class="font-button-status" flat label="ทั้งหมด" />
+                  <!-- <div class="q-my-xs">รอเช่า</div>
                   <div class="q-my-xs">รอเช่า/รอขาย</div>
                   <div class="q-my-xs">ขายแล้ว</div>
                   <div class="q-my-xs">เช่าแล้ว</div>
-                  <div class="q-my-xs">ทั้งหมด</div>
+                  <div class="q-my-xs">ทั้งหมด</div> -->
                 </div>
               </q-card-section>
             </q-card>
@@ -193,5 +216,9 @@ html,
 }
 .bgColor {
   background-color: #010135;
+}
+.font-button-status {
+  font-size: 20px;
+  width: 100%;
 }
 </style>
