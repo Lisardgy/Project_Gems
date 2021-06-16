@@ -1,5 +1,6 @@
 const state = {
-    databaseUrl: 'http://localhost:5001'
+    // databaseUrl: 'http://localhost:5001'
+    databaseUrl: ''
 }
 
 const getters = {
