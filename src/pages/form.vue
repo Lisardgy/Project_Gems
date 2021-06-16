@@ -6,7 +6,7 @@
           class="absolute-center font-button full-width"
           flat
           label="ยืนยัน"
-          @click="$router.go(-2)"
+          @click="onSave()"
         />
       </q-toolbar>
     </q-header>
@@ -949,7 +949,16 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters({
+      getPosition: "position/getPosition",
+      getUserLogin: "user_config/getUserLogin",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
+    }),
+  },
   data() {
     return {
       text: "",
@@ -1017,6 +1026,90 @@ export default {
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
     };
+  },
+  mounted() {
+    console.log(this.getPosition);
+    console.log(this.getUserLogin);
+    console.log(this.getDatabaseUrl);
+  },
+  methods: {
+    async onSave() {
+      const property = {
+        projectName: this.property.projectName,
+        name: this.property.name, //ชื่อคอนโด
+        type: this.property.type,
+        status: this.property.status,
+        houseNumber: this.property.houseNumber,
+        building: this.property.building, //อาคาร
+        swine: this.property.swine, //หมู่
+        alley: this.property.alley, //ซอย
+        distict: this.property.distict, //อำเภอ
+        subDistict: this.property.subDistict, //ตำบล
+        province: this.property.province, //จังหวัด
+        houseSize: this.property.houseSize, //ขนาดพื้นที่บ้าน
+        areaSize: this.property.areaSize, //ที่ดิน
+        floor: this.property.floor, //ชั้นที่
+        bedRoom: this.property.bedRoom, //ห้องนอน
+        toilet: this.property.toilet,
+        surroundView: this.property.surroundView, //วิวโดยรอบ
+        occRate: this.property.occRate, //ค่าไรหนิ
+        widthFrontHouse: this.property.widthFrontHouse, //ความกว้างหน้าบ้าน
+        directionHouse: this.property.directionHouse, //ทิศหน้าบ้าน
+        furniture: this.property.furniture,
+        electronic: this.property.electronic, //เตรื่องใช้ไฟฟ้าที่ได้
+        commonFee: this.property.commonFee, //ค่าส่วนกลางต่อปี
+        houserAge: this.property.houserAge, //อายุบ้าน
+        facility: this.property.facility,
+        reasonSale: this.property.reasonSale, //เหตุผลที่ขาย
+        securitySystem: this.property.securitySystem, //ระบบความปลอดภัย
+        areaHighlight: this.property.areaHighlight, //จุดเด่นของสถานที่
+        waterFireSystem: this.property.waterFireSystem, // ระบบน้ำ/ไฟ4
+        otherProperty: this.property.otherProperty, // อื่น ๆ ของทรัพย์
+      };
+
+      const agent = {
+        agentName: this.agent.agentName,
+        agentLastName: this.agent.agentLastName,
+        propertyOwnerName: this.agent.propertyOwnerName,
+        propertyOwnerLastName: this.agent.propertyOwnerLastName,
+        phoneNumber1: this.agent.phoneNumber1,
+        phoneNumber2: this.agent.phoneNumber2,
+        idLine: this.agent.idLine,
+        otherContact: this.agent.otherContact, //ช่องทางติดต่อเพิ่มเติม
+        mortgageDate: this.agent.mortgageDate, //วันที่จำนอง
+        mortgageBank: this.agent.mortgageBank, //ธนาคารที่ติดจำนอง
+        mortgagePrice: this.agent.mortgagePrice, //ยอดจำนอง
+        appraisalPrice: this.agent.appraisalPrice, //ราคาประเมิน
+        marketPrice: this.agent.marketPrice,
+        lastMatch: this.agent.lastMatch, //ราคา Last Match
+        sellPrice: this.agent.sellPrice, //ราคาขาย
+        rentalPrice: this.agent.rentalPrice, //ราคาเช่า
+        minDicount: this.agent.minDicount, //ราคาต่ำสุดที่ลดได้
+        specificTax: this.agent.specificTax, //ค่าภาษีธุรกิจเฉพาะ
+        commissionRate: this.agent.commissionRate, //อัตราคอมฯ
+        taxation: this.agent.taxation, //ภาษีอากร
+        transterCondition: this.agent.transterCondition, //เงื่อนไขการโอน
+        transferFee: this.agent.transferFee, //ค่าธรรมเนียมโอน
+        otherAgent: this.agent.otherAgent, //ค่าธรรมเนียมโอน
+        acquisitionDate: this.agent.acquisitionDate, //วันที่ได้ทรัพย์มา
+        additionalNote: this.agent.additionalNote, //หมายเหตุเพิ่มเติม
+      };
+
+      const mapdata = {
+        uid: this.getUserLogin.uid,
+        lat: this.getPosition.lat,
+        lng: this.getPosition.lng,
+        property,
+        agent,
+      };
+
+      await axios.post(
+        `${this.getDatabaseUrl}/gemsmap/us-central1/api/create`,
+        mapdata
+      );
+
+      this.$router.go(-2);
+    },
   },
 };
 </script>

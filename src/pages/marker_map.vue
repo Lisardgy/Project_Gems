@@ -34,7 +34,7 @@
               rounded
               size="20px"
               label="ยืนยันตำแหน่ง"
-              @click="$router.push({ name: 'form' })"
+              @click="createForm()"
             />
           </div>
         </div>
@@ -44,6 +44,7 @@
 </template>
 <script>
 import Vue from "vue";
+import { mapActions } from "vuex";
 
 Vue.config.productionTip = false;
 
@@ -72,27 +73,35 @@ export default {
     };
   },
   created() {
-    // does the user have a saved center? use it instead of the default
-    // if (!localStorage.center) {
-    //   this.myCoordinates = JSON.parse(localStorage.center);
-    // } else {
-    //   // get user's coordinates from browser request
-    //   this.$getLocation({})
-    //     .then((coordinates) => {
-    //       this.myCoordinates = coordinates;
-    //     })
-    //     .catch((error) => alert(error));
-    // }
-    // // does the user have a saved zoom? use it instead of the default
-    // if (localStorage.zoom) {
-    //   this.zoom = parseInt(localStorage.zoom);
-    // }
+    //does the user have a saved center? use it instead of the default
+    if (!localStorage.center) {
+      this.myCoordinates = JSON.parse(localStorage.center);
+    } else {
+      // get user's coordinates from browser request
+      this.$getLocation({})
+        .then((coordinates) => {
+          this.myCoordinates = coordinates;
+        })
+        .catch((error) => alert(error));
+    }
+    // does the user have a saved zoom? use it instead of the default
+    if (localStorage.zoom) {
+      this.zoom = parseInt(localStorage.zoom);
+    }
   },
   mounted() {
     // add the map to a data object
     this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
-  methods: {},
+  methods: {
+    ...mapActions({
+      setPosition: "position/setPosition",
+    }),
+    createForm() {
+      this.setPosition({ lat: this.marker.lat, lng: this.marker.lng });
+      this.$router.push({ name: "form" });
+    },
+  },
   computed: {
     mapCoordinates() {
       if (!this.map) {

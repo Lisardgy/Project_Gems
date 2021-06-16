@@ -1,5 +1,5 @@
 const state = {
-    uid: '',
+    uid: 'Doublepor',
     email: '',
     password: '',
 }
