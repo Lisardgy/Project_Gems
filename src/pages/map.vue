@@ -13,7 +13,7 @@
       </div> -->
       <q-page>
         <GmapMap
-          :center="myCoordinates"
+          :center="cetner"
           :zoom="14"
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
@@ -134,6 +134,10 @@ export default {
         lat: 7.9015,
         lng: 98.3541,
       },
+      cetner: {
+        lat: 7.9015,
+        lng: 98.3541,
+      },
       markers: [],
       statusModal: false,
     };
@@ -147,6 +151,7 @@ export default {
       this.$getLocation({})
         .then((coordinates) => {
           this.myCoordinates = coordinates;
+          this.center = this.myCoordinates;
         })
         .catch((error) => alert(error));
     }
@@ -189,19 +194,18 @@ export default {
       const { id, type } = data;
       this.setDocumentId({ id });
 
-      if (type == "condo") {
+      if (type == "คอนโด") {
         this.$router.push({ name: "overviewCondo" });
       } else {
         this.$router.push({ name: "overview" });
       }
     },
     getCurrentLocation() {
-      console.log(Number(this.mapCoordinates.lat));
-      console.log(Number(this.mapCoordinates.lng));
-      this.myCoordinates = {
-        lat: Number(this.mapCoordinates.lat),
-        lng: Number(this.mapCoordinates.lng),
+      this.center = {
+        lat: this.myCoordinates.lat,
+        lng: this.myCoordinates.lng,
       };
+      this.map.setCenter(this.center);
     },
   },
   computed: {

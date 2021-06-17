@@ -53,53 +53,99 @@
           <div class="dataTitle dataArea">
             ประเภท
             <div class="row justify-start padInputBox q-gutter-sm">
-              <input type="radio" name="selectType" id="option-type1" checked />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type1"
+                value="บ้านเดี่ยว"
+                v-model="property.type"
+              />
               <label for="option-type1" class="option option-type1">
                 <span>บ้านเดี่ยว</span>
               </label>
-              <input type="radio" name="selectType" id="option-type2" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type2"
+                value="บ้านแฝด"
+                v-model="property.type"
+              />
               <label for="option-type2" class="option option-type2">
                 <span>บ้านแฝด</span>
               </label>
-              <input type="radio" name="selectType" id="option-type3" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type3"
+                value="หอพัก/อพาร์ทเม้นท์"
+                v-model="property.type"
+              />
               <label for="option-type3" class="option option-type3">
-                <span>
-                  <div class="col">
-                    <div class="row justify-center">หอพัก/</div>
-                    <div class="row justify-center" style="margin-top: -5px">
-                      อพาร์ทเม้นท์
-                    </div>
+                <span class="text-center">
+                  <div class="column">
+                    <div class="">หอพัก</div>
+                    <div class="">อพาร์ทเม้นท์</div>
                   </div>
                 </span>
               </label>
-              <input type="radio" name="selectType" id="option-type4" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type4"
+                value="คอนโด"
+                v-model="property.type"
+              />
               <label for="option-type4" class="option option-type4">
                 <span>คอนโดฯ</span>
               </label>
-              <input type="radio" name="selectType" id="option-type5" checked />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type5"
+                value="ทาวน์เฮาส์"
+                v-model="property.type"
+              />
               <label for="option-type5" class="option option-type5">
-                <span>
-                  <div>ทาวน์</div>
-                  <div style="margin-top: -5px">เฮาส์</div></span
-                >
+                <span>ทาวน์เฮาส์</span>
               </label>
 
-              <input type="radio" name="selectType" id="option-type6" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type6"
+                value="อาคารพานิชย์"
+                v-model="property.type"
+              />
               <label for="option-type6" class="option option-type6">
-                <span>
-                  <div>อาคาร</div>
-                  <div style="margin-top: -5px">พานิชย์</div></span
-                >
+                <span>อาคารพานิชย์</span>
               </label>
-              <input type="radio" name="selectType" id="option-type7" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type7"
+                value="โรงแรม"
+                v-model="property.type"
+              />
               <label for="option-type7" class="option option-type7">
                 <span>โรงแรม</span>
               </label>
-              <input type="radio" name="selectType" id="option-type8" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type8"
+                value="พูลวิลล่า"
+                v-model="property.type"
+              />
               <label for="option-type8" class="option option-type8">
                 <span>พูลวิลล่า</span>
               </label>
-              <input type="radio" name="selectType" id="option-type9" />
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type9"
+                value="อื่นๆ"
+                v-model="property.type"
+              />
               <label for="option-type9" class="option option-type9">
                 <span>อื่นๆ</span>
               </label>
@@ -112,24 +158,39 @@
                 type="radio"
                 name="selectStatus"
                 id="option-status1"
-                checked
+                value="รอขาย"
+                v-model="property.status"
               />
               <label for="option-status1" class="option option-status1">
                 <span>รอขาย</span>
               </label>
-              <input type="radio" name="selectStatus" id="option-status2" />
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status2"
+                value="รอเช่า"
+                v-model="property.status"
+              />
               <label for="option-status2" class="option option-status2">
                 <span>รอเช่า</span>
               </label>
-              <input type="radio" name="selectStatus" id="option-status3" />
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status3"
+                value="รอเช่า/รอขาย"
+                v-model="property.status"
+              />
               <label for="option-status3" class="option option-status3">
-                <span>
-                  <div>รอเช่า/</div>
-
-                  <div style="margin-top: -5px">รอขาย</div></span
-                >
+                <span>รอเช่า/รอขาย</span>
               </label>
-              <input type="radio" name="selectStatus" id="option-status4" />
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status4"
+                value="ขายแล้ว"
+                v-model="property.status"
+              />
               <label for="option-status4" class="option option-status4">
                 <span>ขายแล้ว</span>
               </label>
@@ -137,7 +198,8 @@
                 type="radio"
                 name="selectStatus"
                 id="option-status5"
-                checked
+                value="เช่าแล้ว"
+                v-model="property.status"
               />
               <label for="option-status5" class="option option-status5">
                 <span>เช่าแล้ว</span>
@@ -635,8 +697,33 @@
           </div>
 
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-between dataArea items-center">
+              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
+              <div class="col-4 dataTitle">
+                <q-input
+                  class="inputBox"
+                  style="width: 95%"
+                  outlined
+                  v-model="agent.propertyOwnerName"
+                  label="ชื่อ"
+                  dense
+                />
+              </div>
+              <div class="col-4 dataTitle">
+                <q-input
+                  class="inputBox"
+                  outlined
+                  v-model="agent.propertyOwnerLastName"
+                  label="สกุล"
+                  dense
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 เบอรติดต่อที่ 1
                 <div class="padInputBox">
                   <q-input
@@ -647,7 +734,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 เบอรติดต่อที่ 2
                 <div class="padInputBox">
                   <q-input
@@ -661,8 +748,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ID Line
                 <div class="padInputBox">
                   <q-input
@@ -673,7 +760,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ติดต่อเพิ่มเติม
                 <div class="padInputBox">
                   <q-input
@@ -687,8 +774,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 วันที่เริ่มจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -699,7 +786,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ธนาคารที่ติดจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -713,8 +800,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ยอดติดจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -726,7 +813,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคาประเมิน
                 <div class="padInputBox">
                   <q-input
@@ -741,8 +828,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาตลาด
                 <div class="padInputBox">
                   <q-input
@@ -754,7 +841,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคา Last Match
                 <div class="padInputBox">
                   <q-input
@@ -769,8 +856,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาขาย
                 <div class="padInputBox">
                   <q-input
@@ -782,7 +869,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคาเช่า
                 <div class="padInputBox">
                   <q-input
@@ -797,8 +884,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาต่ำสุดที่ลดได้
                 <div class="padInputBox">
                   <q-input
@@ -810,7 +897,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ค่าภาษีธุรกิจเฉพาะ
                 <div class="padInputBox">
                   <q-input
@@ -825,8 +912,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 อัตราคอมฯ
                 <div class="padInputBox">
                   <q-input
@@ -834,11 +921,11 @@
                     outlined
                     v-model="agent.commissionRate"
                     dense
-                    suffix="฿"
+                    suffix="%"
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 อากร
                 <div class="padInputBox">
                   <q-input
@@ -853,8 +940,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 เงื่อนไขการโอน
                 <div class="padInputBox">
                   <q-input
@@ -865,7 +952,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ค่าธรรมเนียมโอน
                 <div class="padInputBox">
                   <q-input

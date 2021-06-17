@@ -116,7 +116,12 @@
       </div>
       <div class="row overviewTab items-center justify-between">
         <div class="overviewText q-ml-md">ห้อง</div>
-        <div class="q-mx-lg"><q-btn class=" addRoomBtn row items-center justify-center" label="เพิ่มห้อง +" /></div>
+        <div class="q-mx-lg">
+          <q-btn
+            class="addRoomBtn row items-center justify-center"
+            label="เพิ่มห้อง +"
+          />
+        </div>
       </div>
 
       <div class="q-pa-md row justify-center q-gutter-md">
@@ -285,7 +290,6 @@ export default {
   height: 30px;
   color: #000000;
   background: #f8fa94;
-  font-weight:bolder;
+  font-weight: bolder;
 }
-
 </style>

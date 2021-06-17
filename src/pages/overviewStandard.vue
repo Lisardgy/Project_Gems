@@ -105,12 +105,8 @@
             </div>
             <div class="row justify-between">
               <div>
-                <span style="color: #fcff68">ซอย:</span>
+                <span style="color: #fcff68">ซอย/ถนน:</span>
                 {{ this.property.alley }}
-              </div>
-              <div>
-                <span style="color: #fcff68">ถนน:</span>
-                {{ this.property.road }}
               </div>
             </div>
             <div class="row justify-between">
@@ -348,14 +344,8 @@
               </div>
 
               <div class="row justify-around">
-                <div class="">
-                  <div>วันที่ได้ทรัพย์มา</div>
-                  <div>{{ this.agent.acquisitionDate }}</div>
-                </div>
-                <div class="">
-                  <div>วันที่มีการอัพเดทข้อมูล</div>
-                  <div>**ไม่มี</div>
-                </div>
+                <div class="col">วันที่ได้ทรัพย์มา</div>
+                <div class="col">{{ this.agent.acquisitionDate }}</div>
               </div>
               <div class="row">
                 <div class="col">หมายเหตุเพิ่มเติม</div>
@@ -519,7 +509,7 @@ export default {
       this.agent.transterCondition = data.agent.transterCondition; //เงื่อนไขการโอน
       this.agent.transferFee = data.agent.transferFee; //ค่าธรรมเนียมโอน
       this.agent.otherAgent = data.agent.otherAgent; //ค่าธรรมเนียมโอน
-      this.agent.acquisitionDate = data.agent.acquisitionDatel; //วันที่ได้ทรัพย์มา
+      this.agent.acquisitionDate = data.agent.acquisitionDate; //วันที่ได้ทรัพย์มา
       this.agent.additionalNote = data.agent.additionalNote; //หมายเหตุเพิ่มเติม
     },
   },

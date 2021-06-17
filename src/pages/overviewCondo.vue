@@ -453,8 +453,8 @@ export default {
     };
   },
   async mounted() {
-    this.showLoading();
-    await this.findCollectionById();
+    // this.showLoading();
+    // await this.findCollectionById();
   },
   methods: {
     async findCollectionById() {
