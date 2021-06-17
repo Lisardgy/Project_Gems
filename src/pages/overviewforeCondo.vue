@@ -39,9 +39,13 @@
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
           <div class="row">
-            <div class="tagsStyle row items-center q-px-sm">บ้านเดี่ยว</div>
+            <div class="tagsStyle text-bold row items-center q-px-sm">
+              บ้านเดี่ยว
+            </div>
             <div class="q-mx-xs"></div>
-            <div class="tagsStyle row items-center q-px-sm">รอขาย</div>
+            <div class="tagsStyle text-bold row items-center q-px-sm">
+              รอขาย
+            </div>
           </div>
         </div>
         <div class="col items-center">
@@ -110,8 +114,9 @@
           </div>
         </div>
       </div>
-      <div class="row overviewTab items-center">
+      <div class="row overviewTab items-center justify-between">
         <div class="overviewText q-ml-md">ห้อง</div>
+        <div class="q-mx-lg"><q-btn class=" addRoomBtn row items-center justify-center" label="เพิ่มห้อง +" /></div>
       </div>
 
       <div class="q-pa-md row justify-center q-gutter-md">
@@ -271,4 +276,16 @@ export default {
     top: -5px;
   }
 }
+
+.addRoomBtn {
+  text-align: center;
+  border-radius: 5px;
+  border: solid #ffff01 2px;
+  width: auto;
+  height: 30px;
+  color: #000000;
+  background: #f8fa94;
+  font-weight:bolder;
+}
+
 </style>

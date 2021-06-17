@@ -39,9 +39,13 @@
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
           <div class="row">
-            <div class="tagsStyle row items-center q-px-sm">บ้านเดี่ยว</div>
+            <div class="tagsStyle text-bold row items-center q-px-sm" style="font-weight:bold">
+              คอนโดฯ
+            </div>
             <div class="q-mx-xs"></div>
-            <div class="tagsStyle row items-center q-px-sm">รอขาย</div>
+            <div class="tagsStyle text-bold row items-center q-px-sm">
+              รอขาย
+            </div>
           </div>
         </div>
         <div class="col items-center">
@@ -200,7 +204,12 @@
           </div>
         </div>
       </div>
-
+      <div
+        class="row justify-center"
+        style="background-color: red; color: white"
+      >
+        **ข้อมูลต่อไปนี้ห้ามเผยแพร่
+      </div>
       <div class="q-px-md q-pt-md q-pb-none" style="background: white">
         <div class="description">
           <div class="row detailHead" style="color: black">สำหรับ Agent</div>
