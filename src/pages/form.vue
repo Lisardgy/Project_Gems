@@ -11,7 +11,7 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-page style="color: white; padding: 15px 15px 15px 15px">
+      <q-page style="color: white; padding: 15px">
         <div class="dataHeader">
           <div class="row justify-between items-center">
             <div class="col-12">
@@ -52,105 +52,96 @@
           </div>
           <div class="dataTitle dataArea">
             ประเภท
-            <div class="col">
-              <div class="row q-pt-sm q-col-gutter-sm">
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านเดี่ยว" dense />
+            <div class="row justify-start padInputBox q-gutter-sm">
+              <input type="radio" name="selectType" id="option-type1" checked />
+              <label for="option-type1" class="option option-type1">
+                <span>บ้านเดี่ยว</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type2" />
+              <label for="option-type2" class="option option-type2">
+                <span>บ้านแฝด</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type3" />
+              <label for="option-type3" class="option option-type3">
+                <span>
+                  <div class="col">
+                    <div class="row justify-center">หอพัก/</div>
+                    <div class="row justify-center" style="margin-top: -5px">
+                      อพาร์ทเม้นท์
+                    </div>
                   </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านแฝด" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">หอพัก/</div>
-                        <div style="margin-top: -10px">อพาร์ทเม้นท์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="คอนโดฯ" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">ทาวน์</div>
-                        <div style="margin-top: -10px">เฮาส์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">อาคาร</div>
-                        <div style="margin-top: -10px">พานิชย์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="โรงแรม" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="พูลวิล่า" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="อื่นๆ" dense />
-                  </div>
-                </div>
-              </div>
+                </span>
+              </label>
+              <input type="radio" name="selectType" id="option-type4" />
+              <label for="option-type4" class="option option-type4">
+                <span>คอนโดฯ</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type5" checked />
+              <label for="option-type5" class="option option-type5">
+                <span>
+                  <div>ทาวน์</div>
+                  <div style="margin-top: -5px">เฮาส์</div></span
+                >
+              </label>
+
+              <input type="radio" name="selectType" id="option-type6" />
+              <label for="option-type6" class="option option-type6">
+                <span>
+                  <div>อาคาร</div>
+                  <div style="margin-top: -5px">พานิชย์</div></span
+                >
+              </label>
+              <input type="radio" name="selectType" id="option-type7" />
+              <label for="option-type7" class="option option-type7">
+                <span>โรงแรม</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type8" />
+              <label for="option-type8" class="option option-type8">
+                <span>พูลวิลล่า</span>
+              </label>
+              <input type="radio" name="selectType" id="option-type9" />
+              <label for="option-type9" class="option option-type9">
+                <span>อื่นๆ</span>
+              </label>
             </div>
           </div>
           <div class="dataTitle dataArea">
             สถานะ
-            <div class="col q-pt-sm">
-              <div class="row q-col-gutter-sm">
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="รอขาย" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="รอเช่า" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div style="margin-top: -5px">รอเช่า/</div>
+            <div class="row padInputBox justify-start q-gutter-sm">
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status1"
+                checked
+              />
+              <label for="option-status1" class="option option-status1">
+                <span>รอขาย</span>
+              </label>
+              <input type="radio" name="selectStatus" id="option-status2" />
+              <label for="option-status2" class="option option-status2">
+                <span>รอเช่า</span>
+              </label>
+              <input type="radio" name="selectStatus" id="option-status3" />
+              <label for="option-status3" class="option option-status3">
+                <span>
+                  <div>รอเช่า/</div>
 
-                      <div style="margin-top: -10px">รอขาย</div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="ขายแล้ว" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox q-pt-sm">
-                    <q-btn class="statBtn" push label="เช่าแล้ว" dense />
-                  </div>
-                </div>
-              </div>
+                  <div style="margin-top: -5px">รอขาย</div></span
+                >
+              </label>
+              <input type="radio" name="selectStatus" id="option-status4" />
+              <label for="option-status4" class="option option-status4">
+                <span>ขายแล้ว</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status5"
+                checked
+              />
+              <label for="option-status5" class="option option-status5">
+                <span>เช่าแล้ว</span>
+              </label>
             </div>
           </div>
           <div class="col">
@@ -517,7 +508,7 @@
           <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
-              <div class="row justify-between">
+              <!-- <div class="row justify-between">
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
@@ -566,16 +557,26 @@
                     />
                   </div>
                 </div>
+              </div> -->
+              <div class="row">
+                <q-uploader
+                  url="http://localhost:4444/upload"
+                  text-color="black"
+                  label="เพิ่มรูปภาพ"
+                  multiple
+                  batch
+                  style="max-width: 100%; min-width: 100%"
+                />
               </div>
             </div>
-            <div class="q-gutter-sm" align="center" style="margin-top: 20px">
+            <!-- <div class="q-gutter-sm" align="center" style="margin-top: 20px">
               <q-btn
                 class="chooseIm"
                 style="width: 70%"
                 push
                 label="เลือกรูปจากครังรูปภาพ"
               />
-            </div>
+            </div> -->
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
@@ -966,6 +967,7 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      model: null,
       property: {
         projectName: null,
         name: null, //ชื่อคอนโด
@@ -1177,11 +1179,75 @@ export default {
   font-weight: bolder;
   margin-top: -5px;
 }
+
 .padSecRow {
   padding-top: 10px;
 }
 .textCenter {
   text-align: center;
+}
+
+.option {
+  background: #fff;
+  display: flex;
+  height: 35px;
+  width: 30%;
+  min-width: 80px;
+  max-width: 120px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+
+input[type="radio"] {
+  display: none;
+}
+#option-type1:checked:checked ~ .option-type1,
+#option-type2:checked:checked ~ .option-type2,
+#option-type3:checked:checked ~ .option-type3,
+#option-type4:checked:checked ~ .option-type4,
+#option-type5:checked:checked ~ .option-type5,
+#option-type6:checked:checked ~ .option-type6,
+#option-type7:checked:checked ~ .option-type7,
+#option-type8:checked:checked ~ .option-type8,
+#option-type9:checked:checked ~ .option-type9,
+#option-status1:checked:checked ~ .option-status1,
+#option-status2:checked:checked ~ .option-status2,
+#option-status3:checked:checked ~ .option-status3,
+#option-status4:checked:checked ~ .option-status4,
+#option-status5:checked:checked ~ .option-status5 {
+  background: #ffff01;
+  color: #000;
+}
+.option span {
+  font-size: 14px;
+  color: #000;
+}
+#option-type1:checked:checked ~ .option-type1 span,
+#option-type2:checked:checked ~ .option-type2 span,
+#option-type3:checked:checked ~ .option-type3 span,
+#option-type4:checked:checked ~ .option-type4 span,
+#option-type5:checked:checked ~ .option-type5 span,
+#option-type6:checked:checked ~ .option-type6 span,
+#option-type7:checked:checked ~ .option-type7 span,
+#option-type8:checked:checked ~ .option-type8 span,
+#option-type9:checked:checked ~ .option-type9 span,
+#option-status1:checked:checked ~ .option-status1 span,
+#option-status2:checked:checked ~ .option-status2 span,
+#option-status3:checked:checked ~ .option-status3 span,
+#option-status4:checked:checked ~ .option-status4 span,
+#option-status5:checked:checked ~ .option-status5 span {
+  color: #000;
+}
+.q-uploader__header {
+  position: relative;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: #ffdd02;
+  color: rgb(0, 0, 0);
+  width: 100%;
 }
 </style>
 
