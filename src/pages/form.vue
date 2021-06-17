@@ -645,7 +645,14 @@
         <div class="dataHeader">
           ข้อมูลสำหรับ Agent
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div
+              class="
+                row
+                justify-between
+                dataArea
+                q-col-gutter-sm q-col-gutter-sm
+              "
+            >
               <div class="col-4 dataTitle">
                 Agent
                 <div>เจ้าของทรัพย์</div>
@@ -653,7 +660,6 @@
               <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
-                  style="width: 95%"
                   outlined
                   v-model="agent.agentName"
                   label="ชื่อ"
@@ -672,12 +678,13 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea items-center">
+            <div
+              class="row justify-between dataArea items-center q-col-gutter-sm"
+            >
               <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
               <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
-                  style="width: 95%"
                   outlined
                   v-model="agent.propertyOwnerName"
                   label="ชื่อ"
@@ -1097,66 +1104,8 @@ export default {
   },
   methods: {
     async onSave() {
-      const property = {
-        projectName: this.property.projectName,
-        name: this.property.name, //ชื่อคอนโด
-        type: this.property.type,
-        status: this.property.status,
-        houseNumber: this.property.houseNumber,
-        building: this.property.building, //อาคาร
-        swine: this.property.swine, //หมู่
-        alley: this.property.alley, //ซอย
-        distict: this.property.distict, //อำเภอ
-        subDistict: this.property.subDistict, //ตำบล
-        province: this.property.province, //จังหวัด
-        houseSize: this.property.houseSize, //ขนาดพื้นที่บ้าน
-        areaSize: this.property.areaSize, //ที่ดิน
-        floor: this.property.floor, //ชั้นที่
-        bedRoom: this.property.bedRoom, //ห้องนอน
-        toilet: this.property.toilet,
-        surroundView: this.property.surroundView, //วิวโดยรอบ
-        occRate: this.property.occRate, //ค่าไรหนิ
-        widthFrontHouse: this.property.widthFrontHouse, //ความกว้างหน้าบ้าน
-        directionHouse: this.property.directionHouse, //ทิศหน้าบ้าน
-        furniture: this.property.furniture,
-        electronic: this.property.electronic, //เตรื่องใช้ไฟฟ้าที่ได้
-        commonFee: this.property.commonFee, //ค่าส่วนกลางต่อปี
-        houserAge: this.property.houserAge, //อายุบ้าน
-        facility: this.property.facility,
-        reasonSale: this.property.reasonSale, //เหตุผลที่ขาย
-        securitySystem: this.property.securitySystem, //ระบบความปลอดภัย
-        areaHighlight: this.property.areaHighlight, //จุดเด่นของสถานที่
-        waterFireSystem: this.property.waterFireSystem, // ระบบน้ำ/ไฟ4
-        otherProperty: this.property.otherProperty, // อื่น ๆ ของทรัพย์
-      };
-
-      const agent = {
-        agentName: this.agent.agentName,
-        agentLastName: this.agent.agentLastName,
-        propertyOwnerName: this.agent.propertyOwnerName,
-        propertyOwnerLastName: this.agent.propertyOwnerLastName,
-        phoneNumber1: this.agent.phoneNumber1,
-        phoneNumber2: this.agent.phoneNumber2,
-        idLine: this.agent.idLine,
-        otherContact: this.agent.otherContact, //ช่องทางติดต่อเพิ่มเติม
-        mortgageDate: this.agent.mortgageDate, //วันที่จำนอง
-        mortgageBank: this.agent.mortgageBank, //ธนาคารที่ติดจำนอง
-        mortgagePrice: this.agent.mortgagePrice, //ยอดจำนอง
-        appraisalPrice: this.agent.appraisalPrice, //ราคาประเมิน
-        marketPrice: this.agent.marketPrice,
-        lastMatch: this.agent.lastMatch, //ราคา Last Match
-        sellPrice: this.agent.sellPrice, //ราคาขาย
-        rentalPrice: this.agent.rentalPrice, //ราคาเช่า
-        minDicount: this.agent.minDicount, //ราคาต่ำสุดที่ลดได้
-        specificTax: this.agent.specificTax, //ค่าภาษีธุรกิจเฉพาะ
-        commissionRate: this.agent.commissionRate, //อัตราคอมฯ
-        taxation: this.agent.taxation, //ภาษีอากร
-        transterCondition: this.agent.transterCondition, //เงื่อนไขการโอน
-        transferFee: this.agent.transferFee, //ค่าธรรมเนียมโอน
-        otherAgent: this.agent.otherAgent, //ค่าธรรมเนียมโอน
-        acquisitionDate: this.agent.acquisitionDate, //วันที่ได้ทรัพย์มา
-        additionalNote: this.agent.additionalNote, //หมายเหตุเพิ่มเติม
-      };
+      const property = this.property;
+      const agent = this.agent;
 
       const mapdata = {
         uid: this.getUserLogin.uid,

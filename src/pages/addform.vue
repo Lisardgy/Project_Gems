@@ -645,7 +645,14 @@
         <div class="dataHeader">
           ข้อมูลสำหรับ Agent
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div
+              class="
+                row
+                justify-between
+                dataArea
+                q-col-gutter-sm q-col-gutter-sm
+              "
+            >
               <div class="col-4 dataTitle">
                 Agent
                 <div>เจ้าของทรัพย์</div>
@@ -653,7 +660,6 @@
               <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
-                  style="width: 95%"
                   outlined
                   v-model="agent.agentName"
                   label="ชื่อ"
@@ -671,32 +677,6 @@
               </div>
             </div>
           </div>
-          <div class="col">
-            <div
-              class="row justify-between dataArea items-center q-col-gutter-sm"
-            >
-              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerName"
-                  label="ชื่อ"
-                  dense
-                />
-              </div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerLastName"
-                  label="สกุล"
-                  dense
-                />
-              </div>
-            </div>
-          </div>
-
           <div class="col">
             <div
               class="row justify-between dataArea items-center q-col-gutter-sm"
@@ -1039,13 +1019,14 @@
 
 <script>
 import axios from "axios";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
     ...mapGetters({
-      getDocumentId: "document/getDocumentId",
-      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
       getUserLogin: "user_config/getUserLogin",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
+      getLocationCondo: "location_condo/getLocationCondo",
     }),
   },
   data() {
@@ -1053,7 +1034,6 @@ export default {
       text: "",
       model: "one",
       shape: "line",
-      upDate: "",
       date: "",
       model: null,
       property: {
@@ -1111,43 +1091,31 @@ export default {
         taxation: null, //ภาษีอากร
         transterCondition: null, //เงื่อนไขการโอน
         transferFee: null, //ค่าธรรมเนียมโอน
-        otherAgent: null, //ค่าธรรมเนียมโอน
+        otherAgent: null, //อื่นๆ
         acquisitionDate: null, //วันที่ได้ทรัพย์มา
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
     };
   },
-  async mounted() {
-    // await this.findCollectionById(this.getDocumentId);
+  mounted() {
+    // console.log(this.getUserLogin);
+    // console.log(this.getDatabaseUrl);
   },
   methods: {
-    async findCollectionById() {
-      const db = this.$firebase.firestore();
-      await db
-        .collection("property")
-        .doc(`${this.getDocumentId}`)
-        .get()
-        .then((doc) => {
-          this.setData(doc.data());
-        });
-    },
-    setData(data) {
-      this.property = data.property;
-      this.agent = data.agent;
-    },
     async onSave() {
       const property = this.property;
       const agent = this.agent;
 
       const mapdata = {
-        id: this.getDocumentId,
         uid: this.getUserLogin.uid,
+        lat: this.getLocationCondo.lat,
+        lng: this.getLocationCondo.lng,
         property,
         agent,
       };
 
-      await axios.put(
-        `${this.getDatabaseUrl}/gemsmap/us-central1/api/update`,
+      await axios.post(
+        `${this.getDatabaseUrl}/gemsmap/us-central1/api/create`,
         mapdata
       );
 

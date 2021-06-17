@@ -119,7 +119,6 @@ import VueGeolocation from "vue-browser-geolocation";
 Vue.use(VueGeolocation);
 
 import * as VueGoogleMaps from "vue2-google-maps";
-import position from "src/store/data/position";
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc",
@@ -161,13 +160,14 @@ export default {
     }
   },
   async mounted() {
-    await this.getCollectionData();
-    // add the map to a data object
+    // await this.getCollectionData();
+    // // add the map to a data object
     this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
+      setPosition: "position/setPosition",
     }),
     async getCollectionData() {
       const db = this.$firebase.firestore();
@@ -191,8 +191,10 @@ export default {
         });
     },
     selectMarker(data) {
-      const { id, type } = data;
+      console.log(data);
+      const { id, type, position } = data;
       this.setDocumentId({ id });
+      this.setPosition({ lat: position.lat, lng: position.lng });
 
       if (type == "คอนโด") {
         this.$router.push({ name: "overviewCondo" });
