@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="col dataArea">
-            <div class="dataTitle">ชื่อคอนโด</div>
+            <div class="dataTitle">ชื่อ</div>
             <div class="padInputBox">
               <q-input
                 class="inputBox"
