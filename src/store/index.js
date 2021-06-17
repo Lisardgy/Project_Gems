@@ -3,6 +3,11 @@ import Vuex from 'vuex'
 
 // import example from './module-example'
 
+import position from './data/position'
+import user_config from './data/user_config'
+import databaseUrl from './data/databaseurl'
+import document from './data/document'
+
 Vue.use(Vuex)
 
 /*
@@ -18,6 +23,10 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
+      databaseUrl,
+      position,
+      user_config,
+      document
     },
 
     // enable strict mode (adds overhead!)

@@ -1,4 +1,5 @@
-import Firebase from 'firebase/app'
+import Firebase from 'firebase'
+import 'firebase/firestore'
 export default ({ Vue }) => {
     const firebaseConfig = {
         apiKey: "AIzaSyDyJ1dxwc4mUTmbZxLfs-WwjKav3F8af6g",
@@ -11,5 +12,6 @@ export default ({ Vue }) => {
     };
     Firebase.initializeApp(firebaseConfig);
     Vue.prototype.$firebase = Firebase;
+    Vue.prototype.$firestore = Firebase.firestore();
     Vue.prototype.$auth = Firebase.auth();
 }
