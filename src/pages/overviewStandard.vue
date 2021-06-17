@@ -30,22 +30,25 @@
           </div>
         </div>
       </div>
-      <div class="row q-px-md" style="margin: 1rem 0">
-        <div class="title">{{ this.property.projectName }}</div>
+      <div class="row q-pa-sm q-ma-sm items-baseline">
+        <div class="row title">{{ this.property.projectName }}บ้านผมๆ</div>
+            </div>
       </div>
-      <div class="row q-px-md" style="margin-left: 2rem">
-        <div class="col-8">
-          <div class="row">
+
+      <div class="row q-px-md justify-between">
+        <div class="col">
+          <div class="row q-gutter-sm">
             <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.type }}
+              บ้านเดี่ยว
             </div>
-            <div class="q-mx-xs"></div>
             <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.status }}
+              ขายแล้ว
             </div>
           </div>
         </div>
-        <div class="col items-center">
+        <div class=" items-center">
           <div class="row justify-end">
             <q-btn
               class="downloadIamges row items-centers justify-center"
@@ -126,9 +129,9 @@
             <div class="row between">
               <div>
                 <span style="color: #fcff68"
-                  >{{ this.property.province }}:</span
+                  >จังหวัด:</span
                 >
-                นครศรีธรรมราช
+                {{ this.property.province }}
               </div>
             </div>
           </div>
@@ -491,9 +494,8 @@ export default {
 
 .title {
   color: white;
-  font-size: 19px;
+  font-size: 24px;
   font-weight: bold;
-  margin-left: 1rem;
 }
 
 .tagsStyle {
