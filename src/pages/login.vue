@@ -69,6 +69,5 @@ export default {
   background-size: 100% 30%, contain;
 }
 
-.cities {
-}
+
 </style>

@@ -1021,7 +1021,7 @@ export default {
         taxation: null, //ภาษีอากร
         transterCondition: null, //เงื่อนไขการโอน
         transferFee: null, //ค่าธรรมเนียมโอน
-        otherAgent: null, //ค่าธรรมเนียมโอน
+        otherAgent: null, //อื่นๆ
         acquisitionDate: null, //วันที่ได้ทรัพย์มา
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //

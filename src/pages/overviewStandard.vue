@@ -31,17 +31,17 @@
         </div>
       </div>
       <div class="row q-px-md" style="margin: 1rem 0">
-        <div class="title">อิราวดี</div>
+        <div class="title">{{ this.property.projectName }}</div>
       </div>
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
           <div class="row">
             <div class="tagsStyle text-bold row items-center q-px-sm">
-              บ้านเดี่ยว
+              {{ this.property.type }}
             </div>
             <div class="q-mx-xs"></div>
             <div class="tagsStyle text-bold row items-center q-px-sm">
-              รอขาย
+              {{ this.property.status }}
             </div>
           </div>
         </div>
@@ -94,20 +94,41 @@
         <div class="row details q-px-lg q-py-sm">
           <div class="col">
             <div class="row justify-between">
-              <div><span style="color: #fcff68">บ้านเลขที่:</span> 114/73</div>
-              <div><span style="color: #fcff68">หมู่ที่/ชั้น:</span> 1</div>
+              <div>
+                <span style="color: #fcff68">บ้านเลขที่:</span>
+                {{ this.property.houseNumber }}
+              </div>
+              <div>
+                <span style="color: #fcff68">หมู่ที่/ชั้น:</span>
+                {{ this.property.swine }}
+              </div>
             </div>
             <div class="row justify-between">
-              <div><span style="color: #fcff68">ซอย:</span> มหาเศรษฐี 23</div>
-              <div><span style="color: #fcff68">ถนน:</span> พัฒนาการคูขวาง</div>
+              <div>
+                <span style="color: #fcff68">ซอย:</span>
+                {{ this.property.alley }}
+              </div>
+              <div>
+                <span style="color: #fcff68">ถนน:</span>
+                {{ this.property.road }}
+              </div>
             </div>
             <div class="row justify-between">
-              <div><span style="color: #fcff68">ตำบล:</span> กระทู้</div>
-              <div><span style="color: #fcff68">อำเภอ:</span> กระทู้</div>
+              <div>
+                <span style="color: #fcff68">ตำบล:</span>
+                {{ this.property.subDistict }}
+              </div>
+              <div>
+                <span style="color: #fcff68">อำเภอ:</span>
+                {{ this.property.distict }}
+              </div>
             </div>
             <div class="row between">
               <div>
-                <span style="color: #fcff68">จังหวัด:</span> นครศรีธรรมราช
+                <span style="color: #fcff68"
+                  >{{ this.property.province }}:</span
+                >
+                นครศรีธรรมราช
               </div>
             </div>
           </div>
@@ -118,15 +139,18 @@
           <div class="col">
             <div class="row justify-between">
               <div>
-                <span style="color: #fcff68">พื้นที่ดิน :</span> 18 ตร.วา
+                <span style="color: #fcff68">พื้นที่ดิน :</span>
+                {{ this.property.areaSize }} ตร.วา
               </div>
               <div>
-                <span style="color: #fcff68">พื้นที่บ้าน :</span> 60 ตร.ม.
+                <span style="color: #fcff68">พื้นที่บ้าน :</span>
+                {{ this.property.houseSize }} ตร.ม.
               </div>
             </div>
             <div class="row justify-between">
               <div>
-                <span style="color: #fcff68">ความกว้างหน้าบ้าน :</span> 6 ม.
+                <span style="color: #fcff68">ความกว้างหน้าบ้าน :</span>
+                {{ this.property.widthFrontHouse }} ม.
               </div>
             </div>
           </div>
@@ -136,19 +160,29 @@
         <div class="row details q-px-lg q-py-sm">
           <div class="col">
             <div class="row justify-between">
-              <div><span style="color: #fcff68">ห้องนอน :</span> 2</div>
-              <div><span style="color: #fcff68">ห้องน้ำ :</span> 1</div>
-            </div>
-            <div class="row justify-between">
               <div>
-                <span style="color: #fcff68">เฟอร์นิเจอร์ที่ได้ :</span> โซฟา
-                โต๊ะทำงาน ตู้เสื้อผ้า เตียง เก้าอี้ โคมไฟ
+                <span style="color: #fcff68">ห้องนอน :</span>
+                {{ this.property.bedRoom }}
+              </div>
+              <div>
+                <span style="color: #fcff68">จำนวนชั้น :</span>
+                {{ this.property.floor }}
+              </div>
+              <div>
+                <span style="color: #fcff68">ห้องน้ำ :</span
+                >{{ this.property.toilet }}
               </div>
             </div>
             <div class="row justify-between">
               <div>
-                <span style="color: #fcff68">เครื่องใช้ไฟฟ้าที่ได้ :</span>
-                แอร์ในห้องนอน 2 เครื่อง
+                <span style="color: #fcff68">เฟอร์นิเจอร์ที่ได้ :</span>
+                {{ this.property.furniture }}
+              </div>
+            </div>
+            <div class="row justify-between">
+              <div>
+                <span style="color: #fcff68">เครื่องใช้ไฟฟ้าที่ได้ :</span
+                >{{ this.property.electronic }}
               </div>
             </div>
           </div>
@@ -162,8 +196,7 @@
             >
           </div>
           <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a
-            lectus tincidunt sem finibus accumsan.
+            {{ this.property.otherProperty }}
           </div>
         </div>
       </div>
@@ -175,147 +208,161 @@
         <div class="row detailsFront q-pl-sm q-pr-xs q-py-sm">
           <div class="col q-gutter-y-sm">
             <div class="row">วิวโดยรอบ</div>
-            <div class="row detailsBack">ชุมชนหลังมุม</div>
+            <div class="row detailsBack">{{ this.property.surroundView }}</div>
             <div class="row">ทิศหน้าบ้าน</div>
-            <div class="row detailsBack">ตะวันออกเฉียงเหนือ</div>
+            <div class="row detailsBack">
+              {{ this.property.directionHouse }}
+            </div>
             <div class="row">OCC Rate</div>
-            <div class="row detailsBack">>90%</div>
+            <div class="row detailsBack">{{ this.property.occRate }}</div>
             <div class="row">ระบบความปลอดภัย</div>
-            <div class="row detailsBack">ไม่มี</div>
+            <div class="row detailsBack">
+              {{ this.property.securitySystem }}
+            </div>
             <div class="row">จุดเด่นทำเล</div>
-            <div class="row detailsBack">ใกล้ ม.อ เป็นแหล่งชุมชม</div>
+            <div class="row detailsBack">{{ this.property.areaHighlight }}</div>
           </div>
           <q-separator vertical color="white" />
           <div class="col">
             <div class="marginAftSep q-gutter-y-sm">
               <div class="row">Facilities</div>
-              <div class="row detailsBack">ไม่มี</div>
+              <div class="row detailsBack">{{ this.property.facility }}</div>
               <div class="row">ระบบน้ำ/ไฟ</div>
-              <div class="row detailsBack">จ่ายกับประปาและการไฟฟ้าตามปกติ</div>
+              <div class="row detailsBack">
+                {{ this.property.waterFireSystem }}
+              </div>
               <div class="row">ค่าส่วนกลางตลอดปี</div>
-              <div class="row detailsBack">ไม่มี</div>
+              <div class="row detailsBack">{{ this.property.commonFee }}</div>
               <div class="row">อายุบ้าน/คอนโด</div>
-              <div class="row detailsBack">21ปีแต่ทำการรีโนเวทใหม่ทั้งหลัง</div>
+              <div class="row detailsBack">{{ this.property.houserAge }}</div>
               <div class="row">เหตุผลที่ขาย</div>
-              <div class="row detailsBack">รีโนเวทเพื่อขาย</div>
+              <div class="row detailsBack">{{ this.property.reasonSale }}</div>
             </div>
           </div>
         </div>
       </div>
       <div
         class="row justify-center text-bold q-pa-sm"
-        style="background-color: red; color: white;font-size:20px"
+        style="background-color: red; color: white; font-size: 20px"
       >
         ข้อมูลต่อไปนี้ห้ามเผยแพร่
       </div>
-      <div class="q-px-md q-pt-md q-pb-none agentBG" >
+      <div class="q-px-md q-pt-md q-pb-none agentBG" style="overflow:hidden">
+        <q-img class="topRotate" src="../images/cityRT.png" />
+        <q-img class="bottomRotate" src="../images/cityRT.png" />
         <div class="description">
           <div class="row detailHead" style="color: black">สำหรับ Agent</div>
           <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
             <div class="col q-gutter-y-md">
               <div class="row">
                 <div class="col">Agent เจ้าของทรัพย์ :</div>
-                <div class="col">มหันตภัยร้ายแรง นายซึนามิ</div>
+                <div class="col">
+                  {{ this.agent.agentName }} <span class="q-ml-xs"></span>
+                  {{ this.agent.agentLastName }}
+                </div>
               </div>
               <div class="row">
                 <div class="col">เจ้าของทรัพย์ :</div>
-                <div class="col">มหันตภัยร้ายแรง นายซึนามิ</div>
+                <div class="col">
+                  {{ this.agent.propertyOwnerName }}
+                  <span class="q-ml-xs"></span>
+                  {{ this.agent.propertyOwnerLastName }}
+                </div>
               </div>
               <div class="row">
                 <div class="col">เบอร์ติดต่อ 1 :</div>
-                <div class="col">088-8888888</div>
+                <div class="col">{{ this.agent.phoneNumber1 }}</div>
               </div>
               <div class="row">
                 <div class="col">เบอร์ติดต่อ 2 :</div>
-                <div class="col">-</div>
+                <div class="col">{{ this.agent.phoneNumber2 }}</div>
               </div>
               <div class="row">
                 <div class="col">ID Line :</div>
-                <div class="col">@Gems</div>
+                <div class="col">{{ this.agent.idLine }}</div>
               </div>
               <div class="row">
                 <div class="col-4">ช่องทางติดต่อเพิ่มเติม :</div>
                 <div class="col-2"></div>
-                <div class="col">Facebook : Gems</div>
+                <div class="col">{{ this.agent.otherContact }}</div>
               </div>
               <div class="row">
                 <div class="col">วันที่เริ่มจำนอง :</div>
-                <div class="col">16-May-52</div>
+                <div class="col">{{ this.agent.mortgageDate }}</div>
               </div>
               <div class="row">
                 <div class="col">ธนาคารที่ติดจำนอง :</div>
-                <div class="col">ธอส</div>
+                <div class="col">{{ this.agent.mortgageBank }}</div>
               </div>
               <div class="row">
                 <div class="col">ยอดติดจำนอง :</div>
-                <div class="col">700,000</div>
+                <div class="col">{{ this.agent.mortgagePrice }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคาประเมิน :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.appraisalPrice }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคาตลาด :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.marketPrice }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคา Last Match :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.lastMatch }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคาขาย :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.sellPrice }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคาเช่า :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.rentalPrice }}</div>
               </div>
               <div class="row">
                 <div class="col">ราคาต่ำสุดที่ลดได้ :</div>
-                <div class="col">2,500,000</div>
+                <div class="col">{{ this.agent.minDicount }}</div>
               </div>
               <div class="row">
                 <div class="col">ค่าภาษีธุรกิจเฉพาะ :</div>
-                <div class="col">ไม่มี</div>
+                <div class="col">{{ this.agent.specificTax }}</div>
               </div>
               <div class="row">
                 <div class="col">อากร :</div>
-                <div class="col">ไม่มี</div>
+                <div class="col">{{ this.agent.taxation }}</div>
               </div>
               <div class="row">
                 <div class="col">เงื่อนไขการโอน :</div>
-                <div class="col">คนละครึ่ง</div>
+                <div class="col">{{ this.agent.transterCondition }}</div>
               </div>
               <div class="row">
                 <div class="col">ค่าธรรมเนียมโอน :</div>
-                <div class="col">คนละครึ่ง</div>
+                <div class="col">{{ this.agent.transferFee }}</div>
               </div>
               <div class="row">
                 <div class="col">อัตราคอมฯ :</div>
-                <div class="col">3 %</div>
+                <div class="col">{{ this.agent.commissionRate }}</div>
               </div>
               <div class="row">
                 <div class="col">อื่นๆ :</div>
                 <div class="col">
-                  ค่าภาษีเงินได้ผู้ขายรับ/ค่าจดจำนองผู้ซื้อรับ
+                  {{ this.agent.otherAgent }}
                 </div>
               </div>
 
               <div class="row justify-around">
                 <div class="">
                   <div>วันที่ได้ทรัพย์มา</div>
-                  <div>11/9/1963</div>
+                  <div>{{ this.agent.acquisitionDate }}</div>
                 </div>
                 <div class="">
                   <div>วันที่มีการอัพเดทข้อมูล</div>
-                  <div>05/10/1964</div>
+                  <div>**ไม่มี</div>
                 </div>
               </div>
               <div class="row">
                 <div class="col">หมายเหตุเพิ่มเติม</div>
                 <div class="col">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vivamus a lectus tincidunt sem accumsan.
+                  {{ this.agent.additionalNote }}
                 </div>
               </div>
             </div>
@@ -334,12 +381,94 @@ export default {
       slide: 1,
       deletePin: false,
       editPin: false,
+      property: {
+        projectName: null,
+        name: null, //ชื่อคอนโด
+        type: null,
+        status: null,
+        houseNumber: null,
+        building: null, //อาคาร
+        swine: null, //หมู่
+        alley: null, //ซอย
+        road: null, //ถนน
+        distict: null, //อำเภอ
+        subDistict: null, //ตำบล
+        province: null, //จังหวัด
+        houseSize: null, //ขนาดพื้นที่บ้าน
+        areaSize: null, //ที่ดิน
+        floor: null, //ชั้นที่
+        bedRoom: null, //ห้องนอน
+        toilet: null,
+        surroundView: null, //วิวโดยรอบ
+        occRate: null, //ค่าไรหนิ
+        widthFrontHouse: null, //ความกว้างหน้าบ้าน
+        directionHouse: null, //ทิศหน้าบ้าน
+        furniture: null,
+        electronic: null, //เตรื่องใช้ไฟฟ้าที่ได้
+        commonFee: null, //ค่าส่วนกลางต่อปี
+        houserAge: null, //อายุบ้าน
+        facility: null,
+        reasonSale: null, //เหตุผลที่ขาย
+        securitySystem: null, //ระบบความปลอดภัย
+        areaHighlight: null, //จุดเด่นของสถานที่
+        waterFireSystem: null, // ระบบน้ำ/ไฟ4
+        otherProperty: null, // อื่น ๆ ของทรัพย์
+      },
+      agent: {
+        agentName: null,
+        agentLastName: null,
+        propertyOwnerName: null,
+        propertyOwnerLastName: null,
+        phoneNumber1: null,
+        phoneNumber2: null,
+        idLine: null,
+        otherContact: null, //ช่องทางติดต่อเพิ่มเติม
+        mortgageDate: null, //วันที่จำนอง
+        mortgageBank: null, //ธนาคารที่ติดจำนอง
+        mortgagePrice: null, //ยอดจำนอง
+        appraisalPrice: null, //ราคาประเมิน
+        marketPrice: null,
+        lastMatch: null, //ราคา Last Match
+        sellPrice: null, //ราคาขาย
+        rentalPrice: null, //ราคาเช่า
+        minDicount: null, //ราคาต่ำสุดที่ลดได้
+        specificTax: null, //ค่าภาษีธุรกิจเฉพาะ
+        commissionRate: null, //อัตราคอมฯ
+        taxation: null, //ภาษีอากร
+        transterCondition: null, //เงื่อนไขการโอน
+        transferFee: null, //ค่าธรรมเนียมโอน
+        otherAgent: null, //ค่าธรรมเนียมโอน
+        acquisitionDate: null, //วันที่ได้ทรัพย์มา
+        additionalNote: null, //หมายเหตุเพิ่มเติม
+      }, //
     };
   },
 };
 </script>
 
 <style scoped>
+.bottomRotate{
+  position: absolute;
+  width: 500px;
+  height: 400px;
+  right: -150px;
+  transform: rotate(220deg);
+  top: -90px;
+}
+
+.topRotate{
+  width: 500px;
+  height: 400px;
+  left: -150px;
+  position: absolute;
+  transform: rotate(40deg);
+  bottom: -60px;
+}
+
+.agentBG{
+  position: relative;
+}
+
 .q-layout {
   background: #010135;
 }
@@ -370,6 +499,7 @@ export default {
 .tagsStyle {
   border-radius: 5px;
   width: auto;
+  min-width: 50px;
   height: 35px;
   background: #fff;
   text-align: center;
@@ -436,7 +566,7 @@ export default {
   margin-left: 1.2em;
 }
 
-.agentBG{
+.agentBG {
   background: linear-gradient(#ffffff, rgb(255, 255, 255));
 }
 </style>
