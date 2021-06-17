@@ -125,10 +125,8 @@
             </div>
             <div class="row between">
               <div>
-                <span style="color: #fcff68"
-                  >{{ this.property.province }}:</span
-                >
-                นครศรีธรรมราช
+                <span style="color: #fcff68">จังหวัด:</span>
+                {{ this.property.province }}
               </div>
             </div>
           </div>
@@ -247,7 +245,7 @@
       >
         ข้อมูลต่อไปนี้ห้ามเผยแพร่
       </div>
-      <div class="q-px-md q-pt-md q-pb-none agentBG" style="overflow:hidden">
+      <div class="q-px-md q-pt-md q-pb-none agentBG" style="overflow: hidden">
         <q-img class="topRotate" src="../images/cityRT.png" />
         <q-img class="bottomRotate" src="../images/cityRT.png" />
         <div class="description">
@@ -374,7 +372,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    ...mapGetters({
+      getDocumentId: "document/getDocumentId",
+    }),
+  },
   name: "PageIndex",
   data() {
     return {
@@ -443,11 +447,87 @@ export default {
       }, //
     };
   },
+  async mounted() {
+    await this.findCollectionById();
+  },
+  methods: {
+    async findCollectionById() {
+      const db = this.$firebase.firestore();
+      await db
+        .collection("property")
+        .doc(`${this.getDocumentId}`)
+        .get()
+        .then((doc) => {
+          this.setData(doc.data());
+        });
+    },
+    setData(data) {
+      console.log(data);
+      console.log(data.property.projectName);
+
+      this.property.projectName = data.property.projectName;
+      this.property.name = data.property.name; //ชื่อคอนโด
+      this.property.type = data.property.type;
+      this.property.status = data.property.status;
+      this.property.houseNumber = data.property.houseNumber;
+      this.property.building = data.property.building; //อาคาร
+      this.property.swine = data.property.swine; //หมู่
+      this.property.alley = data.property.alley; //ซอย
+      this.property.distict = data.property.distict; //อำเภอ
+      this.property.subDistict = data.property.subDistict; //ตำบล
+      this.property.province = data.property.province; //จังหวัด
+      this.property.houseSize = data.property.houseSize; //ขนาดพื้นที่บ้าน
+      this.property.areaSize = data.property.areaSize; //ที่ดิน
+      this.property.floor = data.property.floor; //ชั้นที่
+      this.property.bedRoom = data.property.bedRoom; //ห้องนอน
+      this.property.toilet = data.property.toilet;
+      this.property.surroundView = data.property.surroundView; //วิวโดยรอบ
+      this.property.occRate = data.property.occRate; //ค่าไรหนิ
+      this.property.widthFrontHouse = data.property.widthFrontHouse; //ความกว้างหน้าบ้าน
+      this.property.directionHouse = data.property.directionHouse; //ทิศหน้าบ้าน
+      this.property.furniture = data.property.furniture;
+      this.property.electronic = data.property.electronic; //เตรื่องใช้ไฟฟ้าที่ได้
+      this.property.commonFee = data.property.commonFee; //ค่าส่วนกลางต่อปี
+      this.property.houserAge = data.property.houserAge; //อายุบ้าน
+      this.property.facility = data.property.facility;
+      this.property.reasonSale = data.property.reasonSale; //เหตุผลที่ขาย
+      this.property.securitySystem = data.property.securitySystem; //ระบบความปลอดภัย
+      this.property.areaHighlight = data.property.areaHighlight; //จุดเด่นของสถานที่
+      this.property.waterFireSystem = data.property.waterFireSystem; // ระบบน้ำ/ไฟ4
+      this.property.otherProperty = data.property.otherProperty; // อื่น ๆ ของทรัพย์
+
+      this.agent.agentName = data.agent.agentName;
+      this.agent.agentLastName = data.agent.agentLastName;
+      this.agent.propertyOwnerName = data.agent.propertyOwnerName;
+      this.agent.propertyOwnerLastName = data.agent.propertyOwnerLastName;
+      this.agent.phoneNumber1 = data.agent.phoneNumber1;
+      this.agent.phoneNumber2 = data.agent.phoneNumber2;
+      this.agent.idLine = data.agent.idLine;
+      this.agent.otherContact = data.agent.otherContact; //ช่องทางติดต่อเพิ่มเติม
+      this.agent.mortgageDate = data.agent.mortgageDate; //วันที่จำนอง
+      this.agent.mortgageBank = data.agent.mortgageBank; //ธนาคารที่ติดจำนอง
+      this.agent.mortgagePrice = data.agent.mortgagePrice; //ยอดจำนอง
+      this.agent.appraisalPrice = data.agent.appraisalPrice; //ราคาประเมิน
+      this.agent.marketPrice = data.agent.marketPrice;
+      this.agent.lastMatch = data.agent.lastMatch; //ราคา Last Match
+      this.agent.sellPrice = data.agent.sellPrice; //ราคาขาย
+      this.agent.rentalPrice = data.agent.rentalPrice; //ราคาเช่า
+      this.agent.minDicount = data.agent.minDicount; //ราคาต่ำสุดที่ลดได้
+      this.agent.specificTax = data.agent.specificTax; //ค่าภาษีธุรกิจเฉพาะ
+      this.agent.commissionRate = data.agent.commissionRate; //อัตราคอมฯ
+      this.agent.taxation = data.agent.taxation; //ภาษีอากร
+      this.agent.transterCondition = data.agent.transterCondition; //เงื่อนไขการโอน
+      this.agent.transferFee = data.agent.transferFee; //ค่าธรรมเนียมโอน
+      this.agent.otherAgent = data.agent.otherAgent; //ค่าธรรมเนียมโอน
+      this.agent.acquisitionDate = data.agent.acquisitionDatel; //วันที่ได้ทรัพย์มา
+      this.agent.additionalNote = data.agent.additionalNote; //หมายเหตุเพิ่มเติม
+    },
+  },
 };
 </script>
 
 <style scoped>
-.bottomRotate{
+.bottomRotate {
   position: absolute;
   width: 500px;
   height: 400px;
@@ -456,7 +536,7 @@ export default {
   top: -90px;
 }
 
-.topRotate{
+.topRotate {
   width: 500px;
   height: 400px;
   left: -150px;
@@ -465,7 +545,7 @@ export default {
   bottom: -60px;
 }
 
-.agentBG{
+.agentBG {
   position: relative;
 }
 

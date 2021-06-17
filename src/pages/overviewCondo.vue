@@ -250,140 +250,141 @@
       >
         ข้อมูลต่อไปนี้ห้ามเผยแพร่
       </div>
-      
-    <div class="bg2">
-      <!-- <div class="city1"></div> -->
-      <div class="q-px-md q-pt-md q-pb-none agentBG">
-        <div class="description">
-          <div class="row detailHead" style="color:black">สำหรับ Agent</div>
-          <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
-            <div class="col q-gutter-y-md">
-              <div class="row">
-                <div class="col">
-                  Agent เจ้าของทรัพย์ :
-                </div>
-                <div class="col" style="color: white">
-                  {{ this.agent.agentName }} <span class="q-ml-xs"></span>
-                  {{ this.agent.agentLastName }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">เจ้าของทรัพย์ :</div>
-                <div class="col">
-                  {{ this.agent.propertyOwnerName }}
-                  <span class="q-ml-xs"></span>
-                  {{ this.agent.propertyOwnerLastName }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">เบอร์ติดต่อ 1 :</div>
-                <div class="col">{{ this.agent.phoneNumber1 }}</div>
-              </div>
-              <div class="row">
-                <div class="col">เบอร์ติดต่อ 2 :</div>
-                <div class="col">{{ this.agent.phoneNumber2 }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ID Line :</div>
-                <div class="col">{{ this.agent.idLine }}</div>
-              </div>
-              <div class="row">
-                <div class="col-4">ช่องทางติดต่อเพิ่มเติม :</div>
-                <div class="col-2"></div>
-                <div class="col">{{ this.agent.otherContact }}</div>
-              </div>
-              <div class="row">
-                <div class="col">วันที่เริ่มจำนอง :</div>
-                <div class="col">{{ this.agent.mortgageDate }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ธนาคารที่ติดจำนอง :</div>
-                <div class="col">{{ this.agent.mortgageBank }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ยอดติดจำนอง :</div>
-                <div class="col">{{ this.agent.mortgagePrice }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคาประเมิน :</div>
-                <div class="col">{{ this.agent.appraisalPrice }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคาตลาด :</div>
-                <div class="col">{{ this.agent.marketPrice }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคา Last Match :</div>
-                <div class="col">{{ this.agent.lastMatch }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคาขาย :</div>
-                <div class="col">{{ this.agent.sellPrice }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคาเช่า :</div>
-                <div class="col">{{ this.agent.rentalPrice }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ราคาต่ำสุดที่ลดได้ :</div>
-                <div class="col">{{ this.agent.minDicount }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ค่าภาษีธุรกิจเฉพาะ :</div>
-                <div class="col">{{ this.agent.specificTax }}</div>
-              </div>
-              <div class="row">
-                <div class="col">อากร :</div>
-                <div class="col">{{ this.agent.taxation }}</div>
-              </div>
-              <div class="row">
-                <div class="col">เงื่อนไขการโอน :</div>
-                <div class="col">{{ this.agent.transterCondition }}</div>
-              </div>
-              <div class="row">
-                <div class="col">ค่าธรรมเนียมโอน :</div>
-                <div class="col">{{ this.agent.transferFee }}</div>
-              </div>
-              <div class="row">
-                <div class="col">อัตราคอมฯ :</div>
-                <div class="col">{{ this.agent.commissionRate }}</div>
-              </div>
-              <div class="row">
-                <div class="col">อื่นๆ :</div>
-                <div class="col">
-                  {{ this.agent.otherAgent }}
-                </div>
-              </div>
 
-              <div class="row justify-around">
-                <div>
-                  <div>วันที่ได้ทรัพย์มา</div>
-                  <div>{{ this.agent.acquisitionDate }}</div>
+      <div class="bg2">
+        <!-- <div class="city1"></div> -->
+        <div class="q-px-md q-pt-md q-pb-none agentBG">
+          <div class="description">
+            <div class="row detailHead" style="color: black">สำหรับ Agent</div>
+            <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
+              <div class="col q-gutter-y-md">
+                <div class="row">
+                  <div class="col">Agent เจ้าของทรัพย์ :</div>
+                  <div class="col" style="color: white">
+                    {{ this.agent.agentName }} <span class="q-ml-xs"></span>
+                    {{ this.agent.agentLastName }}
+                  </div>
                 </div>
-                <div class="">
-                  <div>วันที่มีการอัพเดทข้อมูล</div>
-                  <div>**ไม่มี</div>
+                <div class="row">
+                  <div class="col">เจ้าของทรัพย์ :</div>
+                  <div class="col">
+                    {{ this.agent.propertyOwnerName }}
+                    <span class="q-ml-xs"></span>
+                    {{ this.agent.propertyOwnerLastName }}
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                หมายเหตุเพิ่มเติม</div>
-                <div class="row q-pa-md" style="margin-top:-5px">
+                <div class="row">
+                  <div class="col">เบอร์ติดต่อ 1 :</div>
+                  <div class="col">{{ this.agent.phoneNumber1 }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">เบอร์ติดต่อ 2 :</div>
+                  <div class="col">{{ this.agent.phoneNumber2 }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ID Line :</div>
+                  <div class="col">{{ this.agent.idLine }}</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">ช่องทางติดต่อเพิ่มเติม :</div>
+                  <div class="col-2"></div>
+                  <div class="col">{{ this.agent.otherContact }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">วันที่เริ่มจำนอง :</div>
+                  <div class="col">{{ this.agent.mortgageDate }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ธนาคารที่ติดจำนอง :</div>
+                  <div class="col">{{ this.agent.mortgageBank }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ยอดติดจำนอง :</div>
+                  <div class="col">{{ this.agent.mortgagePrice }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคาประเมิน :</div>
+                  <div class="col">{{ this.agent.appraisalPrice }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคาตลาด :</div>
+                  <div class="col">{{ this.agent.marketPrice }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคา Last Match :</div>
+                  <div class="col">{{ this.agent.lastMatch }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคาขาย :</div>
+                  <div class="col">{{ this.agent.sellPrice }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคาเช่า :</div>
+                  <div class="col">{{ this.agent.rentalPrice }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ราคาต่ำสุดที่ลดได้ :</div>
+                  <div class="col">{{ this.agent.minDicount }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ค่าภาษีธุรกิจเฉพาะ :</div>
+                  <div class="col">{{ this.agent.specificTax }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">อากร :</div>
+                  <div class="col">{{ this.agent.taxation }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">เงื่อนไขการโอน :</div>
+                  <div class="col">{{ this.agent.transterCondition }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">ค่าธรรมเนียมโอน :</div>
+                  <div class="col">{{ this.agent.transferFee }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">อัตราคอมฯ :</div>
+                  <div class="col">{{ this.agent.commissionRate }}</div>
+                </div>
+                <div class="row">
+                  <div class="col">อื่นๆ :</div>
+                  <div class="col">
+                    {{ this.agent.otherAgent }}
+                  </div>
+                </div>
+
+                <div class="row justify-around">
+                  <div>
+                    <div>วันที่ได้ทรัพย์มา</div>
+                    <div>{{ this.agent.acquisitionDate }}</div>
+                  </div>
+                  <div class="">
+                    <div>วันที่มีการอัพเดทข้อมูล</div>
+                    <div>**ไม่มี</div>
+                  </div>
+                </div>
+                <div class="row">หมายเหตุเพิ่มเติม</div>
+                <div class="row q-pa-md" style="margin-top: -5px">
                   {{ this.agent.additionalNote }}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </div>
-      
-    
+    </div>
   </q-layout>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "PageIndex",
+  computed: {
+    ...mapGetters({
+      getDocumentId: "document/getDocumentId",
+    }),
+  },
   data() {
     return {
       slide: 1,
@@ -451,10 +452,79 @@ export default {
       }, //
     };
   },
-  mounted() {
+  async mounted() {
     this.showLoading();
+    await this.findCollectionById();
   },
   methods: {
+    async findCollectionById() {
+      const db = this.$firebase.firestore();
+      await db
+        .collection("property")
+        .doc(`${this.getDocumentId}`)
+        .get()
+        .then((doc) => {
+          this.setData(doc.data());
+        });
+    },
+    setData(data) {
+      this.property.projectName = data.property.projectName;
+      this.property.name = data.property.name; //ชื่อคอนโด
+      this.property.type = data.property.type;
+      this.property.status = data.property.status;
+      this.property.houseNumber = data.property.houseNumber;
+      this.property.building = data.property.building; //อาคาร
+      this.property.swine = data.property.swine; //หมู่
+      this.property.alley = data.property.alley; //ซอย
+      this.property.distict = data.property.distict; //อำเภอ
+      this.property.subDistict = data.property.subDistict; //ตำบล
+      this.property.province = data.property.province; //จังหวัด
+      this.property.houseSize = data.property.houseSize; //ขนาดพื้นที่บ้าน
+      this.property.areaSize = data.property.areaSize; //ที่ดิน
+      this.property.floor = data.property.floor; //ชั้นที่
+      this.property.bedRoom = data.property.bedRoom; //ห้องนอน
+      this.property.toilet = data.property.toilet;
+      this.property.surroundView = data.property.surroundView; //วิวโดยรอบ
+      this.property.occRate = data.property.occRate; //ค่าไรหนิ
+      this.property.widthFrontHouse = data.property.widthFrontHouse; //ความกว้างหน้าบ้าน
+      this.property.directionHouse = data.property.directionHouse; //ทิศหน้าบ้าน
+      this.property.furniture = data.property.furniture;
+      this.property.electronic = data.property.electronic; //เตรื่องใช้ไฟฟ้าที่ได้
+      this.property.commonFee = data.property.commonFee; //ค่าส่วนกลางต่อปี
+      this.property.houserAge = data.property.houserAge; //อายุบ้าน
+      this.property.facility = data.property.facility;
+      this.property.reasonSale = data.property.reasonSale; //เหตุผลที่ขาย
+      this.property.securitySystem = data.property.securitySystem; //ระบบความปลอดภัย
+      this.property.areaHighlight = data.property.areaHighlight; //จุดเด่นของสถานที่
+      this.property.waterFireSystem = data.property.waterFireSystem; // ระบบน้ำ/ไฟ4
+      this.property.otherProperty = data.property.otherProperty; // อื่น ๆ ของทรัพย์
+
+      this.agent.agentName = data.agent.agentName;
+      this.agent.agentLastName = data.agent.agentLastName;
+      this.agent.propertyOwnerName = data.agent.propertyOwnerName;
+      this.agent.propertyOwnerLastName = data.agent.propertyOwnerLastName;
+      this.agent.phoneNumber1 = data.agent.phoneNumber1;
+      this.agent.phoneNumber2 = data.agent.phoneNumber2;
+      this.agent.idLine = data.agent.idLine;
+      this.agent.otherContact = data.agent.otherContact; //ช่องทางติดต่อเพิ่มเติม
+      this.agent.mortgageDate = data.agent.mortgageDate; //วันที่จำนอง
+      this.agent.mortgageBank = data.agent.mortgageBank; //ธนาคารที่ติดจำนอง
+      this.agent.mortgagePrice = data.agent.mortgagePrice; //ยอดจำนอง
+      this.agent.appraisalPrice = data.agent.appraisalPrice; //ราคาประเมิน
+      this.agent.marketPrice = data.agent.marketPrice;
+      this.agent.lastMatch = data.agent.lastMatch; //ราคา Last Match
+      this.agent.sellPrice = data.agent.sellPrice; //ราคาขาย
+      this.agent.rentalPrice = data.agent.rentalPrice; //ราคาเช่า
+      this.agent.minDicount = data.agent.minDicount; //ราคาต่ำสุดที่ลดได้
+      this.agent.specificTax = data.agent.specificTax; //ค่าภาษีธุรกิจเฉพาะ
+      this.agent.commissionRate = data.agent.commissionRate; //อัตราคอมฯ
+      this.agent.taxation = data.agent.taxation; //ภาษีอากร
+      this.agent.transterCondition = data.agent.transterCondition; //เงื่อนไขการโอน
+      this.agent.transferFee = data.agent.transferFee; //ค่าธรรมเนียมโอน
+      this.agent.otherAgent = data.agent.otherAgent; //ค่าธรรมเนียมโอน
+      this.agent.acquisitionDate = data.agent.acquisitionDatel; //วันที่ได้ทรัพย์มา
+      this.agent.additionalNote = data.agent.additionalNote; //หมายเหตุเพิ่มเติม
+    },
     showLoading() {
       this.$q.loading.show();
 
@@ -500,7 +570,6 @@ export default {
 .agentBG {
   background: rgb(255, 255, 255);
   /* position: relative; */
-  
 }
 
 /* .description {
