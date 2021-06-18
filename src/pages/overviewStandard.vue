@@ -372,7 +372,7 @@
           </div>
         </div>
       </div>
-    </div>
+
   </q-layout>
 </template>
 
