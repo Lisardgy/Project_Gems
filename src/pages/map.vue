@@ -191,7 +191,6 @@ export default {
         });
     },
     selectMarker(data) {
-      console.log(data);
       const { id, type, position } = data;
       this.setDocumentId({ id });
       this.setPosition({ lat: position.lat, lng: position.lng });
