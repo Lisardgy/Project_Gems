@@ -6,12 +6,12 @@
           class="absolute-center font-button full-width"
           flat
           label="ยืนยัน"
-          @click="$router.go(-2)"
+          @click="onSave()"
         />
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <q-page style="color: white; padding: 15px 15px 15px 15px">
+      <q-page style="color: white; padding: 15px">
         <div class="dataHeader">
           <div class="row justify-between items-center">
             <div class="col-12">
@@ -52,105 +52,158 @@
           </div>
           <div class="dataTitle dataArea">
             ประเภท
-            <div class="col">
-              <div class="row q-pt-sm q-col-gutter-sm">
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านเดี่ยว" dense />
+            <div class="row justify-start padInputBox q-gutter-sm">
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type1"
+                value="บ้านเดี่ยว"
+                v-model="property.type"
+              />
+              <label for="option-type1" class="option option-type1">
+                <span>บ้านเดี่ยว</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type2"
+                value="บ้านแฝด"
+                v-model="property.type"
+              />
+              <label for="option-type2" class="option option-type2">
+                <span>บ้านแฝด</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type3"
+                value="หอพัก/อพาร์ทเม้นท์"
+                v-model="property.type"
+              />
+              <label for="option-type3" class="option option-type3">
+                <span class="text-center">
+                  <div class="column">
+                    <div class="">หอพัก</div>
+                    <div class="">อพาร์ทเม้นท์</div>
                   </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="บ้านแฝด" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">หอพัก/</div>
-                        <div style="margin-top: -10px">อพาร์ทเม้นท์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="คอนโดฯ" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">ทาวน์</div>
-                        <div style="margin-top: -10px">เฮาส์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div class="col">
-                        <div style="margin-top: -5px">อาคาร</div>
-                        <div style="margin-top: -10px">พานิชย์</div>
-                      </div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="โรงแรม" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="พูลวิล่า" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="อื่นๆ" dense />
-                  </div>
-                </div>
-              </div>
+                </span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type4"
+                value="คอนโด"
+                v-model="property.type"
+              />
+              <label for="option-type4" class="option option-type4">
+                <span>คอนโดฯ</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type5"
+                value="ทาวน์เฮาส์"
+                v-model="property.type"
+              />
+              <label for="option-type5" class="option option-type5">
+                <span>ทาวน์เฮาส์</span>
+              </label>
+
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type6"
+                value="อาคารพานิชย์"
+                v-model="property.type"
+              />
+              <label for="option-type6" class="option option-type6">
+                <span>อาคารพานิชย์</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type7"
+                value="โรงแรม"
+                v-model="property.type"
+              />
+              <label for="option-type7" class="option option-type7">
+                <span>โรงแรม</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type8"
+                value="พูลวิลล่า"
+                v-model="property.type"
+              />
+              <label for="option-type8" class="option option-type8">
+                <span>พูลวิลล่า</span>
+              </label>
+              <input
+                type="radio"
+                name="selectType"
+                id="option-type9"
+                value="อื่นๆ"
+                v-model="property.type"
+              />
+              <label for="option-type9" class="option option-type9">
+                <span>อื่นๆ</span>
+              </label>
             </div>
           </div>
           <div class="dataTitle dataArea">
             สถานะ
-            <div class="col q-pt-sm">
-              <div class="row q-col-gutter-sm">
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="รอขาย" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="รอเช่า" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push dense>
-                      <div style="margin-top: -5px">รอเช่า/</div>
-
-                      <div style="margin-top: -10px">รอขาย</div>
-                    </q-btn>
-                  </div>
-                </div>
-                <div class="col-3 dataTitle">
-                  <div class="padInputBox">
-                    <q-btn class="statBtn" push label="ขายแล้ว" dense />
-                  </div>
-                </div>
-                <div class="col-3 dataTitle padSecRow">
-                  <div class="padInputBox q-pt-sm">
-                    <q-btn class="statBtn" push label="เช่าแล้ว" dense />
-                  </div>
-                </div>
-              </div>
+            <div class="row padInputBox justify-start q-gutter-sm">
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status1"
+                value="รอขาย"
+                v-model="property.status"
+              />
+              <label for="option-status1" class="option option-status1">
+                <span>รอขาย</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status2"
+                value="รอเช่า"
+                v-model="property.status"
+              />
+              <label for="option-status2" class="option option-status2">
+                <span>รอเช่า</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status3"
+                value="รอเช่า/รอขาย"
+                v-model="property.status"
+              />
+              <label for="option-status3" class="option option-status3">
+                <span>รอเช่า/รอขาย</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status4"
+                value="ขายแล้ว"
+                v-model="property.status"
+              />
+              <label for="option-status4" class="option option-status4">
+                <span>ขายแล้ว</span>
+              </label>
+              <input
+                type="radio"
+                name="selectStatus"
+                id="option-status5"
+                value="เช่าแล้ว"
+                v-model="property.status"
+              />
+              <label for="option-status5" class="option option-status5">
+                <span>เช่าแล้ว</span>
+              </label>
             </div>
           </div>
           <div class="col">
@@ -517,7 +570,7 @@
           <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
-              <div class="row justify-between">
+              <!-- <div class="row justify-between">
                 <div class="col-4 dataTitle">
                   <div class="padInputBox">
                     <img
@@ -566,16 +619,26 @@
                     />
                   </div>
                 </div>
+              </div> -->
+              <div class="row">
+                <q-uploader
+                  url="http://localhost:4444/upload"
+                  text-color="black"
+                  label="เพิ่มรูปภาพ"
+                  multiple
+                  batch
+                  style="max-width: 100%; min-width: 100%"
+                />
               </div>
             </div>
-            <div class="q-gutter-sm" align="center" style="margin-top: 20px">
+            <!-- <div class="q-gutter-sm" align="center" style="margin-top: 20px">
               <q-btn
                 class="chooseIm"
                 style="width: 70%"
                 push
                 label="เลือกรูปจากครังรูปภาพ"
               />
-            </div>
+            </div> -->
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
@@ -609,12 +672,13 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-between dataArea items-center">
+            <div
+              class="row justify-between dataArea items-center q-col-gutter-sm"
+            >
               <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
               <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
-                  style="width: 95%"
                   outlined
                   v-model="agent.propertyOwnerName"
                   label="ชื่อ"
@@ -634,8 +698,34 @@
           </div>
 
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div
+              class="row justify-between dataArea items-center q-col-gutter-sm"
+            >
+              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
+              <div class="col-4 dataTitle">
+                <q-input
+                  class="inputBox"
+                  outlined
+                  v-model="agent.propertyOwnerName"
+                  label="ชื่อ"
+                  dense
+                />
+              </div>
+              <div class="col-4 dataTitle">
+                <q-input
+                  class="inputBox"
+                  outlined
+                  v-model="agent.propertyOwnerLastName"
+                  label="สกุล"
+                  dense
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 เบอรติดต่อที่ 1
                 <div class="padInputBox">
                   <q-input
@@ -646,7 +736,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 เบอรติดต่อที่ 2
                 <div class="padInputBox">
                   <q-input
@@ -660,8 +750,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ID Line
                 <div class="padInputBox">
                   <q-input
@@ -672,7 +762,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ติดต่อเพิ่มเติม
                 <div class="padInputBox">
                   <q-input
@@ -686,8 +776,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 วันที่เริ่มจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -698,7 +788,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ธนาคารที่ติดจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -712,8 +802,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ยอดติดจำนอง
                 <div class="padInputBox">
                   <q-input
@@ -725,7 +815,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคาประเมิน
                 <div class="padInputBox">
                   <q-input
@@ -740,8 +830,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาตลาด
                 <div class="padInputBox">
                   <q-input
@@ -753,7 +843,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคา Last Match
                 <div class="padInputBox">
                   <q-input
@@ -768,8 +858,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาขาย
                 <div class="padInputBox">
                   <q-input
@@ -781,7 +871,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ราคาเช่า
                 <div class="padInputBox">
                   <q-input
@@ -796,8 +886,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 ราคาต่ำสุดที่ลดได้
                 <div class="padInputBox">
                   <q-input
@@ -809,7 +899,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ค่าภาษีธุรกิจเฉพาะ
                 <div class="padInputBox">
                   <q-input
@@ -824,8 +914,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 อัตราคอมฯ
                 <div class="padInputBox">
                   <q-input
@@ -833,11 +923,11 @@
                     outlined
                     v-model="agent.commissionRate"
                     dense
-                    suffix="฿"
+                    suffix="%"
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 อากร
                 <div class="padInputBox">
                   <q-input
@@ -852,8 +942,8 @@
             </div>
           </div>
           <div class="col">
-            <div class="row justify-around dataArea">
-              <div class="col-5 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
                 เงื่อนไขการโอน
                 <div class="padInputBox">
                   <q-input
@@ -864,7 +954,7 @@
                   />
                 </div>
               </div>
-              <div class="col-5 dataTitle">
+              <div class="col dataTitle">
                 ค่าธรรมเนียมโอน
                 <div class="padInputBox">
                   <q-input
@@ -948,7 +1038,16 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
 export default {
+  computed: {
+    ...mapGetters({
+      getDocumentId: "document/getDocumentId",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
+      getUserLogin: "user_config/getUserLogin",
+    }),
+  },
   data() {
     return {
       text: "",
@@ -956,6 +1055,7 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      model: null,
       property: {
         projectName: null,
         name: null, //ชื่อคอนโด
@@ -1016,6 +1116,43 @@ export default {
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
     };
+  },
+  async mounted() {
+    // await this.findCollectionById(this.getDocumentId);
+  },
+  methods: {
+    async findCollectionById() {
+      const db = this.$firebase.firestore();
+      await db
+        .collection("property")
+        .doc(`${this.getDocumentId}`)
+        .get()
+        .then((doc) => {
+          this.setData(doc.data());
+        });
+    },
+    setData(data) {
+      this.property = data.property;
+      this.agent = data.agent;
+    },
+    async onSave() {
+      const property = this.property;
+      const agent = this.agent;
+
+      const mapdata = {
+        id: this.getDocumentId,
+        uid: this.getUserLogin.uid,
+        property,
+        agent,
+      };
+
+      await axios.put(
+        `${this.getDatabaseUrl}/gemsmap/us-central1/api/update`,
+        mapdata
+      );
+
+      this.$router.go(-1);
+    },
   },
 };
 </script>
@@ -1083,11 +1220,75 @@ export default {
   font-weight: bolder;
   margin-top: -5px;
 }
+
 .padSecRow {
   padding-top: 10px;
 }
 .textCenter {
   text-align: center;
+}
+
+.option {
+  background: #fff;
+  display: flex;
+  height: 35px;
+  width: 30%;
+  min-width: 80px;
+  max-width: 120px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+
+input[type="radio"] {
+  display: none;
+}
+#option-type1:checked:checked ~ .option-type1,
+#option-type2:checked:checked ~ .option-type2,
+#option-type3:checked:checked ~ .option-type3,
+#option-type4:checked:checked ~ .option-type4,
+#option-type5:checked:checked ~ .option-type5,
+#option-type6:checked:checked ~ .option-type6,
+#option-type7:checked:checked ~ .option-type7,
+#option-type8:checked:checked ~ .option-type8,
+#option-type9:checked:checked ~ .option-type9,
+#option-status1:checked:checked ~ .option-status1,
+#option-status2:checked:checked ~ .option-status2,
+#option-status3:checked:checked ~ .option-status3,
+#option-status4:checked:checked ~ .option-status4,
+#option-status5:checked:checked ~ .option-status5 {
+  background: #ffff01;
+  color: #000;
+}
+.option span {
+  font-size: 14px;
+  color: #000;
+}
+#option-type1:checked:checked ~ .option-type1 span,
+#option-type2:checked:checked ~ .option-type2 span,
+#option-type3:checked:checked ~ .option-type3 span,
+#option-type4:checked:checked ~ .option-type4 span,
+#option-type5:checked:checked ~ .option-type5 span,
+#option-type6:checked:checked ~ .option-type6 span,
+#option-type7:checked:checked ~ .option-type7 span,
+#option-type8:checked:checked ~ .option-type8 span,
+#option-type9:checked:checked ~ .option-type9 span,
+#option-status1:checked:checked ~ .option-status1 span,
+#option-status2:checked:checked ~ .option-status2 span,
+#option-status3:checked:checked ~ .option-status3 span,
+#option-status4:checked:checked ~ .option-status4 span,
+#option-status5:checked:checked ~ .option-status5 span {
+  color: #000;
+}
+.q-uploader__header {
+  position: relative;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-color: #ffdd02;
+  color: rgb(0, 0, 0);
+  width: 100%;
 }
 </style>
 
