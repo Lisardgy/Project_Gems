@@ -14,43 +14,48 @@
             <div style="padding-left: 0px">ย้อนกลับ</div>
           </q-btn>
         </div>
-        <!-- <div class="col q-pt-md q-px-md">
+        <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
             <q-btn
               class="operationBtn row items-center justify-center"
               label="ลบ"
-              @click="deletePin"
             />
             <div class="q-mx-xs"></div>
             <q-btn
               class="operationBtn row items-center justify-center"
               label="แก้ไข"
-              @click="editPin"
             />
           </div>
-        </div> -->
+        </div>
       </div>
-      <div class="row q-px-md justify-center">
-        <div class="condoTitle">{{ this.property.projectName }}</div>
+      <div class="row q-pa-md justify-center">
+        <div class="condoTitle">{{ this.property.name }}</div>
       </div>
-      <div class="row q-px-md q-mb-md">
-        <div class="projectTitle">{{ this.property.name }}</div>
-      </div>
-      <div class="row q-px-md">
-        <div class="col-8">
-          <div class="row">
+
+      <div class="row q-px-md justify-between">
+        <div class="col">
+          <div class="row q-gutter-sm">
             <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.type }}
             </div>
-            <div class="q-mx-xs"></div>
             <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.status }}
             </div>
           </div>
         </div>
+        <div class="items-center">
+          <div class="row justify-end">
+            <q-btn
+              class="downloadIamges row items-centers justify-center"
+              style="font-size: 28px"
+            >
+              <span class="material-icons">file_download</span>
+            </q-btn>
+          </div>
+        </div>
       </div>
-      <div class="q-px-none q-pt-md q-px-sm" style="padding-bottom: 2px">
-        <!-- <q-carousel
+      <div class="q-px-none q-pt-md">
+        <q-carousel
           animated
           swipeable
           v-model="slide"
@@ -74,7 +79,7 @@
             :name="4"
             img-src="https://cdn.quasar.dev/img/quasar.jpg"
           />
-        </q-carousel> -->
+        </q-carousel>
       </div>
       <div class="row overviewTab items-center">
         <div class="overviewText q-ml-md">Overview</div>
@@ -89,10 +94,10 @@
                 <span style="color: #fcff68">บ้านเลขที่:</span>
                 {{ this.property.houseNumber }}
               </div>
-              <!-- <div>
+              <div>
                 <span style="color: #fcff68">หมู่ที่/ชั้น:</span>
                 {{ this.property.swine }}
-              </div> -->
+              </div>
             </div>
             <div class="row justify-between">
               <div>
@@ -125,63 +130,75 @@
           <q-btn
             class="addRoomBtn row items-center justify-center"
             label="เพิ่มห้อง +"
-            @click="$router.push({ name: 'addform' })"
+            @click="$router.push({ name: 'addcondo' })"
           />
         </div>
       </div>
 
-      <div class="q-pa-md row justify-center q-gutter-md">
-        <div class="" v-for="(data, index) in listCondo" :key="index">
-          <q-card class="card2" flat @click="clickCondo(data)">
-            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
-            <q-card-section>
-              <div class="text-h6 q-my-sm text-bold">
-                หมายเลขห้อง: {{ data.houseNumber }}
-                <span style="font-size: 14px"
-                  >(ชั้น : {{ data.swine }} - ตึก : {{ data.building }})</span
-                >
-              </div>
-              <div class="row">
-                <div class="col-8">
-                  <div class="row">
-                    <div class="tagsListStyle text-bold row items-center">
-                      {{ data.type }}
-                    </div>
-                    <div class="q-mx-xs"></div>
-                    <div class="tagsListStyle text-bold row items-center">
-                      {{ data.status }}
-                    </div>
-                  </div>
+      <div
+        class="q-pa-md row justify-center"
+        v-for="(property, index) in listCondoPreview"
+        :key="index"
+      >
+        <q-card
+          class="card2 full-width"
+          flat
+          @click="$router.push({ name: 'overviewInCondo' })"
+        >
+          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+
+          <q-card-section>
+            <div class="text-h6 q-mt-sm q-mb-xs text-bold">
+              หมายเลขห้อง : {{ property.houseNumber }}
+            </div>
+            <div class="col row q-pa-none q-ma-none items-center">
+              <div class="col-6 row justify-start">
+                <div class="text-bold" style="font-size: 15px">
+                  ชั้น : {{ property.swine }}
+                </div>
+                <div class="text-bold q-px-sm" style="font-size: 15px">
+                  อาคาร/ตึก : {{ property.building }}
                 </div>
               </div>
-            </q-card-section>
-          </q-card>
-        </div>
+              <div class="col-6 row justify-end">
+                <div class="tagsCondoStyle text-bold row items-center q-px-sm">
+                  {{ property.type }}
+                </div>
+                <div
+                  class="
+                    tagsCondoStyle
+                    text-bold
+                    row
+                    items-center
+                    q-px-sm q-ml-sm
+                  "
+                >
+                  {{ property.status }}
+                </div>
+              </div>
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
     </div>
   </q-layout>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
-      getPosition: "position/getPosition",
     }),
   },
-  name: "PageIndex",
   data() {
     return {
       slide: 1,
       deletePin: false,
       editPin: false,
       expanded: false,
-      lat: null,
-      lng: null,
       property: {
-        projectName: null,
         name: null, //ชื่อคอนโด
         type: null,
         status: null,
@@ -193,64 +210,39 @@ export default {
         subDistict: null, //ตำบล
         province: null, //จังหวัด
       },
-      listCondo: [],
+      listCondoPreview: [],
     };
   },
   async mounted() {
-    // await this.findCollectionById();
-    // await this.findListCondoByLatLong();
+    await this.getCollctionById();
+    await this.getListCondoById();
   },
   methods: {
-    ...mapActions({
-      setLocationCondo: "location_condo/setLocationCondo",
-      setDocumentId: "document/setDocumentId",
-    }),
-    async findCollectionById() {
+    async getCollctionById() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
         .doc(`${this.getDocumentId}`)
         .get()
         .then((doc) => {
-          this.setData(doc.data());
+          const { property, agent } = doc.data();
+          this.property = property;
         });
     },
-    async findListCondoByLatLong() {
+    async getListCondoById() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
-        .where("lat", "==", this.getPosition.lat)
-        .where("lng", "==", this.getPosition.lng)
+        .where("sub_id", "==", this.getDocumentId)
         .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const Condo = {
-              id: doc.data().id,
-              houseNumber: doc.data().property.houseNumber,
-              building: doc.data().property.building,
-              swine: doc.data().property.swine,
-              type: doc.data().property.type,
-              status: doc.data().property.status,
-            };
-            this.listCondo.push(Condo);
+        .then((snap) => {
+          snap.forEach((doc) => {
+            const { property } = doc.data();
+            this.listCondoPreview.push(property);
           });
         });
-    },
-    setData(data) {
-      this.lat = data.lat;
-      this.lng = data.lng;
-      this.property = data.property;
 
-      this.setLocationCondo({
-        lat: data.lat,
-        lng: data.lng,
-        property: this.property,
-      });
-    },
-    clickCondo(data) {
-      const { id } = data;
-      this.setDocumentId({ id });
-      this.$router.push({ name: "overviewInCondo" });
+      console.log(this.listCondoPreview);
     },
   },
 };
@@ -298,12 +290,11 @@ export default {
   text-align: center;
 }
 
-.tagsListStyle {
+.tagsCondoStyle {
   border-radius: 5px;
   width: auto;
   height: 35px;
-  padding: 10px;
-  color: white;
+  color: #fff;
   background: #000;
   text-align: center;
 }

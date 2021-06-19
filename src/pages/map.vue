@@ -13,7 +13,7 @@
       </div> -->
       <q-page>
         <GmapMap
-          :center="cetner"
+          :center="myCoordinates"
           :zoom="14"
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
@@ -22,9 +22,51 @@
             :key="index"
             v-for="(m, index) in markers"
             :position="m.position"
+            :draggable="false"
             :clickable="true"
-            @click="selectMarker(m)"
+            @click="openInfoWindowTemplate(index)"
           />
+          <gmap-info-window
+            :options="{
+              maxWidth: 300,
+              pixelOffset: { width: 0, height: -35 },
+            }"
+            v-if="selectedLocation !== null"
+            :position="{
+              lat: selectedLocation.position.lat,
+              lng: selectedLocation.position.lng,
+            }"
+            :opened="infoBoxOpen"
+            @closeclick="infoBoxOpen = false"
+          >
+            <div class="infoWindow">
+              <div class="column text-left">
+                <div class="absolute-right q-mr-xs q-mt-xs">
+                  <q-btn round color="red" size="8px" icon="close" />
+                </div>
+                <div class="q-pr-md text-bold" style="font-size: 16px">
+                  ชื่อ :
+                  <span class="text-bold text-h5">
+                    {{ selectedLocation.name }}
+                  </span>
+                </div>
+                <div class="q-pr-sm text-bold" style="font-size: 16px">
+                  ประเภท : {{ selectedLocation.type }}
+                </div>
+                <div class="q-pr-sm text-bold" style="font-size: 16px">
+                  สเตตัส : {{ selectedLocation.status }}
+                </div>
+                <div class="text-right q-pt-md">
+                  <q-btn
+                    class="text-weight-bolder"
+                    label="ดูเพิ่มเติม"
+                    style="background-color: #ffdd02"
+                    @click="selectMarker(selectedLocation)"
+                  />
+                </div>
+              </div>
+            </div>
+          </gmap-info-window>
         </GmapMap>
         <div class="fixed-bottom-left text-left q-mb-lg q-pl-sm">
           <div class="q-mb-md">
@@ -70,34 +112,42 @@
                     flat
                     label="รอขาย"
                     size="20px"
+                    @click="setStatus('รอขาย')"
                   />
                   <q-btn
                     class="font-button-status full-width"
                     flat
                     label="รอเช่า"
                     size="20px"
-                  /><q-btn
+                    @click="setStatus('รอเช่า')"
+                  />
+                  <q-btn
                     class="font-button-status full-width"
                     flat
                     label="รอเช่า/รอขาย"
                     size="20px"
-                  /><q-btn
+                    @click="setStatus('รอเช่า/รอขาย')"
+                  />
+                  <q-btn
                     class="font-button-status full-width"
                     flat
                     label="ขายแล้ว"
                     size="20px"
+                    @click="setStatus('ขายแล้ว')"
                   />
                   <q-btn
                     class="font-button-status full-width"
                     flat
                     label="เช่าแล้ว"
                     size="20px"
+                    @click="setStatus('เช่าแล้ว')"
                   />
                   <q-btn
                     class="font-button-status"
                     flat
                     label="ทั้งหมด"
                     size="20px"
+                    @click="setStatus('ทั้งหมด')"
                   />
                 </div>
               </q-card-section>
@@ -119,6 +169,7 @@ import VueGeolocation from "vue-browser-geolocation";
 Vue.use(VueGeolocation);
 
 import * as VueGoogleMaps from "vue2-google-maps";
+import position from "src/store/data/position";
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc",
@@ -133,11 +184,16 @@ export default {
         lat: 7.9015,
         lng: 98.3541,
       },
-      cetner: {
-        lat: 7.9015,
-        lng: 98.3541,
+      infoWindow: {
+        position: { lat: 0, lng: 0 },
+        open: false,
+        template: "",
       },
+      status: null,
       markers: [],
+      markersStorage: [],
+      selectedLocation: null,
+      infoBoxOpen: false,
       statusModal: false,
     };
   },
@@ -150,7 +206,6 @@ export default {
       this.$getLocation({})
         .then((coordinates) => {
           this.myCoordinates = coordinates;
-          this.center = this.myCoordinates;
         })
         .catch((error) => alert(error));
     }
@@ -160,42 +215,47 @@ export default {
     }
   },
   async mounted() {
-    // await this.getCollectionData();
-    // // add the map to a data object
+    await this.getCollectionData();
+    // add the map to a data object
     this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
-      setPosition: "position/setPosition",
     }),
     async getCollectionData() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
+        .where("lat", "!=", null)
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
-            const lat = doc.data().lat;
-            const lng = doc.data().lng;
-            const positionObject = {
-              id: doc.data().id,
-              type: doc.data().property.type,
-              position: {
-                lat,
-                lng,
-              },
-            };
-            this.markers.push(positionObject);
+            const { id, lat, lng, property, deleteBy } = doc.data();
+            if (!deleteBy) {
+              const positionObject = {
+                id,
+                name: property.name,
+                type: property.type,
+                status: property.status,
+                position: {
+                  lat,
+                  lng,
+                },
+              };
+              this.markersStorage.push(positionObject);
+              this.markers.push(positionObject);
+            }
           });
         });
     },
+    openInfoWindowTemplate(index) {
+      this.selectedLocation = this.markersStorage[index];
+      this.infoBoxOpen = true;
+    },
     selectMarker(data) {
-      console.log(data);
-      const { id, type, position } = data;
+      const { id, type } = data;
       this.setDocumentId({ id });
-      this.setPosition({ lat: position.lat, lng: position.lng });
-
       if (type == "คอนโด") {
         this.$router.push({ name: "overviewCondo" });
       } else {
@@ -203,11 +263,13 @@ export default {
       }
     },
     getCurrentLocation() {
-      this.center = {
-        lat: this.myCoordinates.lat,
-        lng: this.myCoordinates.lng,
-      };
-      this.map.setCenter(this.center);
+      this.map.setCenter(this.myCoordinates);
+    },
+    setStatus(status) {
+      this.markers = this.markersStorage.filter(
+        (data) => data.status == status
+      );
+      this.statusModal = false;
     },
   },
   computed: {
@@ -243,6 +305,9 @@ html,
   font-size: 16px;
   background-color: white;
   color: black;
+}
+::ng-deep .gm-style .gm-style-iw-c button {
+  display: none !important;
 }
 .headFontColor {
   color: #ffdd02;
