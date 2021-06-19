@@ -30,8 +30,8 @@
           </div>
         </div>
       </div>
-      <div class="row q-pa-sm q-ma-sm items-baseline">
-        <div class="row title">{{ this.property.houseNumber }}</div>
+      <div class="row q-pa-sm q-ma-sm items-baseline justify-center">
+        <div class="row title">{{ this.property.name }}</div>
       </div>
     </div>
 
@@ -163,7 +163,7 @@
           <div class="row justify-between">
             <div>
               <span style="color: #fcff68">ซอย-ถนน:</span>
-              {{ this.property.alley }} - {{this.property.road}}
+              {{ this.property.alley }}
             </div>
             <div>
               <span style="color: #fcff68">อาคาร/ตึก</span>
@@ -424,8 +424,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: "PageIndex",
+  computed: {
+    ...mapGetters({
+      getDocumentId: "document/getDocumentId",
+    }),
+  },
   data() {
     return {
       dialog: false,
@@ -434,7 +439,6 @@ export default {
       deletePin: false,
       editPin: false,
       property: {
-        projectName: null,
         name: null, //ชื่อคอนโด
         type: null,
         status: null,

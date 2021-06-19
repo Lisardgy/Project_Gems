@@ -12,6 +12,7 @@ const routes = [
       { path: '/overviewCondo', name: "overviewCondo", component: () => import('pages/overviewforeCondo.vue') },
       { path: '/editform', name: "editform", component: () => import('pages/editForm.vue') },
       { path: '/form', name: "form", component: () => import('pages/form.vue') },
+      { path: '/addroom', name: "addcondo", component: () => import('pages/addroomcondo.vue') },
     ]
   },
 

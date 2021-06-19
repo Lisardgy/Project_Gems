@@ -4,3 +4,11 @@
 html body {
   font-family: "Mitr", sans-serif;
 }
+
+.gm-style {
+  font-family: "Mitr", sans-serif;
+}
+
+.gm-style-iw button > img {
+  display: none !important;
+}
