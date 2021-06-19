@@ -13,7 +13,7 @@
       </div> -->
       <q-page>
         <GmapMap
-          :center="cetner"
+          :center="myCoordinates"
           :zoom="14"
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
@@ -119,6 +119,7 @@ import VueGeolocation from "vue-browser-geolocation";
 Vue.use(VueGeolocation);
 
 import * as VueGoogleMaps from "vue2-google-maps";
+import position from "src/store/data/position";
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc",
@@ -130,10 +131,6 @@ export default {
     return {
       map: null,
       myCoordinates: {
-        lat: 7.9015,
-        lng: 98.3541,
-      },
-      cetner: {
         lat: 7.9015,
         lng: 98.3541,
       },
@@ -150,7 +147,6 @@ export default {
       this.$getLocation({})
         .then((coordinates) => {
           this.myCoordinates = coordinates;
-          this.center = this.myCoordinates;
         })
         .catch((error) => alert(error));
     }
@@ -160,14 +156,13 @@ export default {
     }
   },
   async mounted() {
-    // await this.getCollectionData();
-    // // add the map to a data object
+    await this.getCollectionData();
+    // add the map to a data object
     this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
-      setPosition: "position/setPosition",
     }),
     async getCollectionData() {
       const db = this.$firebase.firestore();
@@ -191,22 +186,26 @@ export default {
         });
     },
     selectMarker(data) {
+<<<<<<< HEAD
       const { id, type, position } = data;
+=======
+      const { id, type } = data;
+>>>>>>> origin/week2_key
       this.setDocumentId({ id });
-      this.setPosition({ lat: position.lat, lng: position.lng });
 
-      if (type == "คอนโด") {
+      if (type == "condo") {
         this.$router.push({ name: "overviewCondo" });
       } else {
         this.$router.push({ name: "overview" });
       }
     },
     getCurrentLocation() {
-      this.center = {
-        lat: this.myCoordinates.lat,
-        lng: this.myCoordinates.lng,
+      console.log(Number(this.mapCoordinates.lat));
+      console.log(Number(this.mapCoordinates.lng));
+      this.myCoordinates = {
+        lat: Number(this.mapCoordinates.lat),
+        lng: Number(this.mapCoordinates.lng),
       };
-      this.map.setCenter(this.center);
     },
   },
   computed: {

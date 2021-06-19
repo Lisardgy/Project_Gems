@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@coderstm/quasar-google-maps": "^1.0.4",
-    "@quasar/cli": "^1.2.1",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",

@@ -12,7 +12,6 @@ const routes = [
       { path: '/overviewCondo', name: "overviewCondo", component: () => import('pages/overviewforeCondo.vue') },
       { path: '/editform', name: "editform", component: () => import('pages/editForm.vue') },
       { path: '/form', name: "form", component: () => import('pages/form.vue') },
-      { path: '/addform', name: "addform", component: () => import('pages/addform.vue') },
     ]
   },
 
