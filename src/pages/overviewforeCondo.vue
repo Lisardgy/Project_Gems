@@ -31,11 +31,9 @@
         </div> -->
       </div>
       <div class="row q-px-md justify-center">
-        <div class="condoTitle">อิราวดีคอนโด</div>
+        <div class="condoTitle">{{this.property.name}}</div>
       </div>
-      <div class="row q-px-md q-mb-md">
-        <div class="projectTitle">อิราวดี</div>
-      </div>
+
       <div class="row q-px-md" style="margin-left: 2rem">
         <div class="col-8">
           <div class="row">
@@ -155,6 +153,65 @@ export default {
       deletePin: false,
       editPin: false,
       expanded: false,
+      property: {
+        projectName: null,
+        name: null, //ชื่อคอนโด
+        type: null,
+        status: null,
+        houseNumber: null,
+        building: null, //อาคาร
+        swine: null, //หมู่
+        alley: null, //ซอย
+        distict: null, //อำเภอ
+        subDistict: null, //ตำบล
+        province: null, //จังหวัด
+        houseSize: null, //ขนาดพื้นที่บ้าน
+        areaSize: null, //ที่ดิน
+        floor: null, //ชั้นที่
+        bedRoom: null, //ห้องนอน
+        toilet: null,
+        surroundView: null, //วิวโดยรอบ
+        occRate: null, //ค่าไรหนิ
+        widthFrontHouse: null, //ความกว้างหน้าบ้าน
+        directionHouse: null, //ทิศหน้าบ้าน
+        furniture: null,
+        electronic: null, //เตรื่องใช้ไฟฟ้าที่ได้
+        commonFee: null, //ค่าส่วนกลางต่อปี
+        houserAge: null, //อายุบ้าน
+        facility: null,
+        reasonSale: null, //เหตุผลที่ขาย
+        securitySystem: null, //ระบบความปลอดภัย
+        areaHighlight: null, //จุดเด่นของสถานที่
+        waterFireSystem: null, // ระบบน้ำ/ไฟ4
+        otherProperty: null, // อื่น ๆ ของทรัพย์
+      },
+      agent: {
+        agentName: null,
+        agentLastName: null,
+        propertyOwnerName: null,
+        propertyOwnerLastName: null,
+        phoneNumber1: null,
+        phoneNumber2: null,
+        idLine: null,
+        otherContact: null, //ช่องทางติดต่อเพิ่มเติม
+        mortgageDate: null, //วันที่จำนอง
+        mortgageBank: null, //ธนาคารที่ติดจำนอง
+        mortgagePrice: null, //ยอดจำนอง
+        appraisalPrice: null, //ราคาประเมิน
+        marketPrice: null,
+        lastMatch: null, //ราคา Last Match
+        sellPrice: null, //ราคาขาย
+        rentalPrice: null, //ราคาเช่า
+        minDicount: null, //ราคาต่ำสุดที่ลดได้
+        specificTax: null, //ค่าภาษีธุรกิจเฉพาะ
+        commissionRate: null, //อัตราคอมฯ
+        taxation: null, //ภาษีอากร
+        transterCondition: null, //เงื่อนไขการโอน
+        transferFee: null, //ค่าธรรมเนียมโอน
+        otherAgent: null, //ค่าธรรมเนียมโอน
+        acquisitionDate: null, //วันที่ได้ทรัพย์มา
+        additionalNote: null, //หมายเหตุเพิ่มเติม
+      }, //
     };
   },
   methods() {},

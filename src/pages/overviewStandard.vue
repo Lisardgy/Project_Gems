@@ -162,12 +162,12 @@
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ซอย:</span>
-              {{ this.property.alley }}
+              <span style="color: #fcff68">ซอย-ถนน:</span>
+              {{ this.property.alley }} - {{this.property.road}}
             </div>
             <div>
-              <span style="color: #fcff68">ถนน:</span>
-              {{ this.property.road }}
+              <span style="color: #fcff68">อาคาร/ตึก</span>
+              {{ this.property.building }}
             </div>
           </div>
           <div class="row justify-between">
@@ -442,7 +442,6 @@ export default {
         building: null, //อาคาร
         swine: null, //หมู่
         alley: null, //ซอย
-        road: null, //ถนน
         distict: null, //อำเภอ
         subDistict: null, //ตำบล
         province: null, //จังหวัด
