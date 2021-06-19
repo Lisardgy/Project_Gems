@@ -30,8 +30,8 @@
           </div>
         </div>
       </div>
-      <div class="row q-pa-sm q-ma-sm items-baseline">
-        <div class="row title">{{ this.property.projectName }}บ้านผมๆ</div>
+      <div class="row q-pa-sm q-ma-sm items-baseline justify-center">
+        <div class="row title">{{ this.property.name }}</div>
       </div>
     </div>
 
@@ -40,11 +40,9 @@
         <div class="row q-gutter-sm">
           <div class="tagsStyle text-bold row items-center q-px-sm">
             {{ this.property.type }}
-            บ้านเดี่ยว
           </div>
           <div class="tagsStyle text-bold row items-center q-px-sm">
             {{ this.property.status }}
-            ขายแล้ว
           </div>
         </div>
       </div>
@@ -162,12 +160,12 @@
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ซอย:</span>
-              {{ this.property.alley }}
+              <span style="color: #fcff68">ซอย-ถนน:</span>
+              {{ this.property.alley }} - {{ this.property.road }}
             </div>
             <div>
-              <span style="color: #fcff68">ถนน:</span>
-              {{ this.property.road }}
+              <span style="color: #fcff68">อาคาร/ตึก</span>
+              {{ this.property.building }}
             </div>
           </div>
           <div class="row justify-between">
@@ -302,7 +300,7 @@
       <q-img class="topRotate" src="../images/cityRT.png" />
       <q-img class="bottomRotate" src="../images/cityRT.png" />
       <div class="description">
-        <div class="row detailHead" style="color: black">สำหรับ Agent</div>
+        <div class="row detailHead">สำหรับ Agent</div>
         <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
           <div class="col q-gutter-y-md">
             <div class="row">
@@ -401,14 +399,8 @@
             </div>
 
             <div class="row justify-around">
-              <div class="">
-                <div>วันที่ได้ทรัพย์มา</div>
-                <div>{{ this.agent.acquisitionDate }}</div>
-              </div>
-              <div class="">
-                <div>วันที่มีการอัพเดทข้อมูล</div>
-                <div>**ไม่มี</div>
-              </div>
+              <div class="col">วันที่ได้ทรัพย์มา</div>
+              <div class="col">{{ this.agent.acquisitionDate }}</div>
             </div>
             <div class="row">
               <div class="col">หมายเหตุเพิ่มเติม</div>
@@ -424,8 +416,13 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "PageIndex",
+  computed: {
+    ...mapGetters({
+      getDocumentId: "document/getDocumentId",
+    }),
+  },
   data() {
     return {
       dialog: false,
@@ -434,7 +431,6 @@ export default {
       deletePin: false,
       editPin: false,
       property: {
-        projectName: null,
         name: null, //ชื่อคอนโด
         type: null,
         status: null,
@@ -442,7 +438,6 @@ export default {
         building: null, //อาคาร
         swine: null, //หมู่
         alley: null, //ซอย
-        road: null, //ถนน
         distict: null, //อำเภอ
         subDistict: null, //ตำบล
         province: null, //จังหวัด
@@ -495,6 +490,29 @@ export default {
       }, //
     };
   },
+  async mounted() {
+    await this.getCollctionById();
+  },
+  methods: {
+    ...mapActions({
+      setDataProperty: "document/setDataProperty",
+    }),
+    async getCollctionById() {
+      const db = this.$firebase.firestore();
+      await db
+        .collection("property")
+        .doc(`${this.getDocumentId}`)
+        .get()
+        .then((doc) => {
+          const { property, agent } = doc.data();
+
+          this.property = property;
+          this.agent = agent;
+
+          this.setDataProperty({ property: this.property, agent: this.agent });
+        });
+    },
+  },
 };
 </script>
 
@@ -506,6 +524,7 @@ export default {
   right: -150px;
   transform: rotate(220deg);
   top: -90px;
+  opacity: 0.6;
 }
 
 .topRotate {
@@ -515,6 +534,7 @@ export default {
   position: absolute;
   transform: rotate(40deg);
   bottom: -60px;
+  opacity: 0.6;
 }
 
 .agentBG {
@@ -618,7 +638,8 @@ export default {
 }
 
 .agentBG {
-  background: linear-gradient(#ffffff, rgb(255, 255, 255));
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .imgwrapper {

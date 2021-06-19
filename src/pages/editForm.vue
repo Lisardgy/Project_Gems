@@ -29,17 +29,6 @@
             </div>
           </div>
           <div class="col dataArea">
-            <div class="dataTitle">ชื่อโครงการ</div>
-            <div class="padInputBox">
-              <q-input
-                class="inputBox textCenter"
-                outlined
-                v-model="property.projectName"
-                dense
-              />
-            </div>
-          </div>
-          <div class="col dataArea">
             <div class="dataTitle">ชื่อ</div>
             <div class="padInputBox">
               <q-input
@@ -570,56 +559,6 @@
           <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
-              <!-- <div class="row justify-between">
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik1.jpg"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik2.jpg"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik3.jpg"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik1.jpg"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik2.jpg"
-                    />
-                  </div>
-                </div>
-                <div class="col-4 dataTitle">
-                  <div class="padInputBox">
-                    <img
-                      style="height: 90px; max-width: 100px"
-                      src="../images/pik3.jpg"
-                    />
-                  </div>
-                </div>
-              </div> -->
               <div class="row">
                 <q-uploader
                   url="http://localhost:4444/upload"
@@ -631,14 +570,6 @@
                 />
               </div>
             </div>
-            <!-- <div class="q-gutter-sm" align="center" style="margin-top: 20px">
-              <q-btn
-                class="chooseIm"
-                style="width: 70%"
-                push
-                label="เลือกรูปจากครังรูปภาพ"
-              />
-            </div> -->
           </div>
         </div>
         <q-separator class="q-my-lg" color="white" inset />
@@ -1043,9 +974,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      getDocumentId: "document/getDocumentId",
-      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
-      getUserLogin: "user_config/getUserLogin",
+      getDataProperty: "document/getDataProperty",
     }),
   },
   data() {
@@ -1057,7 +986,6 @@ export default {
       date: "",
       model: null,
       property: {
-        projectName: null,
         name: null, //ชื่อคอนโด
         type: null,
         status: null,
@@ -1118,40 +1046,24 @@ export default {
     };
   },
   async mounted() {
-    // await this.findCollectionById(this.getDocumentId);
+    this.property = this.getDataProperty.property;
+    this.agent = this.getDataProperty.agent;
   },
   methods: {
-    async findCollectionById() {
-      const db = this.$firebase.firestore();
-      await db
-        .collection("property")
-        .doc(`${this.getDocumentId}`)
-        .get()
-        .then((doc) => {
-          this.setData(doc.data());
-        });
-    },
-    setData(data) {
-      this.property = data.property;
-      this.agent = data.agent;
-    },
     async onSave() {
-      const property = this.property;
-      const agent = this.agent;
-
-      const mapdata = {
-        id: this.getDocumentId,
-        uid: this.getUserLogin.uid,
-        property,
-        agent,
-      };
-
-      await axios.put(
-        `${this.getDatabaseUrl}/gemsmap/us-central1/api/update`,
-        mapdata
-      );
-
-      this.$router.go(-1);
+      // const property = this.property;
+      // const agent = this.agent;
+      // const mapdata = {
+      //   id: this.getDocumentId,
+      //   uid: this.getUserLogin.uid,
+      //   property,
+      //   agent,
+      // };
+      // await axios.put(
+      //   `${this.getDatabaseUrl}/gemsmap/us-central1/api/update`,
+      //   mapdata
+      // );
+      // this.$router.go(-1);
     },
   },
 };

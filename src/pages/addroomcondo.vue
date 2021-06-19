@@ -969,10 +969,9 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      getPosition: "position/getPosition",
+      getDocumentId: "document/getDocumentId",
       getUserLogin: "user_config/getUserLogin",
       getDatabaseUrl: "databaseUrl/getDatabaseUrl",
-      getDocumentId: "document/getDocumentId",
     }),
   },
   data() {
@@ -1043,12 +1042,7 @@ export default {
       }, //
     };
   },
-  mounted() {
-    console.log(this.getPosition);
-    console.log(this.getUserLogin);
-    console.log(this.getDatabaseUrl);
-    console.log(this.getDocumentId);
-  },
+  mounted() {},
   methods: {
     async onSave() {
       const property = this.property;
@@ -1056,9 +1050,9 @@ export default {
 
       const mapdata = {
         uid: this.getUserLogin.uid,
-        lat: this.getPosition.lat,
-        lng: this.getPosition.lng,
-        sub_id: null,
+        lat: null,
+        lng: null,
+        sub_id: this.getDocumentId,
         property,
         agent,
       };
@@ -1068,20 +1062,7 @@ export default {
         mapdata
       );
 
-      this.$router.go(-2);
-    },
-  },
-  watch: {
-    property: {
-      handler(val) {
-        const { type } = val;
-        if (type == "คอนโด") {
-          this.showInput = false;
-        } else {
-          this.showInput = true;
-        }
-      },
-      deep: true,
+      this.$router.go(-1);
     },
   },
 };
