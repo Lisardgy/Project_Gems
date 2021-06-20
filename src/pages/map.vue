@@ -243,8 +243,8 @@ export default {
                 type: property.type,
                 status: property.status,
                 position: {
-                  lat,
-                  lng,
+                  lat: Number(lat),
+                  lng: Number(lng),
                 },
                 property,
                 agent,
@@ -275,9 +275,13 @@ export default {
       this.map.setCenter(this.myCoordinates);
     },
     setStatus(status) {
-      this.markers = this.markersStorage.filter(
-        (data) => data.status == status
-      );
+      if (status == "ทั้งหมด") {
+        this.markers = this.markersStorage;
+      } else {
+        this.markers = this.markersStorage.filter(
+          (data) => data.status == status
+        );
+      }
       this.statusModal = false;
     },
   },

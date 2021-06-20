@@ -965,7 +965,6 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
-
 export default {
   computed: {
     ...mapGetters({
@@ -1043,14 +1042,11 @@ export default {
       }, //
     };
   },
-  mounted() {
-    console.log(this.getPosition);
-    console.log(this.getUserLogin);
-    console.log(this.getDatabaseUrl);
-    console.log(this.getDocumentId);
-  },
+  mounted() {},
   methods: {
     async onSave() {
+      this.$q.loading.show();
+
       const property = this.property;
       const agent = this.agent;
 
@@ -1065,8 +1061,18 @@ export default {
 
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
-      this.$router.go(-2);
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-2);
+      }, 2000);
     },
+  },
+  beforeDestroy() {
+    if (this.timer !== void 0) {
+      clearTimeout(this.timer);
+      this.$q.loading.hide();
+    }
   },
   watch: {
     property: {

@@ -69,10 +69,8 @@ export default {
       setCollectionFirebase: "firebaseCollection/setCollectionFirebase",
     }),
     signIn() {
-      this.setCollectionFirebase();
-      setTimeout(() => {
-        this.$router.push({ name: "map" });
-      }, 2000);
+      // this.setCollectionFirebase();
+      this.$router.push({ name: "map" });
     },
   },
 };

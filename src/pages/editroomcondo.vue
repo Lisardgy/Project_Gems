@@ -1060,6 +1060,8 @@ export default {
       setCollectionCondo: "collection/setCollectionCondo",
     }),
     async onSave() {
+      this.$q.loading.show();
+
       const property = this.property;
       const agent = this.agent;
 
@@ -1074,7 +1076,11 @@ export default {
 
       this.setCollectionCondo(mapdata);
 
-      this.$router.go(-1);
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-1);
+      }, 2000);
     },
   },
 };

@@ -198,7 +198,7 @@
           <div class="col">
             <div class="row q-col-gutter-sm dataArea">
               <div class="col-5 dataTitle">
-                บ้านเลขที่/เลขที่ห้อง
+                เลขที่ห้อง
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -220,7 +220,7 @@
                 </div>
               </div>
               <div class="col-3 dataTitle">
-                หมู่ที่/ชั้น
+                ชั้น
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -1045,6 +1045,8 @@ export default {
   mounted() {},
   methods: {
     async onSave() {
+      this.$q.loading.show();
+
       const property = this.property;
       const agent = this.agent;
 
@@ -1059,7 +1061,11 @@ export default {
 
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
-      this.$router.go(-1);
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-1);
+      }, 2000);
     },
   },
 };
