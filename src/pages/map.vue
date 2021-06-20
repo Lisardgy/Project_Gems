@@ -182,8 +182,8 @@ export default {
     return {
       map: null,
       myCoordinates: {
-        lat: 7.9015,
-        lng: 98.3541,
+        lat: 0,
+        lng: 0,
       },
       infoWindow: {
         position: { lat: 0, lng: 0 },
@@ -200,7 +200,7 @@ export default {
   },
   created() {
     //does the user have a saved center? use it instead of the default
-    if (!localStorage.center) {
+    if (localStorage.center) {
       this.myCoordinates = JSON.parse(localStorage.center);
     } else {
       // get user's coordinates from browser request
