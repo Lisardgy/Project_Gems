@@ -975,15 +975,9 @@ import { mapFields } from "../components/helper";
 export default {
   computed: {
     ...mapGetters({
-      getDataProperty: "document/getDataProperty",
+      getCollectionCondo: "collection/getCollectionCondo",
       getUserLogin: "user_config/getUserLogin",
       getDatabaseUrl: "databaseUrl/getDatabaseUrl",
-      getDocumentId: "document/getDocumentId",
-    }),
-    ...mapFields({
-      fields: ["name"],
-      base: "document.property",
-      mutation: "SET_DATA_PROPERTY",
     }),
   },
   data() {
@@ -1055,19 +1049,22 @@ export default {
     };
   },
   async mounted() {
-    this.property = JSON.parse(JSON.stringify(this.getDataProperty.property));
-    this.agent = JSON.parse(JSON.stringify(this.getDataProperty.agent));
+    console.log(this.getCollectionCondo);
+    this.property = JSON.parse(
+      JSON.stringify(this.getCollectionCondo.property)
+    );
+    this.agent = JSON.parse(JSON.stringify(this.getCollectionCondo.agent));
   },
   methods: {
     ...mapActions({
-      setDataProperty: "document/setDataProperty",
+      setCollectionCondo: "collection/setCollectionCondo",
     }),
     async onSave() {
       const property = this.property;
       const agent = this.agent;
 
       const mapdata = {
-        id: this.getDocumentId,
+        id: this.getCollectionCondo.id,
         uid: this.getUserLogin.uid,
         property,
         agent,
@@ -1078,7 +1075,7 @@ export default {
         mapdata
       );
 
-      this.setDataProperty({ property, agent });
+      this.setCollectionCondo(mapdata);
 
       this.$router.go(-1);
     },

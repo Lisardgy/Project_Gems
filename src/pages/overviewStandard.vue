@@ -161,7 +161,7 @@
           <div class="row justify-between">
             <div>
               <span style="color: #fcff68">ซอย-ถนน:</span>
-              {{ this.property.alley }} - {{ this.property.road }}
+              {{ this.property.alley }}
             </div>
             <div>
               <span style="color: #fcff68">อาคาร/ตึก</span>
@@ -492,31 +492,11 @@ export default {
     };
   },
   async mounted() {
-    // await this.getCollctionById();
     const { property, agent } = this.getDataProperty;
     this.property = property;
     this.agent = agent;
   },
-  methods: {
-    ...mapActions({
-      setDataProperty: "document/setDataProperty",
-    }),
-    // async getCollctionById() {
-    //   const db = this.$firebase.firestore();
-    //   await db
-    //     .collection("property")
-    //     .doc(`${this.getDocumentId}`)
-    //     .get()
-    //     .then((doc) => {
-    //       const { property, agent } = doc.data();
-
-    //       this.property = property;
-    //       this.agent = agent;
-
-    //       this.setDataProperty({ property: this.property, agent: this.agent });
-    //     });
-    // },
-  },
+  methods: {},
 };
 </script>
 

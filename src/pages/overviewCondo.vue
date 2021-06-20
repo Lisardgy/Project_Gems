@@ -25,7 +25,7 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="แก้ไข"
-              @click="$router.push({ name: 'editform' })"
+              @click="$router.push({ name: 'editroom' })"
             />
           </div>
         </div>
@@ -300,7 +300,7 @@
       <q-img class="topRotate" src="../images/cityRT.png" />
       <q-img class="bottomRotate" src="../images/cityRT.png" />
       <div class="description">
-        <div class="row detailHead" style="color: black">สำหรับ Agent</div>
+        <div class="row detailHead">สำหรับ Agent</div>
         <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
           <div class="col q-gutter-y-md">
             <div class="row">
@@ -399,14 +399,8 @@
             </div>
 
             <div class="row justify-around">
-              <div class="">
-                <div>วันที่ได้ทรัพย์มา</div>
-                <div>{{ this.agent.acquisitionDate }}</div>
-              </div>
-              <div class="">
-                <div>วันที่มีการอัพเดทข้อมูล</div>
-                <div>**ไม่มี</div>
-              </div>
+              <div class="col">วันที่ได้ทรัพย์มา</div>
+              <div class="col">{{ this.agent.acquisitionDate }}</div>
             </div>
             <div class="row">
               <div class="col">หมายเหตุเพิ่มเติม</div>
@@ -513,6 +507,7 @@ export default {
   right: -150px;
   transform: rotate(220deg);
   top: -90px;
+  opacity: 0.6;
 }
 
 .topRotate {
@@ -522,6 +517,7 @@ export default {
   position: absolute;
   transform: rotate(40deg);
   bottom: -60px;
+  opacity: 0.6;
 }
 
 .agentBG {
@@ -625,7 +621,8 @@ export default {
 }
 
 .agentBG {
-  background: linear-gradient(#ffffff, rgb(255, 255, 255));
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .imgwrapper {
