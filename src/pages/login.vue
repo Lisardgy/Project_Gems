@@ -36,12 +36,17 @@
         </q-form>
         <div class="q-gutter-sm q-mt-xl" align="center">
           <q-btn
-            style="background-color: white;color:black; width: 70%;height:3rem"
+            style="
+              background-color: white;
+              color: black;
+              width: 70%;
+              height: 3rem;
+            "
             back
             class="LoginButton"
             push
             label="Sign in"
-            @click="$router.push({name : 'map'})"
+            @click="signIn()"
           />
         </div>
       </div>
@@ -51,12 +56,24 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
       username: "",
       password: null,
     };
+  },
+  methods: {
+    ...mapActions({
+      setCollectionFirebase: "firebaseCollection/setCollectionFirebase",
+    }),
+    signIn() {
+      this.setCollectionFirebase();
+      setTimeout(() => {
+        this.$router.push({ name: "map" });
+      }, 2000);
+    },
   },
 };
 </script>
@@ -68,6 +85,4 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 30%, contain;
 }
-
-
 </style>

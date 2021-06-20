@@ -1057,10 +1057,7 @@ export default {
         agent,
       };
 
-      await axios.post(
-        `${this.getDatabaseUrl}/gemsmap/us-central1/api/create`,
-        mapdata
-      );
+      await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
       this.$router.go(-1);
     },

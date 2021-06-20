@@ -8,6 +8,7 @@ import user_config from './data/user_config'
 import databaseUrl from './data/databaseurl'
 import document from './data/document'
 import collection from './data/collection'
+import firebaseCollection from './data/firebase-collection'
 
 Vue.use(Vuex)
 
@@ -25,6 +26,7 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
       collection,
+      firebaseCollection,
       databaseUrl,
       position,
       user_config,

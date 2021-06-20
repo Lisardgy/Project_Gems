@@ -1,5 +1,5 @@
 const state = {
-    databaseUrl: 'http://localhost:5001'
+    databaseUrl: 'https://us-central1-gemsmap.cloudfunctions.net/api'
     // databaseUrl: ''
 }
 

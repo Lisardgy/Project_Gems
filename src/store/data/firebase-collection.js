@@ -1,22 +1,16 @@
+import Firebase from 'firebase'
+import 'firebase/firestore'
+
 const state = {
-    collectionCondo: {},
     collectionFirebase: [],
 }
 
 const getters = {
-    getCollectionCondo: (state, getters, rootState) => {
-        return state.collectionCondo
-    },
-    dataFirebase: (state, getters, rootState) => {
-        return [state.collectionFirebase];
-    },
+    getCollectionFirebase: (state) => state.collectionFirebase
 }
 
 const actions = {
-    setCollectionCondo: ({ commit, state }, payload) => {
-        commit('SET_COLLECTION', payload)
-    },
-    setCollectionFirebase: async ({ commit, state }, payload) => {
+    setCollectionFirebase: ({ commit, state }, payload) => {
         const db = Firebase.firestore();
 
         return new Promise((resolve, reject) => {
@@ -57,9 +51,6 @@ const actions = {
 
 
 const mutations = {
-    SET_COLLECTION(state, payload) {
-        state.collectionCondo = payload;
-    },
     SET_COLLECTION_FIREBASE(state, payload) {
         state.collectionFirebase.push(payload);
         console.log(state.collectionFirebase);

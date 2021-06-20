@@ -178,11 +178,6 @@ Vue.use(VueGoogleMaps, {
 });
 
 export default {
-  computed: {
-    ...mapGetters({
-      getCollection: "collection/getCollection",
-    }),
-  },
   data() {
     return {
       map: null,

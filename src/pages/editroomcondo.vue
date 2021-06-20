@@ -1070,10 +1070,7 @@ export default {
         agent,
       };
 
-      await axios.put(
-        `${this.getDatabaseUrl}/gemsmap/us-central1/api/update`,
-        mapdata
-      );
+      await axios.put(`${this.getDatabaseUrl}/update`, mapdata);
 
       this.setCollectionCondo(mapdata);
 
