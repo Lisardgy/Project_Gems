@@ -7,6 +7,7 @@ import position from './data/position'
 import user_config from './data/user_config'
 import databaseUrl from './data/databaseurl'
 import document from './data/document'
+import collection from './data/collection'
 
 Vue.use(Vuex)
 
@@ -23,6 +24,7 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       // example
+      collection,
       databaseUrl,
       position,
       user_config,

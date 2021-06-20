@@ -137,32 +137,28 @@
 
       <div
         class="q-pa-md row justify-center"
-        v-for="(property, index) in listCondoPreview"
+        v-for="(data, index) in listCondoPreview"
         :key="index"
       >
-        <q-card
-          class="card2 full-width"
-          flat
-          @click="$router.push({ name: 'overviewInCondo' })"
-        >
+        <q-card class="card2 full-width" flat @click="setCondoOverview(data)">
           <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
 
           <q-card-section>
             <div class="text-h6 q-mt-sm q-mb-xs text-bold">
-              หมายเลขห้อง : {{ property.houseNumber }}
+              หมายเลขห้อง : {{ data.property.houseNumber }}
             </div>
             <div class="col row q-pa-none q-ma-none items-center">
               <div class="col-6 row justify-start">
                 <div class="text-bold" style="font-size: 15px">
-                  ชั้น : {{ property.swine }}
+                  ชั้น : {{ data.property.swine }}
                 </div>
                 <div class="text-bold q-px-sm" style="font-size: 15px">
-                  อาคาร/ตึก : {{ property.building }}
+                  อาคาร/ตึก : {{ data.property.building }}
                 </div>
               </div>
               <div class="col-6 row justify-end">
                 <div class="tagsCondoStyle text-bold row items-center q-px-sm">
-                  {{ property.type }}
+                  {{ data.property.type }}
                 </div>
                 <div
                   class="
@@ -173,7 +169,7 @@
                     q-px-sm q-ml-sm
                   "
                 >
-                  {{ property.status }}
+                  {{ data.property.status }}
                 </div>
               </div>
             </div>
@@ -185,11 +181,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
+      getDataProperty: "document/getDataProperty",
     }),
   },
   data() {
@@ -214,22 +211,17 @@ export default {
     };
   },
   async mounted() {
-    await this.getCollctionById();
     await this.getListCondoById();
   },
   methods: {
-    async getCollctionById() {
-      const db = this.$firebase.firestore();
-      await db
-        .collection("property")
-        .doc(`${this.getDocumentId}`)
-        .get()
-        .then((doc) => {
-          const { property, agent } = doc.data();
-          this.property = property;
-        });
-    },
+    ...mapActions({
+      setCollectionCondo: "collection/setCollectionCondo",
+    }),
     async getListCondoById() {
+      const { property, agent } = this.getDataProperty;
+      this.property = property;
+      this.agent = agent;
+
       const db = this.$firebase.firestore();
       await db
         .collection("property")
@@ -237,12 +229,13 @@ export default {
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
-            const { property } = doc.data();
-            this.listCondoPreview.push(property);
+            this.listCondoPreview.push(doc.data());
           });
         });
-
-      console.log(this.listCondoPreview);
+    },
+    setCondoOverview(data) {
+      this.setCollectionCondo(data);
+      this.$router.push({ name: "overviewInCondo" });
     },
   },
 };

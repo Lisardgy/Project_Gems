@@ -1,7 +1,8 @@
 const state = {
     id: '',
     property: {},
-    agent: {},
+    agent: {
+    },
 }
 
 const getters = {

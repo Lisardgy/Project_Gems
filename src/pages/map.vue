@@ -160,7 +160,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import "firebase/firestore";
 
 Vue.config.productionTip = false;
@@ -176,7 +176,13 @@ Vue.use(VueGoogleMaps, {
   },
   installComponents: true,
 });
+
 export default {
+  computed: {
+    ...mapGetters({
+      getCollection: "collection/getCollection",
+    }),
+  },
   data() {
     return {
       map: null,
@@ -222,19 +228,22 @@ export default {
   methods: {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
+      setCollectionListCondo: "collection/setCollectionListCondo",
+      setDataProperty: "document/setDataProperty",
     }),
     async getCollectionData() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
-        .where("lat", "!=", null)
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
-            const { id, lat, lng, property, deleteBy } = doc.data();
+            const { id, lat, lng, sub_id, property, agent, deleteBy } =
+              doc.data();
             if (!deleteBy) {
               const positionObject = {
                 id,
+                sub_id,
                 name: property.name,
                 type: property.type,
                 status: property.status,
@@ -242,20 +251,25 @@ export default {
                   lat,
                   lng,
                 },
+                property,
+                agent,
               };
               this.markersStorage.push(positionObject);
-              this.markers.push(positionObject);
             }
           });
         });
+      this.markers = this.markersStorage.filter(
+        (data) => data.position.lat != null && data.position.lng != null
+      );
     },
     openInfoWindowTemplate(index) {
       this.selectedLocation = this.markersStorage[index];
       this.infoBoxOpen = true;
     },
     selectMarker(data) {
-      const { id, type } = data;
+      const { id, type, property, agent } = data;
       this.setDocumentId({ id });
+      this.setDataProperty({ property, agent });
       if (type == "คอนโด") {
         this.$router.push({ name: "overviewCondo" });
       } else {

@@ -1046,13 +1046,17 @@ export default {
     };
   },
   async mounted() {
-    this.property = this.getDataProperty.property;
-    this.agent = this.getDataProperty.agent;
+    this.property = JSON.parse(JSON.stringify(this.getDataProperty.property));
+    this.agent = JSON.parse(JSON.stringify(this.getDataProperty.agent));
   },
   methods: {
+    ...mapActions({
+      setDataProperty: "document/setDataProperty",
+    }),
     async onSave() {
-      // const property = this.property;
-      // const agent = this.agent;
+      const property = this.property;
+      const agent = this.agent;
+
       // const mapdata = {
       //   id: this.getDocumentId,
       //   uid: this.getUserLogin.uid,
@@ -1064,6 +1068,15 @@ export default {
       //   mapdata
       // );
       // this.$router.go(-1);
+    },
+  },
+  watch: {
+    property: {
+      handler() {
+        this.setDataProperty({ property: this.property, agent: this.agent });
+        console.log(this.$store.state.document.property);
+      },
+      deep: true,
     },
   },
 };

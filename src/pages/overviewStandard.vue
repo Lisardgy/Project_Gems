@@ -58,7 +58,7 @@
       </div>
     </div>
     <!-- ยังอ่อนหัด -->
-    <div class="q-px-none q-pt-md q-px-sm" style="padding-bottom: 2px">
+    <div class="q-px-none q-pt-md">
       <q-carousel
         animated
         swipeable
@@ -421,6 +421,7 @@ export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
+      getDataProperty: "document/getDataProperty",
     }),
   },
   data() {
@@ -491,27 +492,30 @@ export default {
     };
   },
   async mounted() {
-    await this.getCollctionById();
+    // await this.getCollctionById();
+    const { property, agent } = this.getDataProperty;
+    this.property = property;
+    this.agent = agent;
   },
   methods: {
     ...mapActions({
       setDataProperty: "document/setDataProperty",
     }),
-    async getCollctionById() {
-      const db = this.$firebase.firestore();
-      await db
-        .collection("property")
-        .doc(`${this.getDocumentId}`)
-        .get()
-        .then((doc) => {
-          const { property, agent } = doc.data();
+    // async getCollctionById() {
+    //   const db = this.$firebase.firestore();
+    //   await db
+    //     .collection("property")
+    //     .doc(`${this.getDocumentId}`)
+    //     .get()
+    //     .then((doc) => {
+    //       const { property, agent } = doc.data();
 
-          this.property = property;
-          this.agent = agent;
+    //       this.property = property;
+    //       this.agent = agent;
 
-          this.setDataProperty({ property: this.property, agent: this.agent });
-        });
-    },
+    //       this.setDataProperty({ property: this.property, agent: this.agent });
+    //     });
+    // },
   },
 };
 </script>

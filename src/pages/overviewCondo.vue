@@ -40,11 +40,9 @@
         <div class="row q-gutter-sm">
           <div class="tagsStyle text-bold row items-center q-px-sm">
             {{ this.property.type }}
-            บ้านเดี่ยว
           </div>
           <div class="tagsStyle text-bold row items-center q-px-sm">
             {{ this.property.status }}
-            ขายแล้ว
           </div>
         </div>
       </div>
@@ -60,7 +58,7 @@
       </div>
     </div>
     <!-- ยังอ่อนหัด -->
-    <div class="q-px-none q-pt-md q-px-sm" style="padding-bottom: 2px">
+    <div class="q-px-none q-pt-md">
       <q-carousel
         animated
         swipeable
@@ -152,11 +150,11 @@
         <div class="col">
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">บ้านเลขที่:</span>
+              <span style="color: #fcff68">หมายเลขห้อง:</span>
               {{ this.property.houseNumber }}
             </div>
             <div>
-              <span style="color: #fcff68">หมู่ที่/ชั้น:</span>
+              <span style="color: #fcff68">ชั้น:</span>
               {{ this.property.swine }}
             </div>
           </div>
@@ -429,6 +427,7 @@ export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
+      getCollectionCondo: "collection/getCollectionCondo",
     }),
   },
   data() {
@@ -497,6 +496,11 @@ export default {
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
     };
+  },
+  mounted() {
+    const { property, agent } = this.getCollectionCondo;
+    this.property = property;
+    this.agent = agent;
   },
 };
 </script>
