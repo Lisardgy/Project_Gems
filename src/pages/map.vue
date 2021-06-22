@@ -216,9 +216,9 @@ export default {
     }
   },
   async mounted() {
-    await this.getCollectionData();
-    // add the map to a data object
-    this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
+    // await this.getCollectionData();
+    // // add the map to a data object
+    // this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({

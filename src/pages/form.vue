@@ -28,17 +28,6 @@
               </q-btn>
             </div>
           </div>
-          <div class="col dataArea">
-            <div class="dataTitle">ชื่อ</div>
-            <div class="padInputBox">
-              <q-input
-                class="inputBox"
-                outlined
-                v-model="property.name"
-                dense
-              />
-            </div>
-          </div>
           <div class="dataTitle dataArea">
             ประเภท
             <div class="row justify-start padInputBox q-gutter-sm">
@@ -136,7 +125,7 @@
                 v-model="property.type"
               />
               <label for="option-type9" class="option option-type9">
-                <span>อื่นๆ</span>
+                <span>ที่ดิน</span>
               </label>
             </div>
           </div>
@@ -193,6 +182,17 @@
               <label for="option-status5" class="option option-status5">
                 <span>เช่าแล้ว</span>
               </label>
+            </div>
+          </div>
+          <div class="col dataArea">
+            <div class="dataTitle">ชื่อหมู่บ้าน/คอนโด</div>
+            <div class="padInputBox">
+              <q-input
+                class="inputBox"
+                outlined
+                v-model="property.name"
+                dense
+              />
             </div>
           </div>
           <div class="col">
@@ -866,12 +866,29 @@
                 <div class="col dataTitle">
                   เงื่อนไขการโอน
                   <div class="padInputBox">
-                    <q-input
+                    <!-- <q-input
                       class="inputBox"
                       outlined
                       v-model="agent.transterCondition"
                       dense
-                    />
+                    /> -->
+                    <q-select
+                      class="inputBox"
+                      filled
+                      v-model="model"
+                      use-input
+                      input-debounce="0"
+                      :options="options"
+                      @filter="filterFn"
+                    >
+                      <template v-slot:no-option>
+                        <q-item>
+                          <q-item-section class="text-grey">
+                            No results
+                          </q-item-section>
+                        </q-item>
+                      </template>
+                    </q-select>
                   </div>
                 </div>
                 <div class="col dataTitle">
@@ -882,6 +899,7 @@
                       outlined
                       v-model="agent.transferFee"
                       dense
+                      suffix="฿"
                     />
                   </div>
                 </div>
@@ -965,6 +983,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+const stringOptions = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 export default {
   computed: {
     ...mapGetters({
@@ -982,6 +1001,7 @@ export default {
       date: "",
       model: null,
       showInput: true,
+      options: stringOptions,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1066,6 +1086,14 @@ export default {
         this.timer = void 0;
         this.$router.go(-2);
       }, 2000);
+    },
+    filterFn(val, update, abort) {
+      update(() => {
+        const needle = val.toLowerCase();
+        this.options = stringOptions.filter(
+          (v) => v.toLowerCase().indexOf(needle) > -1
+        );
+      });
     },
   },
   beforeDestroy() {
