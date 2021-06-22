@@ -864,34 +864,6 @@
             <div class="col">
               <div class="row justify-around dataArea q-col-gutter-sm">
                 <div class="col dataTitle">
-                  เงื่อนไขการโอน
-                  <div class="padInputBox">
-                    <!-- <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.transterCondition"
-                      dense
-                    /> -->
-                    <q-select
-                      class="inputBox"
-                      filled
-                      v-model="model"
-                      use-input
-                      input-debounce="0"
-                      :options="options"
-                      @filter="filterFn"
-                    >
-                      <template v-slot:no-option>
-                        <q-item>
-                          <q-item-section class="text-grey">
-                            No results
-                          </q-item-section>
-                        </q-item>
-                      </template>
-                    </q-select>
-                  </div>
-                </div>
-                <div class="col dataTitle">
                   ค่าธรรมเนียมโอน
                   <div class="padInputBox">
                     <q-input
@@ -901,6 +873,22 @@
                       dense
                       suffix="฿"
                     />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row justify-between dataArea">
+                <div class="col dataTitle">
+                  เงื่อนไขการโอน
+                  <div class="padInputBox">
+                    <q-input
+                      class="inputBox"
+                      dense
+                      v-model="agent.transterCondition"
+                      :options="options"
+                    >
+                    </q-input>
                   </div>
                 </div>
               </div>
