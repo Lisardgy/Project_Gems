@@ -47,7 +47,7 @@
                 </div>
                 <div class="q-pr-md text-bold" style="font-size: 16px">
                   ชื่อ :
-                  <span class="text-bold text-h5">
+                  <span class="text-bold text-h6">
                     {{ selectedLocation.name }}
                   </span>
                 </div>
@@ -56,6 +56,9 @@
                 </div>
                 <div class="q-pr-sm text-bold" style="font-size: 16px">
                   สเตตัส : {{ selectedLocation.status }}
+                </div>
+                <div class="q-pr-sm text-bold" style="font-size: 16px">
+                  ราคาขาย : {{ selectedLocation.agent.sellPrice }}
                 </div>
                 <div class="text-right q-pt-md">
                   <q-btn
