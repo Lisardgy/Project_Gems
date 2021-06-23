@@ -38,9 +38,9 @@
             <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.type }}
             </div>
-            <div class="tagsStyle text-bold row items-center q-px-sm">
+            <!-- <div class="tagsStyle text-bold row items-center q-px-sm">
               {{ this.property.status }}
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="items-center">

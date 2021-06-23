@@ -240,12 +240,11 @@ export default {
             const { id, lat, lng, sub_id, property, agent, deleteBy } =
               doc.data();
             if (!deleteBy) {
-              let type
+              let type;
               if (!property.type) {
-                type = "คอนโด"
-              }
-              else{
-                type = property.type
+                type = "คอนโด";
+              } else {
+                type = property.type;
               }
               const positionObject = {
                 id,
@@ -260,7 +259,7 @@ export default {
                 property,
                 agent,
                 icon: {
-                  url:  require(`../images/Marker_icon/${type}.png`),
+                  url: require(`../images/Marker_icon/${type}.png`),
                   scaledSize: { width: 30, height: 45, f: "px", b: "px" },
                 },
               };

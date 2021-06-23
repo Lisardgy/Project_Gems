@@ -28,17 +28,6 @@
               </q-btn>
             </div>
           </div>
-          <div class="col dataArea">
-            <div class="dataTitle">ชื่อ</div>
-            <div class="padInputBox">
-              <q-input
-                class="inputBox"
-                outlined
-                v-model="property.name"
-                dense
-              />
-            </div>
-          </div>
           <div class="dataTitle dataArea">
             ประเภท
             <div class="row justify-start padInputBox q-gutter-sm">
@@ -78,6 +67,7 @@
                 </span>
               </label>
               <input
+                disabled
                 type="radio"
                 name="selectType"
                 id="option-type4"
@@ -193,6 +183,17 @@
               <label for="option-status5" class="option option-status5">
                 <span>เช่าแล้ว</span>
               </label>
+            </div>
+          </div>
+          <div class="col dataArea">
+            <div class="dataTitle">ชื่อ</div>
+            <div class="padInputBox">
+              <q-input
+                class="inputBox"
+                outlined
+                v-model="property.name"
+                dense
+              />
             </div>
           </div>
           <div class="col">
@@ -1084,6 +1085,75 @@ export default {
         this.timer = void 0;
         this.$router.go(-1);
       }, 2000);
+    },
+  },
+  watch: {
+    agent: {
+      handler(val) {
+        const {
+          taxation,
+          mortgagePrice,
+          appraisalPrice,
+          marketPrice,
+          lastMatch,
+          sellPrice,
+          rentalPrice,
+          minDicount,
+          specificTax,
+          transferFee,
+        } = val;
+        if (taxation) {
+          this.agent.taxation = taxation
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (mortgagePrice) {
+          this.agent.mortgagePrice = mortgagePrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (appraisalPrice) {
+          this.agent.appraisalPrice = appraisalPrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (marketPrice) {
+          this.agent.marketPrice = marketPrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (lastMatch) {
+          this.agent.lastMatch = lastMatch
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (sellPrice) {
+          this.agent.sellPrice = sellPrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (rentalPrice) {
+          this.agent.rentalPrice = rentalPrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (minDicount) {
+          this.agent.minDicount = minDicount
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (specificTax) {
+          this.agent.specificTax = specificTax
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (transferFee) {
+          this.agent.transferFee = transferFee
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+      },
+      deep: true,
     },
   },
 };
