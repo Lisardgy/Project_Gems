@@ -55,7 +55,7 @@
                 type="radio"
                 name="selectType"
                 id="option-type3"
-                value="หอพัก/อพาร์ทเม้นท์"
+                value="หอพักอพาร์ทเม้นท์"
                 v-model="property.type"
               />
               <label for="option-type3" class="option option-type3">
@@ -1099,6 +1099,74 @@ export default {
         } else {
           this.showInput = true;
         }
+      },
+      deep: true,
+    },
+    agent: {
+      handler(val) {
+        const {
+          taxation,
+          mortgagePrice,
+          appraisalPrice,
+          marketPrice,
+          lastMatch,
+          sellPrice,
+          rentalPrice,
+          minDicount,
+          specificTax,
+          transferFee,
+        } = val;
+        if (taxation) {
+          this.agent.taxation = taxation
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (mortgagePrice) {
+        this.agent.mortgagePrice = mortgagePrice
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");  
+        }
+        if (appraisalPrice) {
+          this.agent.appraisalPrice = appraisalPrice
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (marketPrice) {
+          this.agent.marketPrice = marketPrice
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (lastMatch) {
+          this.agent.lastMatch = lastMatch
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (sellPrice) {
+          this.agent.sellPrice = sellPrice
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (rentalPrice) {
+          this.agent.rentalPrice = rentalPrice
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (minDicount) {
+          this.agent.minDicount = minDicount
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (specificTax) {
+          this.agent.specificTax = specificTax
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        if (transferFee) {
+          this.agent.transferFee = transferFee
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+          
       },
       deep: true,
     },

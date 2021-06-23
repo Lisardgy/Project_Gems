@@ -25,6 +25,7 @@
             :draggable="false"
             :clickable="true"
             @click="openInfoWindowTemplate(index)"
+            :icon="m.icon"
           />
           <gmap-info-window
             :options="{
@@ -46,7 +47,7 @@
                 </div>
                 <div class="q-pr-md text-bold" style="font-size: 16px">
                   ชื่อ :
-                  <span class="text-bold text-h5">
+                  <span class="text-bold text-h6">
                     {{ selectedLocation.name }}
                   </span>
                 </div>
@@ -55,6 +56,9 @@
                 </div>
                 <div class="q-pr-sm text-bold" style="font-size: 16px">
                   สเตตัส : {{ selectedLocation.status }}
+                </div>
+                <div class="q-pr-sm text-bold" style="font-size: 16px">
+                  ราคาขาย : {{ selectedLocation.agent.sellPrice }}
                 </div>
                 <div class="text-right q-pt-md">
                   <q-btn
@@ -216,9 +220,9 @@ export default {
     }
   },
   async mounted() {
-    // await this.getCollectionData();
-    // // add the map to a data object
-    // this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
+    await this.getCollectionData();
+    // add the map to a data object
+    this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({
@@ -236,6 +240,13 @@ export default {
             const { id, lat, lng, sub_id, property, agent, deleteBy } =
               doc.data();
             if (!deleteBy) {
+              let type
+              if (!property.type) {
+                type = "คอนโด"
+              }
+              else{
+                type = property.type
+              }
               const positionObject = {
                 id,
                 sub_id,
@@ -248,6 +259,10 @@ export default {
                 },
                 property,
                 agent,
+                icon: {
+                  url:  require(`../images/Marker_icon/${type}.png`),
+                  scaledSize: { width: 30, height: 45, f: "px", b: "px" },
+                },
               };
               this.markersStorage.push(positionObject);
             }
