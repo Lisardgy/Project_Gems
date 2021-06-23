@@ -25,6 +25,7 @@
             :draggable="false"
             :clickable="true"
             @click="openInfoWindowTemplate(index)"
+            :icon="m.icon"
           />
           <gmap-info-window
             :options="{
@@ -216,9 +217,9 @@ export default {
     }
   },
   async mounted() {
-    // await this.getCollectionData();
-    // // add the map to a data object
-    // this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
+    await this.getCollectionData();
+    // add the map to a data object
+    this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
   },
   methods: {
     ...mapActions({
@@ -236,6 +237,13 @@ export default {
             const { id, lat, lng, sub_id, property, agent, deleteBy } =
               doc.data();
             if (!deleteBy) {
+              let type
+              if (!property.type) {
+                type = "คอนโด"
+              }
+              else{
+                type = property.type
+              }
               const positionObject = {
                 id,
                 sub_id,
@@ -248,6 +256,10 @@ export default {
                 },
                 property,
                 agent,
+                icon: {
+                  url:  require(`../images/Marker_icon/${type}.png`),
+                  scaledSize: { width: 30, height: 45, f: "px", b: "px" },
+                },
               };
               this.markersStorage.push(positionObject);
             }

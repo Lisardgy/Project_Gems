@@ -302,7 +302,7 @@
       <div class="description">
         <div class="row detailHead">สำหรับ Agent</div>
         <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
-          <div class="col q-gutter-y-md">
+          <div class="col q-gutter-y-md text-black">
             <div class="row">
               <div class="col">Agent เจ้าของทรัพย์ :</div>
               <div class="col">
@@ -588,7 +588,7 @@ export default {
 
 .detailHead {
   font-weight: bold;
-  color: #ffff01;
+  color: #000000;
   font-size: 20px;
 }
 
@@ -623,7 +623,7 @@ export default {
 
 .agentBG {
   color: #fff;
-  background: rgba(0, 0, 0, 0.5);
+  background: #fcf75e;
 }
 
 .imgwrapper {

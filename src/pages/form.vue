@@ -55,7 +55,7 @@
                 type="radio"
                 name="selectType"
                 id="option-type3"
-                value="หอพัก/อพาร์ทเม้นท์"
+                value="หอพักอพาร์ทเม้นท์"
                 v-model="property.type"
               />
               <label for="option-type3" class="option option-type3">
