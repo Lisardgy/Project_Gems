@@ -241,7 +241,6 @@ export default {
           snap.forEach((doc) => {
             const { id, lat, lng, sub_id, property, agent, deleteBy } =
               doc.data();
-            console.log(doc.data().property.type);
             if (!deleteBy) {
               let icon;
               if (!property.type) {
@@ -280,7 +279,6 @@ export default {
         this.markers = this.markersStorage.filter(
           (data) => data.status == status
         );
-        console.log(this.markers);
       }
       this.statusModal = false;
     },

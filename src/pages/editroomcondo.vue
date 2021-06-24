@@ -1059,7 +1059,6 @@ export default {
       this.setCollectionCondo(mapdata);
 
       this.$q.loading.hide();
-      this.timer = void 0;
       this.$router.go(-1);
     },
   },

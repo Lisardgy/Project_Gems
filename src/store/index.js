@@ -9,6 +9,8 @@ import databaseUrl from './data/databaseurl'
 import document from './data/document'
 import collection from './data/collection'
 import firebaseCollection from './data/firebase-collection'
+import createPersistedState from "vuex-persistedstate";
+
 
 Vue.use(Vuex)
 
@@ -32,6 +34,8 @@ export default function (/* { ssrContext } */) {
       user_config,
       document
     },
+
+    plugins: [createPersistedState()],
 
     // enable strict mode (adds overhead!)
     // for dev mode only

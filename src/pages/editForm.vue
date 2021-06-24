@@ -1071,11 +1071,8 @@ export default {
 
       this.setDataProperty({ property, agent });
 
-      this.timer = setTimeout(() => {
-        this.$q.loading.hide();
-        this.timer = void 0;
-        this.$router.go(-1);
-      }, 0);
+      this.$q.loading.hide();
+      this.$router.go(-1);
     },
   },
   watch: {

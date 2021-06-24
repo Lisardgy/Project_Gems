@@ -1070,11 +1070,10 @@ export default {
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
       this.$q.loading.hide();
-      this.timer = void 0;
       this.$router.go(-1);
     },
   },
-    beforeDestroy() {
+  beforeDestroy() {
     if (this.timer !== void 0) {
       clearTimeout(this.timer);
       this.$q.loading.hide();

@@ -1062,19 +1062,14 @@ export default {
         agent,
       };
 
+      console.log("create data");
+
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
+      console.log("create success");
+
       this.$q.loading.hide();
-      this.timer = void 0;
       this.$router.go(-2);
-    },
-    filterFn(val, update, abort) {
-      update(() => {
-        const needle = val.toLowerCase();
-        this.options = stringOptions.filter(
-          (v) => v.toLowerCase().indexOf(needle) > -1
-        );
-      });
     },
   },
   beforeDestroy() {
