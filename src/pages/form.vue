@@ -883,11 +883,20 @@
                   เงื่อนไขการโอน
                   <div class="padInputBox">
                     <q-input
+                      style="padding-left: 12px; padding-right: 6px"
                       class="inputBox"
-                      dense
                       v-model="agent.transterCondition"
-                      :options="options"
+                      dense
                     >
+                      <q-select
+                        transition-show="scale"
+                        transition-hide="scale"
+                        class="inputBox"
+                        hide-selected
+                        dense
+                        v-model="agent.transterCondition"
+                        :options="options"
+                      />
                     </q-input>
                   </div>
                 </div>
@@ -971,7 +980,6 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
-const stringOptions = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 export default {
   computed: {
     ...mapGetters({
@@ -989,7 +997,10 @@ export default {
       date: "",
       model: null,
       showInput: true,
-      options: stringOptions,
+      options: [
+        "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
+        "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
+      ],
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1118,55 +1129,54 @@ export default {
         } = val;
         if (taxation) {
           this.agent.taxation = taxation
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (mortgagePrice) {
-        this.agent.mortgagePrice = mortgagePrice
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");  
+          this.agent.mortgagePrice = mortgagePrice
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (appraisalPrice) {
           this.agent.appraisalPrice = appraisalPrice
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (marketPrice) {
           this.agent.marketPrice = marketPrice
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (lastMatch) {
           this.agent.lastMatch = lastMatch
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (sellPrice) {
           this.agent.sellPrice = sellPrice
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (rentalPrice) {
           this.agent.rentalPrice = rentalPrice
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (minDicount) {
           this.agent.minDicount = minDicount
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (specificTax) {
           this.agent.specificTax = specificTax
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
         if (transferFee) {
           this.agent.transferFee = transferFee
-          .replace(/\D/g, "")
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
-          
       },
       deep: true,
     },

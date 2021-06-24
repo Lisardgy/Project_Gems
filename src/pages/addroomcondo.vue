@@ -853,17 +853,6 @@
             <div class="col">
               <div class="row justify-around dataArea q-col-gutter-sm">
                 <div class="col dataTitle">
-                  เงื่อนไขการโอน
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.transterCondition"
-                      dense
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
                   ค่าธรรมเนียมโอน
                   <div class="padInputBox">
                     <q-input
@@ -871,7 +860,33 @@
                       outlined
                       v-model="agent.transferFee"
                       dense
+                      suffix="฿"
                     />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row justify-between dataArea">
+                <div class="col dataTitle">
+                  เงื่อนไขการโอน
+                  <div class="padInputBox">
+                    <q-input
+                      style="padding-left: 12px; padding-right: 6px"
+                      class="inputBox"
+                      v-model="agent.transterCondition"
+                      dense
+                    >
+                      <q-select
+                        transition-show="scale"
+                        transition-hide="scale"
+                        class="inputBox"
+                        hide-selected
+                        dense
+                        v-model="agent.transterCondition"
+                        :options="options"
+                      />
+                    </q-input>
                   </div>
                 </div>
               </div>
@@ -967,6 +982,10 @@ export default {
     return {
       text: "",
       model: "one",
+      options: [
+        "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
+        "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
+      ],
       shape: "line",
       date: "",
       model: null,

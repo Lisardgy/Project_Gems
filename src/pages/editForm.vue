@@ -186,7 +186,7 @@
             </div>
           </div>
           <div class="col dataArea">
-            <div class="dataTitle">ชื่อ</div>
+            <div class="dataTitle">ชื่อหมู่บ้าน</div>
             <div class="padInputBox">
               <q-input
                 class="inputBox"
@@ -199,7 +199,7 @@
           <div class="col">
             <div class="row q-col-gutter-sm dataArea">
               <div class="col-5 dataTitle">
-                บ้านเลขที่/เลขที่ห้อง
+                บ้านเลขที่
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -221,7 +221,7 @@
                 </div>
               </div>
               <div class="col-3 dataTitle">
-                หมู่ที่/ชั้น
+                หมู่ที่
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -288,7 +288,7 @@
           <div class="col">
             <div class="row q-col-gutter-sm dataArea">
               <div class="col-6 dataTitle">
-                เนื้อที่บ้าน/ห้อง
+                เนื้อที่บ้าน
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -577,7 +577,7 @@
         <div class="dataHeader">
           ข้อมูลสำหรับ Agent
           <div class="col">
-            <div class="row justify-between dataArea">
+            <div class="row justify-between dataArea q-col-gutter-sm">
               <div class="col-4 dataTitle">
                 Agent
                 <div>เจ้าของทรัพย์</div>
@@ -585,7 +585,6 @@
               <div class="col-4 dataTitle">
                 <q-input
                   class="inputBox"
-                  style="width: 95%"
                   outlined
                   v-model="agent.agentName"
                   label="ชื่อ"
@@ -628,33 +627,6 @@
               </div>
             </div>
           </div>
-
-          <div class="col">
-            <div
-              class="row justify-between dataArea items-center q-col-gutter-sm"
-            >
-              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerName"
-                  label="ชื่อ"
-                  dense
-                />
-              </div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerLastName"
-                  label="สกุล"
-                  dense
-                />
-              </div>
-            </div>
-          </div>
-
           <div class="col">
             <div class="row justify-around dataArea q-col-gutter-sm">
               <div class="col dataTitle">
@@ -876,17 +848,6 @@
           <div class="col">
             <div class="row justify-around dataArea q-col-gutter-sm">
               <div class="col dataTitle">
-                เงื่อนไขการโอน
-                <div class="padInputBox">
-                  <q-input
-                    class="inputBox"
-                    outlined
-                    v-model="agent.transterCondition"
-                    dense
-                  />
-                </div>
-              </div>
-              <div class="col dataTitle">
                 ค่าธรรมเนียมโอน
                 <div class="padInputBox">
                   <q-input
@@ -894,7 +855,33 @@
                     outlined
                     v-model="agent.transferFee"
                     dense
+                    suffix="฿"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-between dataArea">
+              <div class="col dataTitle">
+                เงื่อนไขการโอน
+                <div class="padInputBox">
+                  <q-input
+                    style="padding-left: 12px; padding-right: 6px"
+                    class="inputBox"
+                    v-model="agent.transterCondition"
+                    dense
+                  >
+                    <q-select
+                      transition-show="scale"
+                      transition-hide="scale"
+                      class="inputBox"
+                      hide-selected
+                      dense
+                      v-model="agent.transterCondition"
+                      :options="options"
+                    />
+                  </q-input>
                 </div>
               </div>
             </div>
@@ -994,6 +981,10 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      options: [
+        "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
+        "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
+      ],
       model: null,
       property: {
         name: null, //ชื่อคอนโด

@@ -24,7 +24,7 @@
             :position="m.position"
             :draggable="false"
             :clickable="true"
-            @click="openInfoWindowTemplate(index)"
+            @click="openInfoWindowTemplate(m)"
             :icon="m.icon"
           />
           <gmap-info-window
@@ -77,7 +77,7 @@
             <q-btn
               class="mapMenu"
               rounded
-              label="สถานะ"
+              :label="statusMarker"
               icon-right="filter_list"
               @click="statusModal = true"
             />
@@ -195,6 +195,7 @@ export default {
         template: "",
       },
       status: null,
+      statusMarker: "ทั้งหมด",
       markers: [],
       markersStorage: [],
       selectedLocation: null,
@@ -234,6 +235,7 @@ export default {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
+        .where("lat", "!=", "")
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
@@ -267,12 +269,22 @@ export default {
             }
           });
         });
-      this.markers = this.markersStorage.filter(
-        (data) => data.position.lat != null && data.position.lng != null
-      );
+      this.markers = this.markersStorage;
     },
-    openInfoWindowTemplate(index) {
-      this.selectedLocation = this.markersStorage[index];
+    setStatus(status) {
+      this.statusMarker = status;
+      if (status == "ทั้งหมด") {
+        this.markers = this.markersStorage;
+      } else {
+        this.markers = this.markersStorage.filter(
+          (data) => data.status == status
+        );
+        console.log(this.markers);
+      }
+      this.statusModal = false;
+    },
+    openInfoWindowTemplate(data) {
+      this.selectedLocation = data;
       this.infoBoxOpen = true;
     },
     selectMarker(data) {
@@ -287,16 +299,6 @@ export default {
     },
     getCurrentLocation() {
       this.map.setCenter(this.myCoordinates);
-    },
-    setStatus(status) {
-      if (status == "ทั้งหมด") {
-        this.markers = this.markersStorage;
-      } else {
-        this.markers = this.markersStorage.filter(
-          (data) => data.status == status
-        );
-      }
-      this.statusModal = false;
     },
   },
   computed: {
