@@ -1069,12 +1069,16 @@ export default {
 
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
-      this.timer = setTimeout(() => {
-        this.$q.loading.hide();
-        this.timer = void 0;
-        this.$router.go(-1);
-      }, 2000);
+      this.$q.loading.hide();
+      this.timer = void 0;
+      this.$router.go(-1);
     },
+  },
+    beforeDestroy() {
+    if (this.timer !== void 0) {
+      clearTimeout(this.timer);
+      this.$q.loading.hide();
+    }
   },
   watch: {
     agent: {

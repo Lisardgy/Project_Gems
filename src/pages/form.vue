@@ -61,8 +61,8 @@
               <label for="option-type3" class="option option-type3">
                 <span class="text-center">
                   <div class="column">
-                    <div class="">หอพัก</div>
-                    <div class="">อพาร์ทเม้นท์</div>
+                    <div style="margin-bottom: -2px">หอพัก</div>
+                    <div style="margin-top: -2px">อพาร์ทเม้นท์</div>
                   </div>
                 </span>
               </label>
@@ -576,67 +576,51 @@
         </div>
         <q-separator class="q-my-lg" color="white" inset />
         <div v-if="showInput == true">
-          <div class="dataHeader">
-            ข้อมูลสำหรับ Agent
-            <div class="col">
-              <div
-                class="
-                  row
-                  justify-between
-                  dataArea
-                  q-col-gutter-sm q-col-gutter-sm
-                "
-              >
-                <div class="col-4 dataTitle">
-                  Agent
-                  <div>เจ้าของทรัพย์</div>
-                </div>
-                <div class="col-4 dataTitle">
+          <div class="dataHeader">ข้อมูลสำหรับ Agent</div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ชื่อเจ้าของทรัพย์
+                <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="agent.agentName"
-                    label="ชื่อ"
+                    v-model="agent.propertyOwnerName"
                     dense
                   />
                 </div>
-                <div class="col-4 dataTitle">
+              </div>
+              <div class="col dataTitle">
+                นามสกุลเจ้าของทรัพย์
+                <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="agent.agentLastName"
-                    label="สกุล"
+                    v-model="agent.propertyOwnerLastName"
                     dense
                   />
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div
-                class="
-                  row
-                  justify-between
-                  dataArea
-                  items-center
-                  q-col-gutter-sm
-                "
-              >
-                <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
-                <div class="col-4 dataTitle">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ชื่อเจ้าของทรัพย์
+                <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
                     v-model="agent.propertyOwnerName"
-                    label="ชื่อ"
                     dense
                   />
                 </div>
-                <div class="col-4 dataTitle">
+              </div>
+              <div class="col dataTitle">
+                นามสกุลเจ้าของทรัพย์
+                <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
                     v-model="agent.propertyOwnerLastName"
-                    label="สกุล"
                     dense
                   />
                 </div>
@@ -1080,11 +1064,9 @@ export default {
 
       await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
 
-      this.timer = setTimeout(() => {
-        this.$q.loading.hide();
-        this.timer = void 0;
-        this.$router.go(-2);
-      }, 200);
+      this.$q.loading.hide();
+      this.timer = void 0;
+      this.$router.go(-2);
     },
     filterFn(val, update, abort) {
       update(() => {

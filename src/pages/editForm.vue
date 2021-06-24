@@ -1075,7 +1075,7 @@ export default {
         this.$q.loading.hide();
         this.timer = void 0;
         this.$router.go(-1);
-      }, 2000);
+      }, 0);
     },
   },
   watch: {
