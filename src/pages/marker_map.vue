@@ -74,7 +74,7 @@ export default {
   },
   created() {
     //does the user have a saved center? use it instead of the default
-    if (!localStorage.center) {
+    if (localStorage.center) {
       this.myCoordinates = JSON.parse(localStorage.center);
     } else {
       // get user's coordinates from browser request
