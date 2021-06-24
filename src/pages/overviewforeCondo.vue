@@ -19,8 +19,33 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="ลบ"
-              @click="deleteData()"
+              @click="confirm = true"
             />
+            <q-dialog v-model="confirm" persistent>
+              <q-card>
+                <q-card-section class="row items-center">
+                  <q-avatar icon="delete" color="red" text-color="white" />
+                  <span class="q-ml-sm text-weight-bold text-h5">
+                    ยืนยันการลบข้อมูล
+                  </span>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn
+                    class="text-bold"
+                    color="primary"
+                    label="cancel"
+                    v-close-popup
+                  />
+                  <q-btn
+                    class="text-bold"
+                    color="red"
+                    label="confirm"
+                    @click="deleteData()"
+                  />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
             <div class="q-mx-xs"></div>
             <q-btn
               class="operationBtn row items-center justify-center"
@@ -199,6 +224,7 @@ export default {
       deletePin: false,
       editPin: false,
       expanded: false,
+      confirm: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -233,7 +259,10 @@ export default {
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
-            this.listCondoPreview.push(doc.data());
+            const { deleteBy } = doc.data();
+            if (!deleteBy) {
+              this.listCondoPreview.push(doc.data());
+            }
           });
         });
     },

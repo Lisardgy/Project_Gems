@@ -19,8 +19,33 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="ลบ"
-              @click="deletePin"
+              @click="confirm = true"
             />
+            <q-dialog v-model="confirm" persistent>
+              <q-card>
+                <q-card-section class="row items-center">
+                  <q-avatar icon="delete" color="red" text-color="white" />
+                  <span class="q-ml-sm text-weight-bold text-h5">
+                    ยืนยันการลบข้อมูล
+                  </span>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn
+                    class="text-bold"
+                    color="primary"
+                    label="cancel"
+                    v-close-popup
+                  />
+                  <q-btn
+                    class="text-bold"
+                    color="red"
+                    label="confirm"
+                    @click="deleteData()"
+                  />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
             <div class="q-mx-xs"></div>
             <q-btn
               class="operationBtn row items-center justify-center"
@@ -416,12 +441,15 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
       getCollectionCondo: "collection/getCollectionCondo",
+      getUserLogin: "user_config/getUserLogin",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
     }),
   },
   data() {
@@ -431,6 +459,7 @@ export default {
       slide: 1,
       deletePin: false,
       editPin: false,
+      confirm: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -495,6 +524,24 @@ export default {
     const { property, agent } = this.getCollectionCondo;
     this.property = property;
     this.agent = agent;
+  },
+  methods: {
+    async deleteData() {
+      this.$q.loading.show();
+
+      const mapdata = {
+        id: this.getCollectionCondo.id,
+        uid: this.getUserLogin.uid,
+      };
+
+      await axios.put(`${this.getDatabaseUrl}/delete`, mapdata);
+
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-1);
+      }, 0);
+    },
   },
 };
 </script>
