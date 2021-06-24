@@ -241,12 +241,16 @@ export default {
           snap.forEach((doc) => {
             const { id, lat, lng, sub_id, property, agent, deleteBy } =
               doc.data();
+            console.log(doc.data().property.type);
             if (!deleteBy) {
-              let type;
+              let icon;
               if (!property.type) {
-                type = "คอนโด";
+                icon = null;
               } else {
-                type = property.type;
+                icon = {
+                  url: require(`../images/Marker_icon/${property.type}.png`),
+                  scaledSize: { width: 30, height: 45, f: "px", b: "px" },
+                };
               }
               const positionObject = {
                 id,
@@ -260,10 +264,7 @@ export default {
                 },
                 property,
                 agent,
-                icon: {
-                  url: require(`../images/Marker_icon/${type}.png`),
-                  scaledSize: { width: 30, height: 45, f: "px", b: "px" },
-                },
+                icon,
               };
               this.markersStorage.push(positionObject);
             }

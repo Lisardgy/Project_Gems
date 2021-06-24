@@ -19,7 +19,7 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="ลบ"
-              @click="deletePin"
+              @click="deleteData()"
             />
             <div class="q-mx-xs"></div>
             <q-btn
@@ -144,7 +144,7 @@
       <div class="overviewText q-ml-md">Overview</div>
     </div>
     <div class="q-pa-md">
-      <div class="row detailHead">รายละเอียด</div>
+      <div class="row detailHead text-white">รายละเอียด</div>
       <div class="row detailTitle q-px-md">ที่อยู่ :</div>
       <div class="row details q-px-lg q-py-sm">
         <div class="col">
@@ -416,12 +416,15 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
       getDataProperty: "document/getDataProperty",
+      getUserLogin: "user_config/getUserLogin",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
     }),
   },
   data() {
@@ -496,7 +499,24 @@ export default {
     this.property = property;
     this.agent = agent;
   },
-  methods: {},
+  methods: {
+    async deleteData() {
+      this.$q.loading.show();
+
+      const mapdata = {
+        id: this.getDocumentId,
+        uid: this.getUserLogin.uid,
+      };
+
+      await axios.put(`${this.getDatabaseUrl}/delete`, mapdata);
+
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-1);
+      }, 0);
+    },
+  },
 };
 </script>
 

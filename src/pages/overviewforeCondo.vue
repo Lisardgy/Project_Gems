@@ -19,6 +19,7 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="ลบ"
+              @click="deleteData()"
             />
             <div class="q-mx-xs"></div>
             <q-btn
@@ -181,12 +182,15 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
       getDocumentId: "document/getDocumentId",
       getDataProperty: "document/getDataProperty",
+      getUserLogin: "user_config/getUserLogin",
+      getDatabaseUrl: "databaseUrl/getDatabaseUrl",
     }),
   },
   data() {
@@ -236,6 +240,22 @@ export default {
     setCondoOverview(data) {
       this.setCollectionCondo(data);
       this.$router.push({ name: "overviewInCondo" });
+    },
+    async deleteData() {
+      this.$q.loading.show();
+
+      const mapdata = {
+        id: this.getDocumentId,
+        uid: this.getUserLogin.uid,
+      };
+
+      await axios.put(`${this.getDatabaseUrl}/delete`, mapdata);
+
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        this.timer = void 0;
+        this.$router.go(-1);
+      }, 0);
     },
   },
 };

@@ -1084,7 +1084,7 @@ export default {
         this.$q.loading.hide();
         this.timer = void 0;
         this.$router.go(-2);
-      }, 2000);
+      }, 200);
     },
     filterFn(val, update, abort) {
       update(() => {
