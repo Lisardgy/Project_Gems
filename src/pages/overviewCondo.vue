@@ -55,8 +55,8 @@
           </div>
         </div>
       </div>
-      <div class="row q-pa-sm q-ma-sm items-baseline justify-center">
-        <div class="row title">{{ this.property.name }}</div>
+      <div class="row q-pa-sm q-ma-sm items-baseline justify-left">
+        <div class="row title">หมายเลขห้อง {{ this.property.houseNumber }}</div>
       </div>
     </div>
 

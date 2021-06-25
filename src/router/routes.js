@@ -13,6 +13,7 @@ const routes = [
       { path: '/form', name: "form", component: () => import('pages/form.vue') },
       { path: '/addroom', name: "addcondo", component: () => import('pages/addroomcondo.vue') },
       { path: '/editform', name: "editform", component: () => import('pages/editForm.vue') },
+      { path: '/editcondo', name: "editcondo", component: () => import('pages/editcondo.vue') },
       { path: '/editroom', name: "editroom", component: () => import('pages/editroomcondo.vue') },
     ]
   },

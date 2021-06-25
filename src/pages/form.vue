@@ -974,7 +974,7 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
@@ -1059,6 +1059,9 @@ export default {
   },
   mounted() {},
   methods: {
+    ...mapActions({
+      setDocumentId: "document/setDocumentId",
+    }),
     async onSave() {
       this.$q.loading.show();
 
@@ -1074,27 +1077,30 @@ export default {
         agent,
       };
 
-      console.log("create data");
-
       var storageRef = this.$firebase.storage().ref(`property`);
 
       await axios
         .post(`${this.getDatabaseUrl}/create`, mapdata)
         .then((response) => {
+          const id = response.data.id;
+
           this.file_selected.forEach(async (data) => {
             await storageRef
-              .child(`${response.data.id}/${data.name}`)
+              .child(`${id}/${data.name}`)
               .put(data)
               .then((response) => {
                 console.log("upload success");
               });
           });
+
+          this.$q.loading.hide();
+          if (this.property.type == "คอนโด") {
+            this.setDocumentId({ id });
+            this.$router.push({ name: "overviewCondo" });
+          } else {
+            this.$router.go(-2);
+          }
         });
-
-      console.log("create success");
-
-      this.$q.loading.hide();
-      this.$router.go(-2);
     },
     addFile(file) {
       file.map((data) => {

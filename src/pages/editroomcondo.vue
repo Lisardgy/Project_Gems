@@ -29,107 +29,6 @@
             </div>
           </div>
           <div class="dataTitle dataArea">
-            ประเภท
-            <div class="row justify-start padInputBox q-gutter-sm">
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type1"
-                value="บ้านเดี่ยว"
-                v-model="property.type"
-              />
-              <label for="option-type1" class="option option-type1">
-                <span>บ้านเดี่ยว</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type2"
-                value="บ้านแฝด"
-                v-model="property.type"
-              />
-              <label for="option-type2" class="option option-type2">
-                <span>บ้านแฝด</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type3"
-                value="หอพัก/อพาร์ทเม้นท์"
-                v-model="property.type"
-              />
-              <label for="option-type3" class="option option-type3">
-                <span class="text-center">
-                  <div class="column">
-                    <div class="">หอพัก</div>
-                    <div class="">อพาร์ทเม้นท์</div>
-                  </div>
-                </span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type4"
-                value="คอนโด"
-                v-model="property.type"
-              />
-              <label for="option-type4" class="option option-type4">
-                <span>คอนโดฯ</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type5"
-                value="ทาวน์เฮาส์"
-                v-model="property.type"
-              />
-              <label for="option-type5" class="option option-type5">
-                <span>ทาวน์เฮาส์</span>
-              </label>
-
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type6"
-                value="อาคารพานิชย์"
-                v-model="property.type"
-              />
-              <label for="option-type6" class="option option-type6">
-                <span>อาคารพานิชย์</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type7"
-                value="โรงแรม"
-                v-model="property.type"
-              />
-              <label for="option-type7" class="option option-type7">
-                <span>โรงแรม</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type8"
-                value="พูลวิลล่า"
-                v-model="property.type"
-              />
-              <label for="option-type8" class="option option-type8">
-                <span>พูลวิลล่า</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type9"
-                value="อื่นๆ"
-                v-model="property.type"
-              />
-              <label for="option-type9" class="option option-type9">
-                <span>อื่นๆ</span>
-              </label>
-            </div>
-          </div>
-          <div class="dataTitle dataArea">
             สถานะ
             <div class="row padInputBox justify-start q-gutter-sm">
               <input
@@ -546,16 +445,62 @@
           </div>
           <q-separator class="q-my-lg" color="white" inset />
           <div class="dataTitle dataArea">
+            <div class="row">
+              <div
+                class="col-4 q-px-xs"
+                v-for="(data, index) in modelImage"
+                :key="index"
+              >
+                <q-img :src="data.url" no-native-menu>
+                  <q-btn
+                    class="absolute"
+                    round
+                    size="6px"
+                    color="red"
+                    icon="close"
+                    style="top: 2px; right: 2px"
+                    @click="deleteImg = true"
+                  />
+                </q-img>
+                <q-dialog v-model="deleteImg" persistent>
+                  <q-card>
+                    <q-card-section class="row items-center">
+                      <q-avatar icon="delete" color="red" text-color="white" />
+                      <span class="q-ml-sm text-weight-bold text-h5">
+                        ยืนยันการลบรูปภาพ
+                      </span>
+                    </q-card-section>
+
+                    <q-card-actions align="right">
+                      <q-btn
+                        class="text-bold"
+                        color="primary"
+                        label="ยกเลิก"
+                        v-close-popup
+                      />
+                      <q-btn
+                        class="text-bold"
+                        color="red"
+                        label="ยืนยัน"
+                        @click="deleteImage(data)"
+                      />
+                    </q-card-actions>
+                  </q-card>
+                </q-dialog>
+              </div>
+            </div>
+          </div>
+          <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
               <div class="row">
                 <q-uploader
-                  url="http://localhost:4444/upload"
                   text-color="black"
                   label="เพิ่มรูปภาพ"
                   multiple
-                  batch
                   style="max-width: 100%; min-width: 100%"
+                  @added="addFile"
+                  @removed="removedFile"
                 />
               </div>
             </div>
@@ -978,9 +923,12 @@ export default {
         "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
         "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
       ],
+      modelImage: [],
+      file_selected: [],
       shape: "line",
       upDate: "",
       date: "",
+      deleteImg: null,
       model: null,
       property: {
         name: null, //ชื่อคอนโด
@@ -1043,7 +991,8 @@ export default {
     };
   },
   async mounted() {
-    console.log(this.getCollectionCondo);
+    await this.getImage();
+
     this.property = JSON.parse(
       JSON.stringify(this.getCollectionCondo.property)
     );
@@ -1066,12 +1015,72 @@ export default {
         agent,
       };
 
-      await axios.put(`${this.getDatabaseUrl}/update`, mapdata);
+      var storageRef = this.$firebase.storage().ref(`property`);
+
+      await axios
+        .put(`${this.getDatabaseUrl}/update`, mapdata)
+        .then((response) => {
+          const id = response.data.id;
+          this.file_selected.forEach(async (data) => {
+            await storageRef
+              .child(`${id}/${data.name}`)
+              .put(data)
+              .then((response) => {
+                console.log("upload success");
+              });
+          });
+        });
 
       this.setCollectionCondo(mapdata);
 
       this.$q.loading.hide();
       this.$router.go(-1);
+    },
+    async getImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getCollectionCondo.id}`);
+
+      console.log(this.getCollectionCondo.id);
+
+      storageRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+          itemRef.getDownloadURL().then((url) => {
+                          this.modelImage.push({
+                url,
+                name: itemRef.name,
+              });
+          });
+        });
+      });
+    },
+    async deleteImage(data) {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getCollectionCondo.id}`);
+
+      storageRef
+        .child(data.name)
+        .delete()
+        .then(() => {
+          this.modelImage = this.modelImage.filter(
+            (item) => item.name != data.name
+          );
+        });
+
+      this.deleteImg = false;
+    },
+    addFile(file) {
+      file.map((data) => {
+        this.file_selected.push(data);
+      });
+      console.log(this.file_selected);
+    },
+    removedFile(file) {
+      this.file_selected = this.file_selected.filter(
+        (data) => data.name != file[0].name
+      );
+      console.log(this.file_selected);
     },
   },
   beforeDestroy() {

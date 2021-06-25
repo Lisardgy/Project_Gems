@@ -564,7 +564,7 @@
                 v-for="(data, index) in modelImage"
                 :key="index"
               >
-                <q-img :src="data" no-native-menu>
+                <q-img :src="data.url" no-native-menu>
                   <q-btn
                     class="absolute"
                     round
@@ -572,8 +572,34 @@
                     color="red"
                     icon="close"
                     style="top: 2px; right: 2px"
+                    @click="deleteImg = true"
                   />
                 </q-img>
+                <q-dialog v-model="deleteImg" persistent>
+                  <q-card>
+                    <q-card-section class="row items-center">
+                      <q-avatar icon="delete" color="red" text-color="white" />
+                      <span class="q-ml-sm text-weight-bold text-h5">
+                        ยืนยันการลบรูปภาพ
+                      </span>
+                    </q-card-section>
+
+                    <q-card-actions align="right">
+                      <q-btn
+                        class="text-bold"
+                        color="primary"
+                        label="ยกเลิก"
+                        v-close-popup
+                      />
+                      <q-btn
+                        class="text-bold"
+                        color="red"
+                        label="ยืนยัน"
+                        @click="deleteImage(data)"
+                      />
+                    </q-card-actions>
+                  </q-card>
+                </q-dialog>
               </div>
             </div>
           </div>
@@ -582,12 +608,12 @@
             <div class="col q-pt-md">
               <div class="row">
                 <q-uploader
-                  v-model="modelImage"
                   text-color="black"
                   label="เพิ่มรูปภาพ"
                   multiple
-                  batch
                   style="max-width: 100%; min-width: 100%"
+                  @added="addFile"
+                  @removed="removedFile"
                 />
               </div>
             </div>
@@ -1011,11 +1037,13 @@ export default {
       upDate: "",
       date: "",
       modelImage: [],
+      file_selected: [],
       options: [
         "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
         "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
       ],
       model: null,
+      deleteImg: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1097,7 +1125,21 @@ export default {
         agent,
       };
 
-      await axios.put(`${this.getDatabaseUrl}/update`, mapdata);
+      var storageRef = this.$firebase.storage().ref(`property`);
+
+      await axios
+        .put(`${this.getDatabaseUrl}/update`, mapdata)
+        .then((response) => {
+          const id = response.data.id;
+          this.file_selected.forEach(async (data) => {
+            await storageRef
+              .child(`${id}/${data.name}`)
+              .put(data)
+              .then((response) => {
+                console.log("upload success");
+              });
+          });
+        });
 
       this.setDataProperty({ property, agent });
 
@@ -1107,20 +1149,51 @@ export default {
     async getImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/Ue9ntuevwi99DxdfcuFN`);
+        .ref(`property/${this.getDocumentId}`);
 
       storageRef
         .listAll()
         .then((res) => {
           res.items.forEach((itemRef) => {
             itemRef.getDownloadURL().then((url) => {
-              this.modelImage.push(url);
+              this.modelImage.push({
+                url,
+                name: itemRef.name,
+              });
             });
           });
         })
         .catch((error) => {
           // Uh-oh, an error occurred!
         });
+    },
+    async deleteImage(data) {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getCollectionCondo.id}`);
+
+      storageRef
+        .child(data.name)
+        .delete()
+        .then(() => {
+          this.modelImage = this.modelImage.filter(
+            (item) => item.name != data.name
+          );
+        });
+
+      this.deleteImg = false;
+    },
+    addFile(file) {
+      file.map((data) => {
+        this.file_selected.push(data);
+      });
+      console.log(this.file_selected);
+    },
+    removedFile(file) {
+      this.file_selected = this.file_selected.filter(
+        (data) => data.name != file[0].name
+      );
+      console.log(this.file_selected);
     },
   },
   watch: {

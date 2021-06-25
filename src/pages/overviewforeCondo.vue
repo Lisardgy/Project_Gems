@@ -9,7 +9,7 @@
             icon="arrow_back_ios"
             style="color: #ffff01"
             class="overflow-hidden"
-            @click="$router.go(-1)"
+            @click="$router.push({ name: 'map' })"
           >
             <div style="padding-left: 0px">ย้อนกลับ</div>
           </q-btn>
@@ -50,6 +50,7 @@
             <q-btn
               class="operationBtn row items-center justify-center"
               label="แก้ไข"
+              @click="$router.push({ name: 'editcondo' })"
             />
           </div>
         </div>
@@ -301,10 +302,6 @@ export default {
                       data: doc.data(),
                       url,
                     });
-
-                    this.listCondoPreview.sort(
-                      (a, b) => a.data.property.name < b.data.property.name
-                    );
                   });
                 });
               });
