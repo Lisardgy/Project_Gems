@@ -90,22 +90,52 @@
           height="200px"
         >
           <q-carousel-slide
-            :name="1"
-            img-src="https://cdn.quasar.dev/img/mountains.jpg"
-          />
-          <q-carousel-slide
-            :name="2"
-            img-src="https://cdn.quasar.dev/img/parallax1.jpg"
-          />
-          <q-carousel-slide
-            :name="3"
-            img-src="https://cdn.quasar.dev/img/parallax2.jpg"
-          />
-          <q-carousel-slide
-            :name="4"
-            img-src="https://cdn.quasar.dev/img/quasar.jpg"
+            v-for="(data, index) in modelImage"
+            :key="index"
+            :name="index"
+            :img-src="data.url"
+            @click="dialog = true"
           />
         </q-carousel>
+        <q-dialog
+          v-model="dialog"
+          persistent
+          :maximized="maximizedToggle"
+          transition-show="slide-up"
+          transition-hide="slide-down"
+        >
+          <q-card class="bg-black text-white">
+            <div class="row justify-end">
+              <div class="">
+                <q-btn
+                  dense
+                  flat
+                  rounded
+                  icon="close"
+                  size="18px"
+                  v-close-popup
+                />
+              </div>
+            </div>
+            <div class="">
+              <div class="text-h5 q-mx-md">{{ this.property.name }}</div>
+            </div>
+            <div v-for="(data, index) in modelImage" :key="index">
+              <div class="row justify-end q-mx-sm">
+                <q-btn
+                  class="downloadIamges row items-centers justify-center"
+                  size="20px"
+                  icon="file_download"
+                  @click="downloadSingleImage(data)"
+                >
+                </q-btn>
+              </div>
+              <div class="q-my-sm">
+                <q-img :src="data.url" />
+              </div>
+            </div>
+          </q-card>
+        </q-dialog>
       </div>
       <div class="row overviewTab items-center">
         <div class="overviewText q-ml-md">Overview</div>
@@ -163,29 +193,26 @@
 
       <div
         class="q-pa-md row justify-center"
-        v-for="(data, index) in listCondoPreview"
+        v-for="(item, index) in listCondoPreview"
         :key="index"
       >
-        <q-card class="card2 full-width" flat @click="setCondoOverview(data)">
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+        <q-card class="card2 full-width" flat @click="setCondoOverview(item)">
+          <q-img :src="item.url" />
 
           <q-card-section>
             <div class="text-h6 q-mt-sm q-mb-xs text-bold">
-              หมายเลขห้อง : {{ data.property.houseNumber }}
+              หมายเลขห้อง : {{ item.data.property.houseNumber }}
             </div>
             <div class="col row q-pa-none q-ma-none items-center">
               <div class="col-6 row justify-start">
                 <div class="text-bold" style="font-size: 15px">
-                  ชั้น : {{ data.property.swine }}
+                  ชั้น : {{ item.data.property.swine }}
                 </div>
                 <div class="text-bold q-px-sm" style="font-size: 15px">
-                  อาคาร/ตึก : {{ data.property.building }}
+                  อาคาร/ตึก : {{ item.data.property.building }}
                 </div>
               </div>
               <div class="col-6 row justify-end">
-                <div class="tagsCondoStyle text-bold row items-center q-px-sm">
-                  {{ data.property.type }}
-                </div>
                 <div
                   class="
                     tagsCondoStyle
@@ -195,7 +222,7 @@
                     q-px-sm q-ml-sm
                   "
                 >
-                  {{ data.property.status }}
+                  {{ item.data.property.status }}
                 </div>
               </div>
             </div>
@@ -221,6 +248,9 @@ export default {
   data() {
     return {
       slide: 1,
+      dialog: false,
+      maximizedToggle: true,
+      modelImage: [],
       deletePin: false,
       editPin: false,
       expanded: false,
@@ -238,10 +268,12 @@ export default {
         province: null, //จังหวัด
       },
       listCondoPreview: [],
+      listImageCondo: [],
     };
   },
   async mounted() {
     await this.getListCondoById();
+    await this.getImage();
   },
   methods: {
     ...mapActions({
@@ -258,16 +290,30 @@ export default {
         .where("sub_id", "==", this.getDocumentId)
         .get()
         .then((snap) => {
-          snap.forEach((doc) => {
-            const { deleteBy } = doc.data();
+          snap.forEach(async (doc) => {
+            const { deleteBy, id } = doc.data();
             if (!deleteBy) {
-              this.listCondoPreview.push(doc.data());
+              const storageRef = this.$firebase.storage().ref(`property/${id}`);
+              await storageRef.list({ maxResults: 1 }).then((res) => {
+                res.items.forEach((itemRef) => {
+                  itemRef.getDownloadURL().then((url) => {
+                    this.listCondoPreview.push({
+                      data: doc.data(),
+                      url,
+                    });
+
+                    this.listCondoPreview.sort(
+                      (a, b) => a.data.property.name < b.data.property.name
+                    );
+                  });
+                });
+              });
             }
           });
         });
     },
-    setCondoOverview(data) {
-      this.setCollectionCondo(data);
+    setCondoOverview(item) {
+      this.setCollectionCondo(item.data);
       this.$router.push({ name: "overviewInCondo" });
     },
     async deleteData() {
@@ -285,6 +331,43 @@ export default {
         this.timer = void 0;
         this.$router.go(-1);
       }, 0);
+    },
+    async getImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getDocumentId}`);
+
+      storageRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+          itemRef.getDownloadURL().then((url) => {
+            this.modelImage.push({
+              url,
+              name: itemRef.name,
+            });
+          });
+        });
+      });
+    },
+    async downloadSingleImage(data) {
+      const { url, name } = data;
+
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getDocumentId}`);
+
+      storageRef
+        .child(data.name)
+        .getDownloadURL()
+        .then((url) => {
+          console.log(url);
+          var xhr = new XMLHttpRequest();
+          xhr.responseType = "blob";
+          xhr.onload = (event) => {
+            var blob = xhr.response;
+          };
+          xhr.open("GET", url);
+          xhr.send();
+        });
     },
   },
 };

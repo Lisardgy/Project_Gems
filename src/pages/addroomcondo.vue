@@ -29,107 +29,6 @@
             </div>
           </div>
           <div class="dataTitle dataArea">
-            ประเภท
-            <div class="row justify-start padInputBox q-gutter-sm">
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type1"
-                value="บ้านเดี่ยว"
-                v-model="property.type"
-              />
-              <label for="option-type1" class="option option-type1">
-                <span>บ้านเดี่ยว</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type2"
-                value="บ้านแฝด"
-                v-model="property.type"
-              />
-              <label for="option-type2" class="option option-type2">
-                <span>บ้านแฝด</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type3"
-                value="หอพัก/อพาร์ทเม้นท์"
-                v-model="property.type"
-              />
-              <label for="option-type3" class="option option-type3">
-                <span class="text-center">
-                  <div class="column">
-                    <div class="">หอพัก</div>
-                    <div class="">อพาร์ทเม้นท์</div>
-                  </div>
-                </span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type4"
-                value="คอนโด"
-                v-model="property.type"
-              />
-              <label for="option-type4" class="option option-type4">
-                <span>คอนโดฯ</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type5"
-                value="ทาวน์เฮาส์"
-                v-model="property.type"
-              />
-              <label for="option-type5" class="option option-type5">
-                <span>ทาวน์เฮาส์</span>
-              </label>
-
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type6"
-                value="อาคารพานิชย์"
-                v-model="property.type"
-              />
-              <label for="option-type6" class="option option-type6">
-                <span>อาคารพานิชย์</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type7"
-                value="โรงแรม"
-                v-model="property.type"
-              />
-              <label for="option-type7" class="option option-type7">
-                <span>โรงแรม</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type8"
-                value="พูลวิลล่า"
-                v-model="property.type"
-              />
-              <label for="option-type8" class="option option-type8">
-                <span>พูลวิลล่า</span>
-              </label>
-              <input
-                type="radio"
-                name="selectType"
-                id="option-type9"
-                value="อื่นๆ"
-                v-model="property.type"
-              />
-              <label for="option-type9" class="option option-type9">
-                <span>อื่นๆ</span>
-              </label>
-            </div>
-          </div>
-          <div class="dataTitle dataArea">
             สถานะ
             <div class="row padInputBox justify-start q-gutter-sm">
               <input
@@ -552,12 +451,12 @@
             <div class="col q-pt-md">
               <div class="row">
                 <q-uploader
-                  url="http://localhost:4444/upload"
                   text-color="black"
                   label="เพิ่มรูปภาพ"
                   multiple
-                  batch
                   style="max-width: 100%; min-width: 100%"
+                  @added="addFile"
+                  @removed="removedFile"
                 />
               </div>
             </div>
@@ -995,6 +894,7 @@ export default {
       date: "",
       model: null,
       showInput: true,
+      file_selected: [],
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1072,10 +972,35 @@ export default {
         agent,
       };
 
-      await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
+      var storageRef = this.$firebase.storage().ref(`property`);
+
+      await axios
+        .post(`${this.getDatabaseUrl}/create`, mapdata)
+        .then((response) => {
+          this.file_selected.forEach(async (data) => {
+            await storageRef
+              .child(`${response.data.id}/${data.name}`)
+              .put(data)
+              .then((response) => {
+                console.log("upload success");
+              });
+          });
+        });
 
       this.$q.loading.hide();
       this.$router.go(-1);
+    },
+    addFile(file) {
+      file.map((data) => {
+        this.file_selected.push(data);
+      });
+      console.log(this.file_selected);
+    },
+    removedFile(file) {
+      this.file_selected = this.file_selected.filter(
+        (data) => data.name != file[0].name
+      );
+      console.log(this.file_selected);
     },
   },
   beforeDestroy() {

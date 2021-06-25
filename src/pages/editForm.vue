@@ -558,11 +558,31 @@
           </div>
           <q-separator class="q-my-lg" color="white" inset />
           <div class="dataTitle dataArea">
+            <div class="row">
+              <div
+                class="col-4 q-px-xs"
+                v-for="(data, index) in modelImage"
+                :key="index"
+              >
+                <q-img :src="data" no-native-menu>
+                  <q-btn
+                    class="absolute"
+                    round
+                    size="6px"
+                    color="red"
+                    icon="close"
+                    style="top: 2px; right: 2px"
+                  />
+                </q-img>
+              </div>
+            </div>
+          </div>
+          <div class="dataTitle dataArea">
             รูปภาพ
             <div class="col q-pt-md">
               <div class="row">
                 <q-uploader
-                  url="http://localhost:4444/upload"
+                  v-model="modelImage"
                   text-color="black"
                   label="เพิ่มรูปภาพ"
                   multiple
@@ -982,11 +1002,6 @@ export default {
       getDatabaseUrl: "databaseUrl/getDatabaseUrl",
       getDocumentId: "document/getDocumentId",
     }),
-    ...mapFields({
-      fields: ["name"],
-      base: "document.property",
-      mutation: "SET_DATA_PROPERTY",
-    }),
   },
   data() {
     return {
@@ -995,6 +1010,7 @@ export default {
       shape: "line",
       upDate: "",
       date: "",
+      modelImage: [],
       options: [
         "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
         "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
@@ -1087,6 +1103,24 @@ export default {
 
       this.$q.loading.hide();
       this.$router.go(-1);
+    },
+    async getImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/Ue9ntuevwi99DxdfcuFN`);
+
+      storageRef
+        .listAll()
+        .then((res) => {
+          res.items.forEach((itemRef) => {
+            itemRef.getDownloadURL().then((url) => {
+              this.modelImage.push(url);
+            });
+          });
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+        });
     },
   },
   watch: {

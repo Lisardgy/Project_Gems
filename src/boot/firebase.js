@@ -1,5 +1,6 @@
 import Firebase from 'firebase'
 import 'firebase/firestore'
+import 'firebase/storage'
 export default ({ Vue }) => {
     const firebaseConfig = {
         apiKey: "AIzaSyDyJ1dxwc4mUTmbZxLfs-WwjKav3F8af6g",

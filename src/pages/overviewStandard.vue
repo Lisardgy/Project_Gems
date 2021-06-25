@@ -93,21 +93,11 @@
         height="200px"
       >
         <q-carousel-slide
-          :name="1"
-          img-src="https://cdn.quasar.dev/img/mountains.jpg"
+          v-for="(data, index) in modelImage"
+          :key="index"
+          :name="index"
+          :img-src="data.url"
           @click="dialog = true"
-        />
-        <q-carousel-slide
-          :name="2"
-          img-src="https://cdn.quasar.dev/img/parallax1.jpg"
-        />
-        <q-carousel-slide
-          :name="3"
-          img-src="https://cdn.quasar.dev/img/parallax2.jpg"
-        />
-        <q-carousel-slide
-          :name="4"
-          img-src="https://cdn.quasar.dev/img/quasar.jpg"
         />
       </q-carousel>
       <q-dialog
@@ -118,49 +108,35 @@
         transition-hide="slide-down"
       >
         <q-card class="bg-black text-white">
-          <q-bar>
-            <q-space />
-
-            <q-btn
-              dense
-              flat
-              icon="minimize"
-              @click="maximizedToggle = false"
-              :disable="!maximizedToggle"
-            >
-              <q-tooltip
-                v-if="maximizedToggle"
-                content-class="bg-white text-primary"
-                >Minimize</q-tooltip
-              >
-            </q-btn>
-            <q-btn
-              dense
-              flat
-              icon="crop_square"
-              @click="maximizedToggle = true"
-              :disable="maximizedToggle"
-            >
-              <q-tooltip
-                v-if="!maximizedToggle"
-                content-class="bg-white text-primary"
-                >Maximize</q-tooltip
-              >
-            </q-btn>
-            <q-btn dense flat icon="close" v-close-popup>
-              <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
-            </q-btn>
-          </q-bar>
-
-          <q-card-section>
-            <div class="text-h6">บ้านปอ</div>
-          </q-card-section>
-
-          <q-card-section class="q-pt-none q-px-none">
-            <div class="imgwrapper">
-              <q-img src="https://cdn.quasar.dev/img/mountains.jpg" />
+          <div class="row justify-end">
+            <div class="">
+              <q-btn
+                dense
+                flat
+                rounded
+                icon="close"
+                size="18px"
+                v-close-popup
+              />
             </div>
-          </q-card-section>
+          </div>
+          <div class="">
+            <div class="text-h5 q-mx-md">{{ this.property.name }}</div>
+          </div>
+          <div v-for="(data, index) in modelImage" :key="index">
+            <div class="row justify-end q-mx-sm">
+              <q-btn
+                class="downloadIamges row items-centers justify-center"
+                size="20px"
+                icon="file_download"
+                @click="downloadSingleImage(data)"
+              >
+              </q-btn>
+            </div>
+            <div class="q-my-sm">
+              <q-img :src="data.url" />
+            </div>
+          </div>
         </q-card>
       </q-dialog>
     </div>
@@ -460,6 +436,7 @@ export default {
       confirm: null,
       deletePin: false,
       editPin: false,
+      modelImage: [],
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -521,6 +498,8 @@ export default {
     };
   },
   async mounted() {
+    await this.getImage();
+
     const { property, agent } = this.getDataProperty;
     this.property = property;
     this.agent = agent;
@@ -536,11 +515,50 @@ export default {
 
       await axios.put(`${this.getDatabaseUrl}/delete`, mapdata);
 
-      this.timer = setTimeout(() => {
-        this.$q.loading.hide();
-        this.timer = void 0;
-        this.$router.go(-1);
-      }, 0);
+      this.$q.loading.hide();
+      this.$router.go(-1);
+    },
+    async getImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getDocumentId}`);
+
+      storageRef
+        .listAll()
+        .then((res) => {
+          res.items.forEach((itemRef) => {
+            itemRef.getDownloadURL().then((url) => {
+              this.modelImage.push({
+                url,
+                name: itemRef.name,
+              });
+            });
+          });
+        })
+        .catch((error) => {
+          // Uh-oh, an error occurred!
+        });
+    },
+    async downloadSingleImage(data) {
+      const { url, name } = data;
+
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getDocumentId}`);
+
+      storageRef
+        .child(data.name)
+        .getDownloadURL()
+        .then((url) => {
+          console.log(url);
+          var xhr = new XMLHttpRequest();
+          xhr.responseType = "blob";
+          xhr.onload = (event) => {
+            var blob = xhr.response;
+          };
+          xhr.open("GET", url);
+          xhr.send();
+        });
     },
   },
 };
@@ -671,7 +689,8 @@ export default {
 
 .imgwrapper {
   overflow: auto;
-  max-height: 500px;
+  max-height: 250px;
+  width: 100%;
   position: relative;
 }
 

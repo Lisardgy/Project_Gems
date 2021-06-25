@@ -129,59 +129,61 @@
               </label>
             </div>
           </div>
-          <div class="dataTitle dataArea">
-            สถานะ
-            <div class="row padInputBox justify-start q-gutter-sm">
-              <input
-                type="radio"
-                name="selectStatus"
-                id="option-status1"
-                value="รอขาย"
-                v-model="property.status"
-              />
-              <label for="option-status1" class="option option-status1">
-                <span>รอขาย</span>
-              </label>
-              <input
-                type="radio"
-                name="selectStatus"
-                id="option-status2"
-                value="รอเช่า"
-                v-model="property.status"
-              />
-              <label for="option-status2" class="option option-status2">
-                <span>รอเช่า</span>
-              </label>
-              <input
-                type="radio"
-                name="selectStatus"
-                id="option-status3"
-                value="รอเช่า/รอขาย"
-                v-model="property.status"
-              />
-              <label for="option-status3" class="option option-status3">
-                <span>รอเช่า/รอขาย</span>
-              </label>
-              <input
-                type="radio"
-                name="selectStatus"
-                id="option-status4"
-                value="ขายแล้ว"
-                v-model="property.status"
-              />
-              <label for="option-status4" class="option option-status4">
-                <span>ขายแล้ว</span>
-              </label>
-              <input
-                type="radio"
-                name="selectStatus"
-                id="option-status5"
-                value="เช่าแล้ว"
-                v-model="property.status"
-              />
-              <label for="option-status5" class="option option-status5">
-                <span>เช่าแล้ว</span>
-              </label>
+          <div class="" v-if="showInput == true">
+            <div class="dataTitle dataArea">
+              สถานะ
+              <div class="row padInputBox justify-start q-gutter-sm">
+                <input
+                  type="radio"
+                  name="selectStatus"
+                  id="option-status1"
+                  value="รอขาย"
+                  v-model="property.status"
+                />
+                <label for="option-status1" class="option option-status1">
+                  <span>รอขาย</span>
+                </label>
+                <input
+                  type="radio"
+                  name="selectStatus"
+                  id="option-status2"
+                  value="รอเช่า"
+                  v-model="property.status"
+                />
+                <label for="option-status2" class="option option-status2">
+                  <span>รอเช่า</span>
+                </label>
+                <input
+                  type="radio"
+                  name="selectStatus"
+                  id="option-status3"
+                  value="รอเช่า/รอขาย"
+                  v-model="property.status"
+                />
+                <label for="option-status3" class="option option-status3">
+                  <span>รอเช่า/รอขาย</span>
+                </label>
+                <input
+                  type="radio"
+                  name="selectStatus"
+                  id="option-status4"
+                  value="ขายแล้ว"
+                  v-model="property.status"
+                />
+                <label for="option-status4" class="option option-status4">
+                  <span>ขายแล้ว</span>
+                </label>
+                <input
+                  type="radio"
+                  name="selectStatus"
+                  id="option-status5"
+                  value="เช่าแล้ว"
+                  v-model="property.status"
+                />
+                <label for="option-status5" class="option option-status5">
+                  <span>เช่าแล้ว</span>
+                </label>
+              </div>
             </div>
           </div>
           <div class="col dataArea">
@@ -563,12 +565,12 @@
             <div class="col q-pt-md">
               <div class="row">
                 <q-uploader
-                  url="http://localhost:4444/upload"
                   text-color="black"
                   label="เพิ่มรูปภาพ"
                   multiple
-                  batch
                   style="max-width: 100%; min-width: 100%"
+                  @added="addFile"
+                  @removed="removedFile"
                 />
               </div>
             </div>
@@ -994,6 +996,7 @@ export default {
         "ค่าธรรมเนียมโอนคนละครึ่ง อากร ภาษี เจ้าของจ่าย",
         "ค่าใช้จ่ายทั้งหมด ณ วันโอนคนละครึ่ง",
       ],
+      file_selected: [],
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1073,12 +1076,37 @@ export default {
 
       console.log("create data");
 
-      await axios.post(`${this.getDatabaseUrl}/create`, mapdata);
+      var storageRef = this.$firebase.storage().ref(`property`);
+
+      await axios
+        .post(`${this.getDatabaseUrl}/create`, mapdata)
+        .then((response) => {
+          this.file_selected.forEach(async (data) => {
+            await storageRef
+              .child(`${response.data.id}/${data.name}`)
+              .put(data)
+              .then((response) => {
+                console.log("upload success");
+              });
+          });
+        });
 
       console.log("create success");
 
       this.$q.loading.hide();
       this.$router.go(-2);
+    },
+    addFile(file) {
+      file.map((data) => {
+        this.file_selected.push(data);
+      });
+      console.log(this.file_selected);
+    },
+    removedFile(file) {
+      this.file_selected = this.file_selected.filter(
+        (data) => data.name != file[0].name
+      );
+      console.log(this.file_selected);
     },
   },
   beforeDestroy() {
