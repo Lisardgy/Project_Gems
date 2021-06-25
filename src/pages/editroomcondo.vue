@@ -565,58 +565,55 @@
         <div class="dataHeader">
           ข้อมูลสำหรับ Agent
           <div class="col">
-            <div class="row justify-between dataArea q-col-gutter-sm">
-              <div class="col-4 dataTitle">
-                Agent
-                <div>เจ้าของทรัพย์</div>
-              </div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.agentName"
-                  label="ชื่อ"
-                  dense
-                />
-              </div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.agentLastName"
-                  label="สกุล"
-                  dense
-                />
+            <div class="col justify-around dataArea dataTitle">
+              Agent เจ้าของทรัพย์
+              <div class="row padInputBox q-col-gutter-sm">
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.agentName"
+                    dense
+                    label="ชื่อ"
+                  />
+                </div>
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.agentLastName"
+                    dense
+                    label="สกุล"
+                  />
+                </div>
               </div>
             </div>
           </div>
-
           <div class="col">
-            <div
-              class="row justify-between dataArea items-center q-col-gutter-sm"
-            >
-              <div class="col-4 dataTitle">เจ้าของทรัพย์</div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerName"
-                  label="ชื่อ"
-                  dense
-                />
-              </div>
-              <div class="col-4 dataTitle">
-                <q-input
-                  class="inputBox"
-                  outlined
-                  v-model="agent.propertyOwnerLastName"
-                  label="สกุล"
-                  dense
-                />
+            <div class="col justify-around dataArea dataTitle">
+              ชื่อเจ้าของทรัพย์
+              <div class="row padInputBox q-col-gutter-sm">
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.propertyOwnerName"
+                    dense
+                    label="ชื่อ"
+                  />
+                </div>
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.propertyOwnerLastName"
+                    dense
+                    label="สกุล"
+                  />
+                </div>
               </div>
             </div>
           </div>
-
           <div class="col">
             <div class="row justify-around dataArea q-col-gutter-sm">
               <div class="col dataTitle">

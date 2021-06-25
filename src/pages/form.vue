@@ -578,379 +578,388 @@
         <div v-if="showInput == true">
           <div class="dataHeader">ข้อมูลสำหรับ Agent</div>
           <div class="col">
-            <div class="row justify-around dataArea q-col-gutter-sm">
-              <div class="col dataTitle">
-                ชื่อเจ้าของทรัพย์
-                <div class="padInputBox">
+            <div class="col justify-around dataArea dataTitle">
+              Agent เจ้าของทรัพย์
+              <div class="row padInputBox q-col-gutter-sm">
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.agentName"
+                    dense
+                    label="ชื่อ"
+                  />
+                </div>
+                <div class="col-6 padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.agentLastName"
+                    dense
+                    label="สกุล"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col justify-around dataArea dataTitle">
+              ชื่อเจ้าของทรัพย์
+              <div class="row padInputBox q-col-gutter-sm">
+                <div class="col-6 padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
                     v-model="agent.propertyOwnerName"
                     dense
+                    label="ชื่อ"
                   />
                 </div>
-              </div>
-              <div class="col dataTitle">
-                นามสกุลเจ้าของทรัพย์
-                <div class="padInputBox">
+                <div class="col-6 padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
                     v-model="agent.propertyOwnerLastName"
                     dense
+                    label="สกุล"
                   />
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col">
             <div class="row justify-around dataArea q-col-gutter-sm">
               <div class="col dataTitle">
-                ชื่อเจ้าของทรัพย์
+                เบอรติดต่อที่ 1
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="agent.propertyOwnerName"
+                    v-model="agent.phoneNumber1"
                     dense
                   />
                 </div>
               </div>
               <div class="col dataTitle">
-                นามสกุลเจ้าของทรัพย์
+                เบอรติดต่อที่ 2
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
                     outlined
-                    v-model="agent.propertyOwnerLastName"
+                    v-model="agent.phoneNumber2"
                     dense
                   />
                 </div>
               </div>
             </div>
-
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  เบอรติดต่อที่ 1
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.phoneNumber1"
-                      dense
-                    />
-                  </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ID Line
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.idLine"
+                    dense
+                  />
                 </div>
-                <div class="col dataTitle">
-                  เบอรติดต่อที่ 2
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.phoneNumber2"
-                      dense
-                    />
-                  </div>
+              </div>
+              <div class="col dataTitle">
+                ติดต่อเพิ่มเติม
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.otherContact"
+                    dense
+                  />
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ID Line
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.idLine"
-                      dense
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ติดต่อเพิ่มเติม
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.otherContact"
-                      dense
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  วันที่เริ่มจำนอง
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.mortgageDate"
-                      dense
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ธนาคารที่ติดจำนอง
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.mortgageBank"
-                      dense
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ยอดติดจำนอง
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.mortgagePrice"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ราคาประเมิน
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.appraisalPrice"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ราคาตลาด
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.marketPrice"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ราคา Last Match
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.lastMatch"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ราคาขาย
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.sellPrice"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ราคาเช่า
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.rentalPrice"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ราคาต่ำสุดที่ลดได้
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.minDicount"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  ค่าภาษีธุรกิจเฉพาะ
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.specificTax"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  อัตราคอมฯ
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.commissionRate"
-                      dense
-                      suffix="%"
-                    />
-                  </div>
-                </div>
-                <div class="col dataTitle">
-                  อากร
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.taxation"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea q-col-gutter-sm">
-                <div class="col dataTitle">
-                  ค่าธรรมเนียมโอน
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.transferFee"
-                      dense
-                      suffix="฿"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-between dataArea">
-                <div class="col dataTitle">
-                  เงื่อนไขการโอน
-                  <div class="padInputBox">
-                    <q-input
-                      style="padding-left: 12px; padding-right: 6px"
-                      class="inputBox"
-                      v-model="agent.transterCondition"
-                      dense
-                    >
-                      <q-select
-                        transition-show="scale"
-                        transition-hide="scale"
-                        class="inputBox"
-                        hide-selected
-                        dense
-                        v-model="agent.transterCondition"
-                        :options="options"
-                      />
-                    </q-input>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-between dataArea">
-                <div class="col dataTitle">
-                  อื่นๆ
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      outlined
-                      v-model="agent.otherAgent"
-                      dense
-                      autogrow
-                      type="textarea"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row justify-around dataArea">
-                <div class="col dataTitle">
-                  วันที่ได้ทรัพย์มา
-                  <div class="padInputBox">
-                    <q-input
-                      class="inputBox"
-                      v-model="agent.acquisitionDate"
-                      outlined
-                      dense
-                    >
-                      <template v-slot:append>
-                        <q-icon
-                          name="event"
-                          class="cursor-pointer"
-                          color="black"
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                วันที่เริ่มจำนอง
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.mortgageDate"
+                    dense
+                  >
+                    <template v-slot:append>
+                      <q-icon name="event" class="cursor-pointer" color="black">
+                        <q-popup-proxy
+                          ref="qDateProxy"
+                          transition-show="scale"
+                          transition-hide="scale"
                         >
-                          <q-popup-proxy
-                            ref="qDateProxy"
-                            transition-show="scale"
-                            transition-hide="scale"
-                          >
-                            <q-date
-                              label-color="primary"
-                              v-model="agent.acquisitionDate"
-                            ></q-date>
-                          </q-popup-proxy>
-                        </q-icon>
-                      </template>
-                    </q-input>
-                  </div>
+                          <q-date
+                            label-color="primary"
+                            v-model="agent.mortgageDate"
+                          ></q-date>
+                        </q-popup-proxy>
+                      </q-icon> </template
+                  ></q-input>
+                </div>
+              </div>
+              <div class="col dataTitle">
+                ธนาคารที่ติดจำนอง
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.mortgageBank"
+                    dense
+                  />
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="row justify-between dataArea">
-                <div class="col dataTitle">
-                  หมายเหตุเพิ่มเติม
-                  <div class="padInputBox">
-                    <q-input
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ยอดติดจำนอง
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.mortgagePrice"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+              <div class="col dataTitle">
+                ราคาประเมิน
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.appraisalPrice"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ราคาตลาด
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.marketPrice"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+              <div class="col dataTitle">
+                ราคา Last Match
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.lastMatch"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ราคาขาย
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.sellPrice"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+              <div class="col dataTitle">
+                ราคาเช่า
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.rentalPrice"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ราคาต่ำสุดที่ลดได้
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.minDicount"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+              <div class="col dataTitle">
+                ค่าภาษีธุรกิจเฉพาะ
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.specificTax"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                อัตราคอมฯ
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.commissionRate"
+                    dense
+                    suffix="%"
+                  />
+                </div>
+              </div>
+              <div class="col dataTitle">
+                อากร
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.taxation"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea q-col-gutter-sm">
+              <div class="col dataTitle">
+                ค่าธรรมเนียมโอน
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.transferFee"
+                    dense
+                    suffix="฿"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-between dataArea">
+              <div class="col dataTitle">
+                เงื่อนไขการโอน
+                <div class="padInputBox">
+                  <q-input
+                    style="padding-left: 12px; padding-right: 6px"
+                    class="inputBox"
+                    v-model="agent.transterCondition"
+                    dense
+                  >
+                    <q-select
+                      transition-show="scale"
+                      transition-hide="scale"
                       class="inputBox"
-                      outlined
-                      v-model="agent.additionalNote"
+                      hide-selected
                       dense
-                      autogrow
-                      type="textarea"
+                      v-model="agent.transterCondition"
+                      :options="options"
                     />
-                  </div>
+                  </q-input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-between dataArea">
+              <div class="col dataTitle">
+                อื่นๆ
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.otherAgent"
+                    dense
+                    autogrow
+                    type="textarea"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-around dataArea">
+              <div class="col dataTitle">
+                วันที่ได้ทรัพย์มา
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    v-model="agent.acquisitionDate"
+                    outlined
+                    dense
+                  >
+                    <template v-slot:append>
+                      <q-icon name="event" class="cursor-pointer" color="black">
+                        <q-popup-proxy
+                          ref="qDateProxy"
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date
+                            label-color="primary"
+                            v-model="agent.acquisitionDate"
+                          ></q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row justify-between dataArea">
+              <div class="col dataTitle">
+                หมายเหตุเพิ่มเติม
+                <div class="padInputBox">
+                  <q-input
+                    class="inputBox"
+                    outlined
+                    v-model="agent.additionalNote"
+                    dense
+                    autogrow
+                    type="textarea"
+                  />
                 </div>
               </div>
             </div>
