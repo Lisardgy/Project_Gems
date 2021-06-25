@@ -34,13 +34,13 @@
                   <q-btn
                     class="text-bold"
                     color="primary"
-                    label="cancel"
+                    label="ยกเลิก"
                     v-close-popup
                   />
                   <q-btn
                     class="text-bold"
                     color="red"
-                    label="confirm"
+                    label="ยืนยัน"
                     @click="deleteData()"
                   />
                 </q-card-actions>

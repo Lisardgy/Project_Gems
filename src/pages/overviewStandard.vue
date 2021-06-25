@@ -34,13 +34,13 @@
                   <q-btn
                     class="text-bold"
                     color="primary"
-                    label="cancel"
+                    label="ยกเลิก"
                     v-close-popup
                   />
                   <q-btn
                     class="text-bold"
                     color="red"
-                    label="confirm"
+                    label="ยืนยัน"
                     @click="deleteData()"
                   />
                 </q-card-actions>
@@ -569,6 +569,8 @@ export default {
 
 .agentBG {
   position: relative;
+  color: #fff;
+  background: #fcf75e;
 }
 
 .q-layout {
@@ -665,11 +667,6 @@ export default {
 
 .marginAftSep {
   margin-left: 1.2em;
-}
-
-.agentBG {
-  color: #fff;
-  background: #fcf75e;
 }
 
 .imgwrapper {

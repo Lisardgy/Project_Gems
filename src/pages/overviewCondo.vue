@@ -34,13 +34,13 @@
                   <q-btn
                     class="text-bold"
                     color="primary"
-                    label="cancel"
+                    label="ยกเลิก"
                     v-close-popup
                   />
                   <q-btn
                     class="text-bold"
                     color="red"
-                    label="confirm"
+                    label="ยืนยัน"
                     @click="deleteData()"
                   />
                 </q-card-actions>
@@ -63,9 +63,6 @@
     <div class="row q-px-md justify-between">
       <div class="col">
         <div class="row q-gutter-sm">
-          <div class="tagsStyle text-bold row items-center q-px-sm">
-            {{ this.property.type }}
-          </div>
           <div class="tagsStyle text-bold row items-center q-px-sm">
             {{ this.property.status }}
           </div>
@@ -325,9 +322,9 @@
       <q-img class="topRotate" src="../images/cityRT.png" />
       <q-img class="bottomRotate" src="../images/cityRT.png" />
       <div class="description">
-        <div class="row detailHead">สำหรับ Agent</div>
+        <div class="row detailHead text-black">สำหรับ Agent</div>
         <div class="row q-pa-md" style="font-weight: 600; font-size: 16px">
-          <div class="col q-gutter-y-md">
+          <div class="col q-gutter-y-md text-black">
             <div class="row">
               <div class="col">Agent เจ้าของทรัพย์ :</div>
               <div class="col">
@@ -569,6 +566,8 @@ export default {
 
 .agentBG {
   position: relative;
+  color: #fff;
+  background: #fcf75e;
 }
 
 .q-layout {
@@ -665,11 +664,6 @@ export default {
 
 .marginAftSep {
   margin-left: 1.2em;
-}
-
-.agentBG {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
 }
 
 .imgwrapper {

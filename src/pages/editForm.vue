@@ -689,7 +689,22 @@
                     outlined
                     v-model="agent.mortgageDate"
                     dense
-                  />
+                  >
+                    <template v-slot:append>
+                      <q-icon name="event" class="cursor-pointer" color="black">
+                        <q-popup-proxy
+                          ref="qDateProxy"
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date
+                            label-color="primary"
+                            v-model="agent.mortgageDate"
+                          ></q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
                 </div>
               </div>
               <div class="col dataTitle">
