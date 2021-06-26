@@ -239,8 +239,16 @@ export default {
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
-            const { id, lat, lng, sub_id, property, agent, deleteBy } =
-              doc.data();
+            const {
+              id,
+              lat,
+              lng,
+              sub_id,
+              property,
+              agent,
+              documentName,
+              deleteBy,
+            } = doc.data();
             if (!deleteBy) {
               let icon;
               if (!property.type) {
@@ -264,6 +272,7 @@ export default {
                 property,
                 agent,
                 icon,
+                documentName,
               };
               this.markersStorage.push(positionObject);
             }
@@ -287,9 +296,9 @@ export default {
       this.infoBoxOpen = true;
     },
     selectMarker(data) {
-      const { id, type, property, agent } = data;
+      const { id, type, property, agent, documentName } = data;
       this.setDocumentId({ id });
-      this.setDataProperty({ property, agent });
+      this.setDataProperty({ property, agent, documentName });
       if (type == "คอนโด") {
         this.$router.push({ name: "overviewCondo" });
       } else {

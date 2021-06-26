@@ -58,6 +58,9 @@
       <div class="row q-pa-md justify-center">
         <div class="condoTitle">{{ this.property.name }}</div>
       </div>
+      <div class="row q-px-md">
+        <div class="row condoTitle">{{ this.documentName }}</div>
+      </div>
 
       <div class="row q-px-md justify-between">
         <div class="col">
@@ -289,6 +292,7 @@ export default {
       editPin: false,
       expanded: false,
       confirm: null,
+      documentName: null,
       currentCarouselDonwload: null,
       property: {
         name: null, //ชื่อคอนโด
@@ -315,9 +319,11 @@ export default {
       setCollectionCondo: "collection/setCollectionCondo",
     }),
     async getListCondoById() {
-      const { property, agent } = this.getDataProperty;
+      const { property, agent, documentName } = this.getDataProperty;
+      console.log(this.getDataProperty);
       this.property = property;
       this.agent = agent;
+      this.documentName = documentName;
 
       const db = this.$firebase.firestore();
       await db

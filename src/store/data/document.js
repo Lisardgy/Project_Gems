@@ -1,8 +1,8 @@
 const state = {
     id: '',
     property: {},
-    agent: {
-    },
+    agent: {},
+    documentName: '',
 }
 
 const getters = {
@@ -13,6 +13,7 @@ const getters = {
         return {
             property: state.property,
             agent: state.agent,
+            documentName: state.documentName
         }
     }
 }
@@ -33,6 +34,7 @@ const mutations = {
     SET_DATA_PROPERTY(state, payload) {
         state.property = payload.property
         state.agent = payload.agent
+        state.documentName = payload.documentName
     }
 }
 

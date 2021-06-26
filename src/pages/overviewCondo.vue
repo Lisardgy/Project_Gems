@@ -55,11 +55,13 @@
           </div>
         </div>
       </div>
-      <div class="row q-pa-sm q-ma-sm items-baseline justify-left">
+      <div class="row q-pa-sm q-ma-sm items-baseline justify-center">
         <div class="row title">หมายเลขห้อง {{ this.property.houseNumber }}</div>
       </div>
     </div>
-
+    <div class="row q-px-md items-baseline justify-left">
+      <div class="row title">{{ this.documentName }}</div>
+    </div>
     <div class="row q-px-md justify-between">
       <div class="col">
         <div class="row q-gutter-sm">
@@ -467,6 +469,7 @@ export default {
       editPin: false,
       confirm: null,
       modelImage: [],
+      documentName: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -529,9 +532,10 @@ export default {
   },
   mounted() {
     this.getImage();
-    const { property, agent } = this.getCollectionCondo;
+    const { property, agent, documentName } = this.getCollectionCondo;
     this.property = property;
     this.agent = agent;
+    this.documentName = documentName;
   },
   methods: {
     async deleteData() {
