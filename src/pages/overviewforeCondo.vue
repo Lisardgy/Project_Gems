@@ -76,6 +76,7 @@
               class="downloadIamges row items-centers justify-center"
               size="18px"
               icon="file_download"
+              @click="downloadImage"
             />
           </div>
         </div>
@@ -129,7 +130,7 @@
                 />
               </div>
             </div>
-            <div class="row justify-between q-mt-md">
+            <div class="row justify-between q-mt-md q-mb-xl">
               <div class="text-h5 q-mx-md">{{ this.property.name }}</div>
               <div class="text-h5 q-mx-md">
                 <q-btn
@@ -140,33 +141,33 @@
                 />
               </div>
             </div>
-<div class="q-mt-xl" v-if="modelImage.length < 2">
-            <q-img
-              v-for="(data, index) in modelImage"
-              :key="index"
-              :src="data.url"
-              @click="dialog = true"
-              style="max-height: 200px"
-            />
-          </div>
-          <div v-else>
-            <q-carousel
-              animated
-              swipeable
-              v-model="slide"
-              transition-prev="slide-right"
-              transition-next="slide-left"
-              height="200px"
-            >
-              <q-carousel-slide
+            <div v-if="modelImage.length < 2">
+              <q-img
                 v-for="(data, index) in modelImage"
                 :key="index"
-                :name="index"
-                :img-src="data.url"
+                :src="data.url"
                 @click="dialog = true"
+                style="max-height: 200px"
               />
-            </q-carousel>
-          </div>
+            </div>
+            <div v-else>
+              <q-carousel
+                animated
+                swipeable
+                v-model="slide"
+                transition-prev="slide-right"
+                transition-next="slide-left"
+                height="200px"
+              >
+                <q-carousel-slide
+                  v-for="(data, index) in modelImage"
+                  :key="index"
+                  :name="index"
+                  :img-src="data.url"
+                  @click="dialog = true"
+                />
+              </q-carousel>
+            </div>
           </q-card>
         </q-dialog>
       </div>
@@ -374,6 +375,26 @@ export default {
               url,
               name: itemRef.name,
             });
+          });
+        });
+      });
+    },
+    async downloadImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getDocumentId}`);
+
+      storageRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+          itemRef.getDownloadURL().then((url) => {
+            console.log(url);
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = "blob";
+            xhr.onload = (event) => {
+              var blob = xhr.response;
+            };
+            xhr.open("GET", url);
+            xhr.send();
           });
         });
       });

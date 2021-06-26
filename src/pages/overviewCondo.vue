@@ -72,9 +72,10 @@
         <div class="row justify-end">
           <q-btn
             class="downloadIamges row items-centers justify-center"
-            style="font-size: 28px"
+            size="18px"
+            icon="file_download"
+            @click="downloadImage"
           >
-            <span class="material-icons">file_download</span>
           </q-btn>
         </div>
       </div>
@@ -128,7 +129,7 @@
               />
             </div>
           </div>
-          <div class="row justify-between q-mt-md">
+          <div class="row justify-between q-mt-md q-mb-xl">
             <div class="text-h5 q-mx-md">{{ this.property.houseNumber }}</div>
             <div class="text-h5 q-mx-md">
               <q-btn
@@ -139,7 +140,7 @@
               />
             </div>
           </div>
-          <div class="q-mt-xl" v-if="modelImage.length < 2">
+          <div v-if="modelImage.length < 2">
             <q-img
               v-for="(data, index) in modelImage"
               :key="index"
@@ -570,12 +571,32 @@ export default {
           // Uh-oh, an error occurred!
         });
     },
+    async downloadImage() {
+      const storageRef = this.$firebase
+        .storage()
+        .ref(`property/${this.getCollectionCondo.id}`);
+
+      storageRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+          itemRef.getDownloadURL().then((url) => {
+            console.log(url);
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = "blob";
+            xhr.onload = (event) => {
+              var blob = xhr.response;
+            };
+            xhr.open("GET", url);
+            xhr.send();
+          });
+        });
+      });
+    },
     async downloadSingleImage() {
       const { url, name } = this.modelImage[this.slide];
 
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.getCollectionCondo.id}`);
 
       storageRef
         .child(name)
