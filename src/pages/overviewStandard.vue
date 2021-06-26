@@ -142,14 +142,23 @@
               />
             </div>
           </div>
-          <div class="q-mt-lg">
+          <div class="q-mt-xl" v-if="modelImage.length < 2">
+            <q-img
+              v-for="(data, index) in modelImage"
+              :key="index"
+              :src="data.url"
+              @click="dialog = true"
+              style="max-height: 200px"
+            />
+          </div>
+          <div v-else>
             <q-carousel
               animated
               swipeable
               v-model="slide"
               transition-prev="slide-right"
               transition-next="slide-left"
-              height="400px"
+              height="200px"
             >
               <q-carousel-slide
                 v-for="(data, index) in modelImage"
@@ -455,7 +464,7 @@ export default {
     return {
       dialog: false,
       maximizedToggle: true,
-      slide: 1,
+      slide: 0,
       confirm: null,
       deletePin: false,
       editPin: false,
@@ -565,6 +574,8 @@ export default {
     async downloadSingleImage() {
       const { url, name } = this.modelImage[this.slide];
 
+      console.log(name);
+
       const storageRef = this.$firebase
         .storage()
         .ref(`property/${this.getDocumentId}`);
@@ -573,7 +584,7 @@ export default {
         .child(name)
         .getDownloadURL()
         .then((url) => {
-          console.log(url);
+          // This can be downloaded directly:
           var xhr = new XMLHttpRequest();
           xhr.responseType = "blob";
           xhr.onload = (event) => {
@@ -581,7 +592,9 @@ export default {
           };
           xhr.open("GET", url);
           xhr.send();
-        });
+        })
+
+      console.log("download successs");
     },
   },
 };
