@@ -87,6 +87,7 @@
           :key="index"
           :src="data.url"
           @click="dialog = true"
+          style="max-height:200px"
         />
       </div>
       <div v-else>
