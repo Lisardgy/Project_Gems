@@ -74,10 +74,9 @@
           <div class="row justify-end">
             <q-btn
               class="downloadIamges row items-centers justify-center"
-              style="font-size: 28px"
-            >
-              <span class="material-icons">file_download</span>
-            </q-btn>
+              size="18px"
+              icon="file_download"
+            />
           </div>
         </div>
       </div>
@@ -88,7 +87,7 @@
             :key="index"
             :src="data.url"
             @click="dialog = true"
-            style="max-height:200px"
+            style="max-height: 200px"
           />
         </div>
         <div v-else>
@@ -130,22 +129,34 @@
                 />
               </div>
             </div>
-            <div class="">
+            <div class="row justify-between q-mt-md">
               <div class="text-h5 q-mx-md">{{ this.property.name }}</div>
-            </div>
-            <div v-for="(data, index) in modelImage" :key="index">
-              <div class="row justify-end q-mx-sm">
+              <div class="text-h5 q-mx-md">
                 <q-btn
                   class="downloadIamges row items-centers justify-center"
-                  size="20px"
+                  size="18px"
                   icon="file_download"
-                  @click="downloadSingleImage(data)"
-                >
-                </q-btn>
+                  @click="downloadSingleImage()"
+                />
               </div>
-              <div class="q-my-sm">
-                <q-img :src="data.url" />
-              </div>
+            </div>
+            <div class="q-mt-lg">
+              <q-carousel
+                animated
+                swipeable
+                v-model="slide"
+                transition-prev="slide-right"
+                transition-next="slide-left"
+                height="400px"
+              >
+                <q-carousel-slide
+                  v-for="(data, index) in modelImage"
+                  :key="index"
+                  :name="index"
+                  :img-src="data.url"
+                  @click="dialog = true"
+                />
+              </q-carousel>
             </div>
           </q-card>
         </q-dialog>
@@ -268,6 +279,7 @@ export default {
       editPin: false,
       expanded: false,
       confirm: null,
+      currentCarouselDonwload: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -356,18 +368,16 @@ export default {
           });
         });
       });
-
-      console.log(this.modelImage);
     },
-    async downloadSingleImage(data) {
-      const { url, name } = data;
+    async downloadSingleImage() {
+      const { url, name } = this.modelImage[this.slide];
 
       const storageRef = this.$firebase
         .storage()
         .ref(`property/${this.getDocumentId}`);
 
       storageRef
-        .child(data.name)
+        .child(name)
         .getDownloadURL()
         .then((url) => {
           console.log(url);
@@ -490,6 +500,8 @@ export default {
   color: #ffffff;
   font-size: 16px;
   margin-left: 1em;
+  padding-right: 10px;
+  word-break: break-all;
 }
 
 .marginAftSep {
