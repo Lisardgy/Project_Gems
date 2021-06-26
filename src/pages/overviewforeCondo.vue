@@ -82,22 +82,28 @@
         </div>
       </div>
       <div class="q-px-none q-pt-md">
-        <q-carousel
-          animated
-          swipeable
-          v-model="slide"
-          transition-prev="slide-right"
-          transition-next="slide-left"
-          height="200px"
-        >
-          <q-carousel-slide
-            v-for="(data, index) in modelImage"
-            :key="index"
-            :name="index"
-            :img-src="data.url"
-            @click="dialog = true"
-          />
-        </q-carousel>
+        <div v-if="modelImage.length < 2">
+          <q-img :src="modelImage[0].url" @click="dialog = true" />
+        </div>
+        <div v-else>
+          <q-carousel
+            animated
+            swipeable
+            v-model="slide"
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            height="200px"
+          >
+            <q-carousel-slide
+              v-for="(data, index) in modelImage"
+              :key="index"
+              :name="index"
+              :img-src="data.url"
+              @click="dialog = true"
+            />
+          </q-carousel>
+        </div>
+
         <q-dialog
           v-model="dialog"
           persistent
@@ -273,8 +279,8 @@ export default {
     };
   },
   async mounted() {
+    this.getImage();
     await this.getListCondoById();
-    await this.getImage();
   },
   methods: {
     ...mapActions({
@@ -334,7 +340,7 @@ export default {
         .storage()
         .ref(`property/${this.getDocumentId}`);
 
-      storageRef.listAll().then((res) => {
+      await storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
             this.modelImage.push({
@@ -344,6 +350,8 @@ export default {
           });
         });
       });
+
+      console.log(this.modelImage);
     },
     async downloadSingleImage(data) {
       const { url, name } = data;

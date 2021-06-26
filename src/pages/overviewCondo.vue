@@ -81,22 +81,27 @@
     </div>
     <!-- ยังอ่อนหัด -->
     <div class="q-px-none q-pt-md">
-      <q-carousel
-        animated
-        swipeable
-        v-model="slide"
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        height="200px"
-      >
-        <q-carousel-slide
-          v-for="(data, index) in modelImage"
-          :key="index"
-          :name="index"
-          :img-src="data.url"
-          @click="dialog = true"
-        />
-      </q-carousel>
+      <div v-if="modelImage.length < 2">
+        <q-img :src="modelImage[0].url" @click="dialog = true" />
+      </div>
+      <div v-else>
+        <q-carousel
+          animated
+          swipeable
+          v-model="slide"
+          transition-prev="slide-right"
+          transition-next="slide-left"
+          height="200px"
+        >
+          <q-carousel-slide
+            v-for="(data, index) in modelImage"
+            :key="index"
+            :name="index"
+            :img-src="data.url"
+            @click="dialog = true"
+          />
+        </q-carousel>
+      </div>
       <q-dialog
         v-model="dialog"
         persistent
