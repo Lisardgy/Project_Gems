@@ -1105,6 +1105,8 @@ export default {
     };
   },
   async mounted() {
+    await this.getImage();
+
     this.property = JSON.parse(JSON.stringify(this.getDataProperty.property));
     this.agent = JSON.parse(JSON.stringify(this.getDataProperty.agent));
   },
@@ -1168,7 +1170,7 @@ export default {
     async deleteImage(data) {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getCollectionCondo.id}`);
+        .ref(`property/${this.getDocumentId}`);
 
       storageRef
         .child(data.name)
