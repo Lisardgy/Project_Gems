@@ -976,19 +976,18 @@ export default {
 
       await axios
         .post(`${this.getDatabaseUrl}/create`, mapdata)
-        .then((response) => {
-          this.file_selected.forEach(async (data) => {
-            await storageRef
-              .child(`${response.data.id}/${data.name}`)
-              .put(data)
-              .then((response) => {
-                console.log("upload success");
-              });
-          });
-        });
+        .then(async (response) => {
+          const id = response.data.id;
 
-      this.$q.loading.hide();
-      this.$router.go(-1);
+          await Promise.all([
+            ...this.file_selected.map((data) =>
+              storageRef.child(`${id}/${data.name}`).put(data)
+            ),
+          ]);
+
+          this.$q.loading.hide();
+          this.$router.go(-1);
+        });
     },
     addFile(file) {
       file.map((data) => {

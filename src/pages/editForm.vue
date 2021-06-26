@@ -1129,22 +1129,20 @@ export default {
 
       await axios
         .put(`${this.getDatabaseUrl}/update`, mapdata)
-        .then((response) => {
+        .then(async (response) => {
           const id = response.data.id;
-          this.file_selected.forEach(async (data) => {
-            await storageRef
-              .child(`${id}/${data.name}`)
-              .put(data)
-              .then((response) => {
-                console.log("upload success");
-              });
-          });
+
+          await Promise.all([
+            ...this.file_selected.map((data) =>
+              storageRef.child(`${id}/${data.name}`).put(data)
+            ),
+          ]);
+
+          this.setDataProperty({ property, agent });
+
+          this.$q.loading.hide();
+          this.$router.go(-1);
         });
-
-      this.setDataProperty({ property, agent });
-
-      this.$q.loading.hide();
-      this.$router.go(-1);
     },
     async getImage() {
       const storageRef = this.$firebase

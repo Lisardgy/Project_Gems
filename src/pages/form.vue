@@ -1081,17 +1081,16 @@ export default {
 
       await axios
         .post(`${this.getDatabaseUrl}/create`, mapdata)
-        .then((response) => {
+        .then(async (response) => {
           const id = response.data.id;
 
-          this.file_selected.forEach(async (data) => {
-            await storageRef
-              .child(`${id}/${data.name}`)
-              .put(data)
-              .then((response) => {
-                console.log("upload success");
-              });
-          });
+          await Promise.all([
+            ...this.file_selected.map((data) =>
+              storageRef.child(`${id}/${data.name}`).put(data)
+            ),
+          ]);
+
+          console.log("upload success");
 
           this.$q.loading.hide();
           if (this.property.type == "คอนโด") {

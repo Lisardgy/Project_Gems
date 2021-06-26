@@ -1019,22 +1019,19 @@ export default {
 
       await axios
         .put(`${this.getDatabaseUrl}/update`, mapdata)
-        .then((response) => {
+        .then(async (response) => {
           const id = response.data.id;
-          this.file_selected.forEach(async (data) => {
-            await storageRef
-              .child(`${id}/${data.name}`)
-              .put(data)
-              .then((response) => {
-                console.log("upload success");
-              });
-          });
+          await Promise.all([
+            ...this.file_selected.map((data) =>
+              storageRef.child(`${id}/${data.name}`).put(data)
+            ),
+          ]);
+
+          this.setCollectionCondo(mapdata);
+
+          this.$q.loading.hide();
+          this.$router.go(-1);
         });
-
-      this.setCollectionCondo(mapdata);
-
-      this.$q.loading.hide();
-      this.$router.go(-1);
     },
     async getImage() {
       const storageRef = this.$firebase
@@ -1046,10 +1043,10 @@ export default {
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
-                          this.modelImage.push({
-                url,
-                name: itemRef.name,
-              });
+            this.modelImage.push({
+              url,
+              name: itemRef.name,
+            });
           });
         });
       });

@@ -82,7 +82,12 @@
     <!-- ยังอ่อนหัด -->
     <div class="q-px-none q-pt-md">
       <div v-if="modelImage.length < 2">
-        <q-img :src="modelImage[0].url" @click="dialog = true" />
+        <q-img
+          v-for="(data, index) in modelImage"
+          :key="index"
+          :src="data.url"
+          @click="dialog = true"
+        />
       </div>
       <div v-else>
         <q-carousel
