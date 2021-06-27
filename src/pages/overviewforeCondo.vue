@@ -92,7 +92,6 @@
             v-for="(data, index) in modelImage"
             :key="index"
             :src="data.url"
-            @click="dialog = true"
             style="max-height: 200px"
           />
         </div>
@@ -487,14 +486,19 @@ export default {
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
-            console.log(url);
             var xhr = new XMLHttpRequest();
             xhr.responseType = "blob";
             xhr.onload = (event) => {
-              var blob = xhr.response;
+              var a = document.createElement("a");
+              a.href = window.URL.createObjectURL(xhr.response);
+              a.download = itemRef.name; // Name the file anything you'd like.
+              a.style.display = "none";
+              document.body.appendChild(a);
+              a.click();
             };
             xhr.open("GET", url);
             xhr.send();
+            console.log(xhr);
           });
         });
       });
