@@ -229,13 +229,13 @@ export default {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
       setCollectionListCondo: "collection/setCollectionListCondo",
+      setStatusCondo: "collection/setStatusCondo",
       setDataProperty: "document/setDataProperty",
     }),
     async getCollectionData() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
-        .where("lat", "!=", "")
         .get()
         .then((snap) => {
           snap.forEach((doc) => {
@@ -278,16 +278,28 @@ export default {
             }
           });
         });
-      this.markers = this.markersStorage;
+      console.log(this.markersStorage.length);
+      this.markers = this.markersStorage.filter((item) => item.type != null);
+      console.log(this.markers.length);
     },
     setStatus(status) {
       this.statusMarker = status;
+      this.setStatusCondo(status);
       if (status == "ทั้งหมด") {
         this.markers = this.markersStorage;
       } else {
-        this.markers = this.markersStorage.filter(
-          (data) => data.status == status
-        );
+        this.markers = this.markersStorage.filter((data) => {
+          if (data.type == "คอนโด") {
+            const { id } = data;
+            const find = this.markersStorage.filter(
+              (item) => item.sub_id == id && item.status == status
+            );
+
+            if (find.length != 0) return data;
+          } else {
+            if (data.status == status) return data;
+          }
+        });
       }
       this.statusModal = false;
     },

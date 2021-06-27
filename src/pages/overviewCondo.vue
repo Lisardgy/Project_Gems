@@ -16,11 +16,13 @@
         </div>
         <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
-            <q-btn
-              class="operationBtn row items-center justify-center"
-              label="ลบ"
-              @click="confirm = true"
-            />
+            <div v-if="this.getRoleUser.delete.includes(this.getUserLogin.uid)">
+              <q-btn
+                class="operationBtn row items-center justify-center"
+                label="ลบ"
+                @click="confirm = true"
+              />
+            </div>
             <q-dialog v-model="confirm" persistent>
               <q-card>
                 <q-card-section class="row items-center">
@@ -37,18 +39,12 @@
                     label="ยกเลิก"
                     v-close-popup
                   />
-                  <div
-                    v-If="
-                      this.getRoleUser.delete.includes(this.getUserLogin.uid)
-                    "
-                  >
-                    <q-btn
-                      class="text-bold"
-                      color="red"
-                      label="ยืนยัน"
-                      @click="deleteData()"
-                    />
-                  </div>
+                  <q-btn
+                    class="text-bold"
+                    color="red"
+                    label="ยืนยัน"
+                    @click="deleteData()"
+                  />
                 </q-card-actions>
               </q-card>
             </q-dialog>
