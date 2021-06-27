@@ -37,12 +37,18 @@
                     label="ยกเลิก"
                     v-close-popup
                   />
-                  <q-btn
-                    class="text-bold"
-                    color="red"
-                    label="ยืนยัน"
-                    @click="deleteData()"
-                  />
+                  <div
+                    v-If="
+                      this.getRoleUser.delete.includes(this.getUserLogin.uid)
+                    "
+                  >
+                    <q-btn
+                      class="text-bold"
+                      color="red"
+                      label="ยืนยัน"
+                      @click="deleteData()"
+                    />
+                  </div>
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -460,6 +466,7 @@ export default {
       getDocumentId: "document/getDocumentId",
       getDataProperty: "document/getDataProperty",
       getUserLogin: "user_config/getUserLogin",
+      getRoleUser: "user_config/getRoleUser",
       getDatabaseUrl: "databaseUrl/getDatabaseUrl",
     }),
   },

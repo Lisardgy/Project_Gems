@@ -1,7 +1,10 @@
 const state = {
-    uid: 'Doublepor',
+    uid: '',
     email: '',
     password: '',
+    role: {
+        delete: ["ap5frydFiLgKARYLa8UB3mcjSPz1"]
+    }
 }
 
 const getters = {
@@ -11,6 +14,9 @@ const getters = {
             email: state.email,
             password: state.password,
         };
+    },
+    getRoleUser: (state, getters, rootState) => {
+        return state.role
     }
 }
 

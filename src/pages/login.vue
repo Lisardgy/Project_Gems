@@ -24,13 +24,17 @@
             square
             clearable
             class="userAndPass q-mt-md"
-            type="password"
+            :type="isPwd ? 'password' : 'text'"
             label="Password"
             v-model="password"
             name="password"
           >
             <template v-slot:prepend>
-              <q-icon name="visibility" />
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+              />
             </template>
           </q-input>
         </q-form>
@@ -60,17 +64,31 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      username: "",
+      isPwd: false,
+      username: null,
       password: null,
     };
   },
   methods: {
     ...mapActions({
-      setCollectionFirebase: "firebaseCollection/setCollectionFirebase",
+      setUserLogin: "user_config/setUserLogin",
     }),
     signIn() {
-      // this.setCollectionFirebase();
-      this.$router.push({ name: "map" });
+      this.$firebase
+        .auth()
+        .signInWithEmailAndPassword(this.username, this.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          const { uid, email, password } = user;
+          this.setUserLogin({ uid, email, password });
+          this.$router.push({ name: "map" });
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+        });
+
+      // this.$router.push({ name: "map" });
     },
   },
 };
