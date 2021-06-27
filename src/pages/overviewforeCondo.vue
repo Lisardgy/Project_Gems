@@ -233,6 +233,74 @@
           />
         </div>
       </div>
+      <div class="q-mx-md q-mt-md row justify-end">
+        <q-btn
+          style="background-color: #ffff01"
+          class="text-bold"
+          rounded
+          :label="statusMarker"
+          icon="filter_list"
+          @click="statusModal = true"
+        />
+      </div>
+
+      <q-dialog v-model="statusModal">
+        <q-card style="background: #010135; color: white">
+          <q-card-section class="row justify-center q-pb-none">
+            <div class="col-12 text-center">
+              <div class="text-h4 text-weight-bold" style="color: #ffdd02">
+                สถานะ
+              </div>
+            </div>
+          </q-card-section>
+          <q-card-section>
+            <div class="column items-center q-px-xl text-h6 text-white">
+              <q-btn
+                class="font-button-status full-width"
+                flat
+                label="รอขาย"
+                size="20px"
+                @click="setStatus('รอขาย')"
+              />
+              <q-btn
+                class="font-button-status full-width"
+                flat
+                label="รอเช่า"
+                size="20px"
+                @click="setStatus('รอเช่า')"
+              />
+              <q-btn
+                class="font-button-status full-width"
+                flat
+                label="รอเช่า/รอขาย"
+                size="20px"
+                @click="setStatus('รอเช่า/รอขาย')"
+              />
+              <q-btn
+                class="font-button-status full-width"
+                flat
+                label="ขายแล้ว"
+                size="20px"
+                @click="setStatus('ขายแล้ว')"
+              />
+              <q-btn
+                class="font-button-status full-width"
+                flat
+                label="เช่าแล้ว"
+                size="20px"
+                @click="setStatus('เช่าแล้ว')"
+              />
+              <q-btn
+                class="font-button-status"
+                flat
+                label="ทั้งหมด"
+                size="20px"
+                @click="setStatus('ทั้งหมด')"
+              />
+            </div>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
 
       <div
         class="q-pa-md row justify-center"
@@ -240,8 +308,9 @@
         :key="index"
       >
         <q-card class="card2 full-width" flat @click="setCondoOverview(item)">
-          <q-img :src="item.url" />
-
+          <div v-if="item.url != null">
+            <q-img :src="item.url" height="200px" />
+          </div>
           <q-card-section>
             <div class="text-h6 q-mt-sm q-mb-xs text-bold">
               หมายเลขห้อง : {{ item.data.property.houseNumber }}
@@ -300,7 +369,9 @@ export default {
       expanded: false,
       confirm: null,
       documentName: null,
+      statusMarker: "ทั้งหมด",
       currentCarouselDonwload: null,
+      statusModal: false,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -314,6 +385,7 @@ export default {
         province: null, //จังหวัด
       },
       listCondoPreview: [],
+      listCondoStorage: [],
       listImageCondo: [],
     };
   },
@@ -342,18 +414,38 @@ export default {
             if (!deleteBy) {
               const storageRef = this.$firebase.storage().ref(`property/${id}`);
               await storageRef.list({ maxResults: 1 }).then((res) => {
-                res.items.forEach((itemRef) => {
-                  itemRef.getDownloadURL().then((url) => {
-                    this.listCondoPreview.push({
-                      data: doc.data(),
-                      url,
+                if (!res.items[0]) {
+                  this.listCondoStorage.push({
+                    data: doc.data(),
+                    url: null,
+                  });
+                } else {
+                  res.items.forEach((itemRef) => {
+                    itemRef.getDownloadURL().then((url) => {
+                      this.listCondoStorage.push({
+                        data: doc.data(),
+                        url,
+                      });
                     });
                   });
-                });
+                }
               });
             }
           });
         });
+
+      this.listCondoPreview = this.listCondoStorage;
+    },
+    setStatus(status) {
+      this.statusMarker = status;
+      if (status == "ทั้งหมด") {
+        this.listCondoPreview = this.listCondoStorage;
+      } else {
+        this.listCondoPreview = this.listCondoStorage.filter(
+          (item) => item.data.property.status == status
+        );
+      }
+      this.statusModal = false;
     },
     setCondoOverview(item) {
       this.setCollectionCondo(item.data);
