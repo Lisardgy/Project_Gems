@@ -5,12 +5,12 @@
         <q-toolbar-title class="absolute-center headFontColor">
           GEMS
         </q-toolbar-title>
+        <q-toolbar-title class="absolute-right headFontColor">
+          <q-icon name="logout" @click="logout()" />
+        </q-toolbar-title>
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <!-- <div class="text-h6">
-        {{ mapCoordinates.lat }} Latitude, {{ mapCoordinates.lng }} Longitude
-      </div> -->
       <q-page>
         <GmapMap
           :center="myCoordinates"
@@ -307,6 +307,11 @@ export default {
     },
     getCurrentLocation() {
       this.map.setCenter(this.myCoordinates);
+    },
+    logout() {
+      this.$auth.signOut().then(() => {
+        this.$router.push({ name: "login" });
+      });
     },
   },
   computed: {
