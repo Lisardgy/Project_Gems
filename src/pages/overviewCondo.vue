@@ -88,6 +88,7 @@
     <div class="q-px-none q-pt-md">
       <div v-if="modelImage.length < 2">
         <q-img
+          :ratio="16 / 9"
           v-for="(data, index) in modelImage"
           :key="index"
           :src="data.url"
@@ -107,9 +108,10 @@
             v-for="(data, index) in modelImage"
             :key="index"
             :name="index"
-            :img-src="data.url"
             @click="dialog = true"
-          />
+          >
+            <q-img :ratio="16 / 9" :src="data.url" />
+          </q-carousel-slide>
         </q-carousel>
       </div>
       <q-dialog
@@ -167,7 +169,9 @@
                 :name="index"
                 :img-src="data.url"
                 @click="dialog = true"
-              />
+              >
+                <q-img :ratio="16 / 9" :src="data.url" />
+              </q-carousel-slide>
             </q-carousel>
           </div>
         </q-card>
