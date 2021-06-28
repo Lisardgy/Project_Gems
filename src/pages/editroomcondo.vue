@@ -447,7 +447,7 @@
           <div class="dataTitle dataArea">
             <div class="row">
               <div
-                class="col-4 q-px-xs"
+                class="col-4 q-px-xs q-my-xs"
                 v-for="(data, index) in modelImage"
                 :key="index"
               >
@@ -459,10 +459,10 @@
                     color="red"
                     icon="close"
                     style="top: 2px; right: 2px"
-                    @click="deleteImg = true"
+                    @click="dialogDelete(index)"
                   />
                 </q-img>
-                <q-dialog v-model="deleteImg" persistent>
+                <q-dialog v-model="deleteImg" :key="index">
                   <q-card>
                     <q-card-section class="row items-center">
                       <q-avatar icon="delete" color="red" text-color="white" />
@@ -470,7 +470,6 @@
                         ยืนยันการลบรูปภาพ
                       </span>
                     </q-card-section>
-
                     <q-card-actions align="right">
                       <q-btn
                         class="text-bold"
@@ -482,7 +481,7 @@
                         class="text-bold"
                         color="red"
                         label="ยืนยัน"
-                        @click="deleteImage(data)"
+                        @click="deleteImage()"
                       />
                     </q-card-actions>
                   </q-card>
@@ -929,6 +928,7 @@ export default {
       upDate: "",
       date: "",
       deleteImg: null,
+      deleteIndex: null,
       model: null,
       property: {
         name: null, //ชื่อคอนโด
@@ -1038,8 +1038,6 @@ export default {
         .storage()
         .ref(`property/${this.getCollectionCondo.id}`);
 
-      console.log(this.getCollectionCondo.id);
-
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
@@ -1051,18 +1049,22 @@ export default {
         });
       });
     },
-    async deleteImage(data) {
+    dialogDelete(index) {
+      this.deleteImg = true;
+      this.deleteIndex = index;
+    },
+    async deleteImage() {
+      const { name } = this.modelImage[this.deleteIndex];
+
       const storageRef = this.$firebase
         .storage()
         .ref(`property/${this.getCollectionCondo.id}`);
 
       storageRef
-        .child(data.name)
+        .child(name)
         .delete()
         .then(() => {
-          this.modelImage = this.modelImage.filter(
-            (item) => item.name != data.name
-          );
+          this.modelImage = this.modelImage.filter((item) => item.name != name);
         });
 
       this.deleteImg = false;

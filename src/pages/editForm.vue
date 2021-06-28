@@ -300,7 +300,7 @@
                 </div>
               </div>
               <div class="col-6 dataTitle">
-                เนื่อที่ทีดิน
+                เนื้อที่ที่ดิน
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"
@@ -560,7 +560,7 @@
           <div class="dataTitle dataArea">
             <div class="row">
               <div
-                class="col-4 q-px-xs"
+                class="col-4 q-px-xs q-my-xs"
                 v-for="(data, index) in modelImage"
                 :key="index"
               >
@@ -572,7 +572,7 @@
                     color="red"
                     icon="close"
                     style="top: 2px; right: 2px"
-                    @click="deleteImg = true"
+                    @click="dialogDelete(index)"
                   />
                 </q-img>
                 <q-dialog v-model="deleteImg" persistent>
@@ -595,7 +595,7 @@
                         class="text-bold"
                         color="red"
                         label="ยืนยัน"
-                        @click="deleteImage(data)"
+                        @click="deleteImage()"
                       />
                     </q-card-actions>
                   </q-card>
@@ -1044,6 +1044,7 @@ export default {
       ],
       model: null,
       deleteImg: null,
+      deleteIndex: null,
       property: {
         name: null, //ชื่อคอนโด
         type: null,
@@ -1167,18 +1168,22 @@ export default {
           // Uh-oh, an error occurred!
         });
     },
-    async deleteImage(data) {
+    dialogDelete(index) {
+      this.deleteImg = true;
+      this.deleteIndex = index;
+    },
+    async deleteImage() {
+      const { name } = this.modelImage[this.deleteIndex];
+
       const storageRef = this.$firebase
         .storage()
         .ref(`property/${this.getDocumentId}`);
 
       storageRef
-        .child(data.name)
+        .child(name)
         .delete()
         .then(() => {
-          this.modelImage = this.modelImage.filter(
-            (item) => item.name != data.name
-          );
+          this.modelImage = this.modelImage.filter((item) => item.name != name);
         });
 
       this.deleteImg = false;
