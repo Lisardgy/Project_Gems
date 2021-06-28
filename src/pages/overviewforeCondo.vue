@@ -102,7 +102,7 @@
             v-model="slide"
             transition-prev="slide-right"
             transition-next="slide-left"
-            height="200px"
+            height="auto"
           >
             <q-carousel-slide
               v-for="(data, index) in modelImage"
@@ -110,7 +110,9 @@
               :name="index"
               :img-src="data.url"
               @click="dialog = true"
-            />
+            >
+              <q-img :ratio="4 / 3" fit="cover" :src="data.url" />
+            </q-carousel-slide>
           </q-carousel>
         </div>
 
@@ -161,7 +163,7 @@
                 v-model="slide"
                 transition-prev="slide-right"
                 transition-next="slide-left"
-                height="200px"
+                height="auto"
               >
                 <q-carousel-slide
                   v-for="(data, index) in modelImage"
@@ -169,7 +171,9 @@
                   :name="index"
                   :img-src="data.url"
                   @click="dialog = true"
-                />
+                >
+                  <q-img :ratio="4 / 3" fit="cover" :src="data.url" />
+                </q-carousel-slide>
               </q-carousel>
             </div>
           </q-card>
