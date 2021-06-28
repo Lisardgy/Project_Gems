@@ -278,9 +278,7 @@ export default {
             }
           });
         });
-      console.log(this.markersStorage.length);
       this.markers = this.markersStorage.filter((item) => item.type != null);
-      console.log(this.markers.length);
     },
     setStatus(status) {
       this.statusMarker = status;
@@ -335,8 +333,8 @@ export default {
         };
       }
       return {
-        lat: this.map.getCenter().lat().toFixed(4),
-        lng: this.map.getCenter().lng().toFixed(4),
+        lat: this.map.getCenter().lat().toFixed(8),
+        lng: this.map.getCenter().lng().toFixed(8),
       };
     },
   },

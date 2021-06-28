@@ -111,8 +111,8 @@ export default {
         };
       }
       return {
-        lat: this.map.getCenter().lat().toFixed(4),
-        lng: this.map.getCenter().lng().toFixed(4),
+        lat: this.map.getCenter().lat().toFixed(8),
+        lng: this.map.getCenter().lng().toFixed(8),
       };
     },
   },
