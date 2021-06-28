@@ -16,7 +16,7 @@
         </div>
         <div class="col q-pt-md q-px-md">
           <div class="row justify-end">
-            <div v-if="this.getRoleUser.delete.includes(this.getUserLogin.uid)">
+            <div v-if="this.getUserLogin.status == 'admin'">
               <q-btn
                 class="operationBtn row items-center justify-center"
                 label="ลบ"
@@ -453,9 +453,13 @@ export default {
     async deleteData() {
       this.$q.loading.show();
 
+      const { uid, email } = this.getUserLogin;
       const mapdata = {
         id: this.getDocumentId,
-        uid: this.getUserLogin.uid,
+        user: {
+          uid,
+          email,
+        },
       };
 
       await axios.put(`${this.getDatabaseUrl}/delete`, mapdata);

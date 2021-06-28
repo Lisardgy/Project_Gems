@@ -1057,7 +1057,6 @@ export default {
       }, //
     };
   },
-  mounted() {},
   methods: {
     ...mapActions({
       setDocumentId: "document/setDocumentId",
@@ -1067,9 +1066,13 @@ export default {
 
       const property = this.property;
       const agent = this.agent;
+      const { uid, email } = this.getUserLogin;
 
       const mapdata = {
-        uid: this.getUserLogin.uid,
+        user: {
+          uid,
+          email,
+        },
         lat: this.getPosition.lat,
         lng: this.getPosition.lng,
         sub_id: null,

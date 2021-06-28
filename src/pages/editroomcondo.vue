@@ -1007,10 +1007,14 @@ export default {
 
       const property = this.property;
       const agent = this.agent;
+      const { uid, email } = this.getUserLogin;
 
       const mapdata = {
         id: this.getCollectionCondo.id,
-        uid: this.getUserLogin.uid,
+        user: {
+          uid,
+          email,
+        },
         property,
         agent,
       };

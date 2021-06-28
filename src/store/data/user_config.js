@@ -2,9 +2,7 @@ const state = {
     uid: '',
     email: '',
     password: '',
-    role: {
-        delete: ["ap5frydFiLgKARYLa8UB3mcjSPz1"]
-    }
+    status: '',
 }
 
 const getters = {
@@ -13,11 +11,9 @@ const getters = {
             uid: state.uid,
             email: state.email,
             password: state.password,
+            status: state.status
         };
     },
-    getRoleUser: (state, getters, rootState) => {
-        return state.role
-    }
 }
 
 const actions = {
@@ -31,6 +27,7 @@ const mutations = {
         state.uid = payload.uid;
         state.email = payload.email;
         state.password = payload.password;
+        state.status = payload.status;
     }
 }
 

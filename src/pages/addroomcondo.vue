@@ -962,9 +962,13 @@ export default {
 
       const property = this.property;
       const agent = this.agent;
+      const { uid, email } = this.getUserLogin;
 
       const mapdata = {
-        uid: this.getUserLogin.uid,
+        user: {
+          uid,
+          email,
+        },
         lat: null,
         lng: null,
         sub_id: this.getDocumentId,

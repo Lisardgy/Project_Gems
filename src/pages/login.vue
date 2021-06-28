@@ -79,16 +79,27 @@ export default {
         .signInWithEmailAndPassword(this.username, this.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          const { uid, email, password } = user;
-          this.setUserLogin({ uid, email, password });
-          this.$router.push({ name: "map" });
+          this.checkUser(user);
         })
         .catch((error) => {
           var errorCode = error.code;
           var errorMessage = error.message;
         });
-
-      // this.$router.push({ name: "map" });
+    },
+    async checkUser(user) {
+      const { uid, email, password } = user;
+      const db = this.$firebase.firestore();
+      await db
+        .collection("user")
+        .where("uid", "==", "1kQuvIaJ1tNg2cT4ly0YOH5WIRZ2")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            const { status } = doc.data();
+            this.setUserLogin({ uid, email, password, status });
+            this.$router.push({ name: "map" });
+          });
+        });
     },
   },
 };
