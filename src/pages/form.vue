@@ -302,7 +302,7 @@
                   </div>
                 </div>
                 <div class="col-6 dataTitle">
-                  เนื่อที่ทีดิน
+                  เนื้อที่ที่ดิน
                   <div class="padInputBox">
                     <q-input
                       class="inputBox"
