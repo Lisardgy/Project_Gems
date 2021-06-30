@@ -18,6 +18,7 @@
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
         >
+          <GmapMarker :position="myPosition" :clickable="true" />
           <GmapMarker
             :key="index"
             v-for="(m, index) in markers"
@@ -194,6 +195,10 @@ export default {
         open: false,
         template: "",
       },
+      myPosition: {
+        lat: 0,
+        lng: 0,
+      },
       status: null,
       statusMarker: "ทั้งหมด",
       markers: [],
@@ -335,6 +340,14 @@ export default {
       return {
         lat: this.map.getCenter().lat().toFixed(8),
         lng: this.map.getCenter().lng().toFixed(8),
+      };
+    },
+  },
+  watch: {
+    mapCoordinates(val) {
+      this.myPosition = {
+        lat: parseFloat(val.lat),
+        lng: parseFloat(val.lng),
       };
     },
   },
