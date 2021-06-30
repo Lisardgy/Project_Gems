@@ -864,7 +864,7 @@
                 </div>
               </div>
               <div class="col dataTitle">
-                ค่าภาษีธุรกิจเฉพาะ
+                ภาษี/ภาษีธุรกิจเฉพาะ
                 <div class="padInputBox">
                   <q-input
                     class="inputBox"

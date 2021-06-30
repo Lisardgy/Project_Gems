@@ -408,7 +408,7 @@
               <div class="col">{{ this.agent.minDicount }}</div>
             </div>
             <div class="row">
-              <div class="col">ค่าภาษีธุรกิจเฉพาะ :</div>
+              <div class="col">ภาษี/ภาษีธุรกิจเฉพาะ :</div>
               <div class="col">{{ this.agent.specificTax }}</div>
             </div>
             <div class="row">

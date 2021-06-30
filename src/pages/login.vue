@@ -91,7 +91,7 @@ export default {
       const db = this.$firebase.firestore();
       await db
         .collection("user")
-        .where("uid", "==", "1kQuvIaJ1tNg2cT4ly0YOH5WIRZ2")
+        .where("uid", "==", uid)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
