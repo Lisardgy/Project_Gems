@@ -92,7 +92,6 @@
           v-for="(data, index) in modelImage"
           :key="index"
           :src="data.url"
-          style="max-height: 200px"
         />
       </div>
       <div v-else>
@@ -151,8 +150,6 @@
               v-for="(data, index) in modelImage"
               :key="index"
               :src="data.url"
-              @click="dialog = true"
-              style="max-height: 200px"
             />
           </div>
           <div v-else>
@@ -162,7 +159,7 @@
               v-model="slide"
               transition-prev="slide-right"
               transition-next="slide-left"
-              height="200px"
+              height="auto"
             >
               <q-carousel-slide
                 v-for="(data, index) in modelImage"

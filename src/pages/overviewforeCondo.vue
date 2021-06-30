@@ -89,10 +89,10 @@
       <div class="q-px-none q-pt-md">
         <div v-if="modelImage.length < 2">
           <q-img
+            :ratio="4 / 3"
             v-for="(data, index) in modelImage"
             :key="index"
             :src="data.url"
-            style="max-height: 200px"
           />
         </div>
         <div v-else>
@@ -321,6 +321,26 @@
                 </div>
                 <div class="text-bold q-px-sm" style="font-size: 15px">
                   อาคาร/ตึก : {{ item.data.property.building }}
+                </div>
+              </div>
+            </div>
+            <div class="col row q-pa-none q-ma-none items-center">
+              <div class="col-6 justify-start">
+                <div class="row">
+                  <div class="text-bold" style="font-size: 15px">
+                    ราคาขาย :
+                    <span style="font-size: 18px">
+                      {{ item.data.agent.sellPrice }}
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="text-bold" style="font-size: 15px">
+                    ราคาเช่า :
+                    <span style="font-size: 18px">
+                      {{ item.data.agent.rentalPrice }}
+                    </span>
+                  </div>
                 </div>
               </div>
               <div class="col-6 row justify-end">

@@ -95,7 +95,6 @@
           v-for="(data, index) in modelImage"
           :key="index"
           :src="data.url"
-          style="max-height: 200px"
         />
       </div>
       <div v-else>
@@ -139,7 +138,7 @@
             </div>
           </div>
           <div class="row justify-between q-mt-md q-mb-xl">
-            <div class="text-h5 q-mx-md">{{ this.property.houseNumber }}</div>
+            <div class="text-h5 q-mx-md">{{ this.property.name }}</div>
             <div class="text-h5 q-mx-md">
               <q-btn
                 class="downloadIamges row items-centers justify-center"
@@ -154,7 +153,6 @@
               v-for="(data, index) in modelImage"
               :key="index"
               :src="data.url"
-              @click="dialog = true"
               :ratio="4 / 3"
             />
           </div>
@@ -171,7 +169,6 @@
                 v-for="(data, index) in modelImage"
                 :key="index"
                 :name="index"
-                :img-src="data.url"
                 @click="dialog = true"
               >
                 <q-img :ratio="4 / 3" :src="data.url" />
