@@ -18,7 +18,7 @@
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
         >
-          <GmapMarker :position="myPosition" :clickable="true" />
+          <GmapMarker :position="myPosition.position" :icon="myPosition.icon" />
           <GmapMarker
             :key="index"
             v-for="(m, index) in markers"
@@ -196,8 +196,14 @@ export default {
         template: "",
       },
       myPosition: {
-        lat: 0,
-        lng: 0,
+        position: {
+          lat: 0,
+          lng: 0,
+        },
+        icon: {
+          url: require(`../images/Marker_icon/myposition.png`),
+          scaledSize: { width: 30, height: 45, f: "px", b: "px" },
+        },
       },
       status: null,
       statusMarker: "ทั้งหมด",
@@ -344,8 +350,8 @@ export default {
     },
   },
   watch: {
-    mapCoordinates(val) {
-      this.myPosition = {
+    myCoordinates(val) {
+      this.myPosition.position = {
         lat: parseFloat(val.lat),
         lng: parseFloat(val.lng),
       };
