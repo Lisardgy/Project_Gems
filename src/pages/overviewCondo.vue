@@ -185,37 +185,37 @@
         <div class="col">
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">หมายเลขห้อง:</span>
+              <span style="color: #fcff68">หมายเลขห้อง :</span>
               {{ this.property.houseNumber }}
             </div>
             <div>
-              <span style="color: #fcff68">ชั้น:</span>
+              <span style="color: #fcff68">ชั้น :</span>
               {{ this.property.swine }}
             </div>
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ซอย-ถนน:</span>
+              <span style="color: #fcff68">ซอย-ถนน :</span>
               {{ this.property.alley }}
             </div>
             <div>
-              <span style="color: #fcff68">อาคาร/ตึก</span>
+              <span style="color: #fcff68">อาคาร/ตึก :</span>
               {{ this.property.building }}
             </div>
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ตำบล:</span>
+              <span style="color: #fcff68">ตำบล :</span>
               {{ this.property.subDistict }}
             </div>
             <div>
-              <span style="color: #fcff68">อำเภอ:</span>
+              <span style="color: #fcff68">อำเภอ :</span>
               {{ this.property.distict }}
             </div>
           </div>
           <div class="row between">
             <div>
-              <span style="color: #fcff68">จังหวัด:</span>
+              <span style="color: #fcff68">จังหวัด :</span>
               {{ this.property.province }}
             </div>
           </div>

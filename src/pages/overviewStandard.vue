@@ -188,37 +188,37 @@
         <div class="col">
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">บ้านเลขที่:</span>
+              <span style="color: #fcff68">บ้านเลขที่ :</span>
               {{ this.property.houseNumber }}
             </div>
             <div>
-              <span style="color: #fcff68">หมู่ที่/ชั้น:</span>
+              <span style="color: #fcff68">หมู่ที่/ชั้น :</span>
               {{ this.property.swine }}
             </div>
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ซอย-ถนน:</span>
+              <span style="color: #fcff68">ซอย-ถนน :</span>
               {{ this.property.alley }}
             </div>
             <div>
-              <span style="color: #fcff68">อาคาร/ตึก</span>
+              <span style="color: #fcff68">อาคาร/ตึก :</span>
               {{ this.property.building }}
             </div>
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">ตำบล:</span>
+              <span style="color: #fcff68">ตำบล :</span>
               {{ this.property.subDistict }}
             </div>
             <div>
-              <span style="color: #fcff68">อำเภอ:</span>
+              <span style="color: #fcff68">อำเภอ :</span>
               {{ this.property.distict }}
             </div>
           </div>
           <div class="row between">
             <div>
-              <span style="color: #fcff68">จังหวัด:</span>
+              <span style="color: #fcff68">จังหวัด :</span>
               {{ this.property.province }}
             </div>
           </div>
@@ -260,8 +260,8 @@
               {{ this.property.floor }}
             </div>
             <div>
-              <span style="color: #fcff68">ห้องน้ำ :</span
-              >{{ this.property.toilet }}
+              <span style="color: #fcff68">ห้องน้ำ :</span>
+              {{ this.property.toilet }}
             </div>
           </div>
           <div class="row justify-between">
@@ -272,8 +272,8 @@
           </div>
           <div class="row justify-between">
             <div>
-              <span style="color: #fcff68">เครื่องใช้ไฟฟ้าที่ได้ :</span
-              >{{ this.property.electronic }}
+              <span style="color: #fcff68">เครื่องใช้ไฟฟ้าที่ได้ :</span>
+              {{ this.property.electronic }}
             </div>
           </div>
         </div>
