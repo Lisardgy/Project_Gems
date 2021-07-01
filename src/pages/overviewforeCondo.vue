@@ -514,6 +514,7 @@ export default {
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
+            console.log(url);
             var xhr = new XMLHttpRequest();
             xhr.responseType = "blob";
             xhr.onload = (event) => {
@@ -526,7 +527,6 @@ export default {
             };
             xhr.open("GET", url);
             xhr.send();
-            console.log(xhr);
           });
         });
       });

@@ -101,7 +101,7 @@
           v-model="slide"
           transition-prev="slide-right"
           transition-next="slide-left"
-          height="200px"
+          height="auto"
         >
           <q-carousel-slide
             v-for="(data, index) in modelImage"
@@ -165,7 +165,6 @@
                 v-for="(data, index) in modelImage"
                 :key="index"
                 :name="index"
-                :img-src="data.url"
                 @click="dialog = true"
               >
                 <q-img :ratio="4 / 3" :src="data.url" />

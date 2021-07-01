@@ -110,7 +110,6 @@
             v-for="(data, index) in modelImage"
             :key="index"
             :name="index"
-            :img-src="data.url"
             @click="dialog = true"
           >
             <q-img :ratio="4 / 3" :src="data.url" />
@@ -568,21 +567,18 @@ export default {
         .storage()
         .ref(`property/${this.getDocumentId}`);
 
-      storageRef
-        .listAll()
-        .then((res) => {
-          res.items.forEach((itemRef) => {
-            itemRef.getDownloadURL().then((url) => {
-              this.modelImage.push({
-                url,
-                name: itemRef.name,
-              });
+      storageRef.listAll().then((res) => {
+        res.items.forEach((itemRef) => {
+          itemRef.getDownloadURL().then((url) => {
+            this.modelImage.push({
+              url,
+              name: itemRef.name,
             });
           });
-        })
-        .catch((error) => {
-          // Uh-oh, an error occurred!
         });
+      });
+
+      console.log(this.modelImage);
     },
     async downloadImage() {
       const storageRef = this.$firebase
