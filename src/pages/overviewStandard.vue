@@ -9,7 +9,7 @@
             icon="arrow_back_ios"
             style="color: #ffff01"
             class="overflow-hidden"
-            @click="$router.go(-1)"
+            @click="$router.push({ name: 'map' })"
           >
             <div style="padding-left: 0px">ย้อนกลับ</div>
           </q-btn>
@@ -550,6 +550,9 @@ export default {
     await this.getImage();
   },
   methods: {
+    ...mapActions({
+      setDataProperty: "document/setDataProperty",
+    }),
     async queryDoc() {
       const db = this.$firebase.firestore();
       const docRef = db.collection("property").doc(this.propertyId);
@@ -562,6 +565,7 @@ export default {
             this.property = property;
             this.agent = agent;
             this.documentName = documentName;
+            this.setDataProperty({ property, agent, documentName });
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");

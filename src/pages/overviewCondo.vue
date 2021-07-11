@@ -452,7 +452,7 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters({
@@ -557,6 +557,9 @@ export default {
     await this.getImage();
   },
   methods: {
+    ...mapActions({
+      setDataProperty: "document/setDataProperty",
+    }),
     async queryDoc() {
       const db = this.$firebase.firestore();
       const docRef = db.collection("property").doc(this.propertyId);
@@ -569,6 +572,7 @@ export default {
             this.property = property;
             this.agent = agent;
             this.documentName = documentName;
+            this.setDataProperty({ property, agent, documentName });
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");

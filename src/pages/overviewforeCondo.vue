@@ -427,6 +427,7 @@ export default {
   methods: {
     ...mapActions({
       setCollectionCondo: "collection/setCollectionCondo",
+      setDataProperty: "document/setDataProperty",
     }),
     async queryDoc() {
       const db = this.$firebase.firestore();
@@ -440,6 +441,7 @@ export default {
             this.property = property;
             this.agent = agent;
             this.documentName = documentName;
+            this.setDataProperty({ property, agent, documentName });
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
