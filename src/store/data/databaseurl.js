@@ -1,6 +1,6 @@
 const state = {
-    databaseUrl: 'https://us-central1-gemsmap.cloudfunctions.net/api'
-    // databaseUrl: ''
+    // databaseUrl: 'https://us-central1-gemsmap.cloudfunctions.net/api'
+    databaseUrl: 'http://localhost:5001/gemsmap/us-central1/api'
 }
 
 const getters = {

@@ -1107,7 +1107,6 @@ export default {
   },
   async mounted() {
     await this.getImage();
-
     this.property = JSON.parse(JSON.stringify(this.getDataProperty.property));
     this.agent = JSON.parse(JSON.stringify(this.getDataProperty.agent));
   },

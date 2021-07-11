@@ -533,24 +533,51 @@ export default {
         acquisitionDate: null, //วันที่ได้ทรัพย์มา
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
+      propertyId: null,
     };
   },
   async mounted() {
+    if (this.$route.query.propertyId) {
+      this.propertyId = this.$route.query.propertyId;
+      this.queryDoc();
+    } else {
+      const { property, agent, documentName } = this.getDataProperty;
+      this.property = property;
+      this.agent = agent;
+      this.documentName = documentName;
+      this.propertyId = this.getDocumentId;
+    }
     await this.getImage();
-
-    const { property, agent, documentName } = this.getDataProperty;
-    this.property = property;
-    this.agent = agent;
-    this.documentName = documentName;
   },
   methods: {
+    async queryDoc() {
+      const db = this.$firebase.firestore();
+      const docRef = db.collection("property").doc(this.propertyId);
+
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const { property, agent, documentName } = doc.data();
+            this.property = property;
+            this.agent = agent;
+            this.documentName = documentName;
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
     async deleteData() {
       this.$q.loading.show();
 
       const { uid, email } = this.getUserLogin;
 
       const mapdata = {
-        id: this.getDocumentId,
+        id: this.propertyId,
         user: {
           uid,
           email,
@@ -565,7 +592,7 @@ export default {
     async getImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
@@ -577,13 +604,11 @@ export default {
           });
         });
       });
-
-      console.log(this.modelImage);
     },
     async downloadImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
@@ -608,11 +633,9 @@ export default {
     async downloadSingleImage() {
       const { name } = this.modelImage[this.slide];
 
-      console.log(name);
-
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef
         .child(name)
@@ -632,8 +655,6 @@ export default {
           xhr.open("GET", url);
           xhr.send();
         });
-
-      console.log("download successs");
     },
   },
 };

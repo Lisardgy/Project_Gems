@@ -35,8 +35,6 @@ export default function (/* { ssrContext } */) {
       document
     },
 
-    plugins: [createPersistedState()],
-
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEBUGGING

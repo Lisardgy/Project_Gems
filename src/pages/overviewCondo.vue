@@ -9,7 +9,7 @@
             icon="arrow_back_ios"
             style="color: #ffff01"
             class="overflow-hidden"
-            @click="$router.go(-1)"
+            @click="backToListCondo()"
           >
             <div style="padding-left: 0px">ย้อนกลับ</div>
           </q-btn>
@@ -531,23 +531,60 @@ export default {
         acquisitionDate: null, //วันที่ได้ทรัพย์มา
         additionalNote: null, //หมายเหตุเพิ่มเติม
       }, //
+      propertyId: null,
+      subId: null,
     };
   },
   async mounted() {
+    if (this.$route.query.propertyId && this.$route.query.subId) {
+      this.propertyId = this.$route.query.propertyId;
+      this.subId = this.$route.query.subId;
+      this.queryDoc();
+    } else if (this.$route.query.subId) {
+      const { property, agent, documentName } = this.getCollectionCondo;
+      this.subId = this.$route.query.subId;
+      this.property = property;
+      this.agent = agent;
+      this.documentName = documentName;
+      this.propertyId = this.getCollectionCondo.id;
+    } else {
+      const { property, agent, documentName } = this.getCollectionCondo;
+      this.property = property;
+      this.agent = agent;
+      this.documentName = documentName;
+      this.propertyId = this.getCollectionCondo.id;
+    }
     await this.getImage();
-    const { property, agent, documentName } = this.getCollectionCondo;
-    this.property = property;
-    this.agent = agent;
-    this.documentName = documentName;
   },
   methods: {
+    async queryDoc() {
+      const db = this.$firebase.firestore();
+      const docRef = db.collection("property").doc(this.propertyId);
+
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const { property, agent, documentName } = doc.data();
+            this.property = property;
+            this.agent = agent;
+            this.documentName = documentName;
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
     async deleteData() {
       this.$q.loading.show();
 
       const { uid, email } = this.getUserLogin;
 
       const mapdata = {
-        id: this.getCollectionCondo.id,
+        id: this.propertyId,
         user: {
           uid,
           email,
@@ -565,7 +602,7 @@ export default {
     async getImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getCollectionCondo.id}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef
         .listAll()
@@ -586,7 +623,7 @@ export default {
     async downloadImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getCollectionCondo.id}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
@@ -613,7 +650,7 @@ export default {
 
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getCollectionCondo.id}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef
         .child(name)
@@ -632,6 +669,24 @@ export default {
           xhr.open("GET", url);
           xhr.send();
         });
+    },
+
+    backToListCondo() {
+      if (this.$route.query.propertyId && this.$route.query.subId) {
+        this.$router.push({
+          name: "overviewCondo",
+          query: { propertyId: this.$route.query.subId },
+        });
+      } else if (this.$route.query.subId) {
+        this.$router.push({
+          name: "overviewCondo",
+          query: { propertyId: this.$route.query.subId },
+        });
+      } else {
+        this.$router.push({
+          name: "overviewCondo",
+        });
+      }
     },
   },
 };

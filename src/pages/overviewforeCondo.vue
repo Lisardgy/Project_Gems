@@ -404,29 +404,56 @@ export default {
         subDistict: null, //ตำบล
         province: null, //จังหวัด
       },
+      propertyId: null,
       listCondoPreview: [],
       listCondoStorage: [],
       listImageCondo: [],
     };
   },
   async mounted() {
-    await this.getImage();
+    if (this.$route.query.propertyId) {
+      this.propertyId = this.$route.query.propertyId;
+      this.queryDoc();
+    } else {
+      const { property, agent, documentName } = this.getDataProperty;
+      this.property = property;
+      this.agent = agent;
+      this.documentName = documentName;
+      this.propertyId = this.getDocumentId;
+    }
     await this.getListCondoById();
+    await this.getImage();
   },
   methods: {
     ...mapActions({
       setCollectionCondo: "collection/setCollectionCondo",
     }),
-    async getListCondoById() {
-      const { property, agent, documentName } = this.getDataProperty;
-      this.property = property;
-      this.agent = agent;
-      this.documentName = documentName;
+    async queryDoc() {
+      const db = this.$firebase.firestore();
+      const docRef = db.collection("property").doc(this.propertyId);
 
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const { property, agent, documentName } = doc.data();
+            this.property = property;
+            this.agent = agent;
+            this.documentName = documentName;
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    },
+    async getListCondoById() {
       const db = this.$firebase.firestore();
       await db
         .collection("property")
-        .where("sub_id", "==", this.getDocumentId)
+        .where("sub_id", "==", this.propertyId)
         .get()
         .then((snap) => {
           snap.forEach(async (doc) => {
@@ -468,14 +495,17 @@ export default {
     },
     setCondoOverview(item) {
       this.setCollectionCondo(item.data);
-      this.$router.push({ name: "overviewInCondo" });
+      this.$router.push({
+        name: "overviewInCondo",
+        query: { subId: this.propertyId },
+      });
     },
     async deleteData() {
       this.$q.loading.show();
 
       const { uid, email } = this.getUserLogin;
       const mapdata = {
-        id: this.getDocumentId,
+        id: this.propertyId,
         user: {
           uid,
           email,
@@ -493,7 +523,7 @@ export default {
     async getImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       await storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
@@ -509,7 +539,7 @@ export default {
     async downloadImage() {
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
@@ -536,7 +566,7 @@ export default {
 
       const storageRef = this.$firebase
         .storage()
-        .ref(`property/${this.getDocumentId}`);
+        .ref(`property/${this.propertyId}`);
 
       storageRef
         .child(name)
