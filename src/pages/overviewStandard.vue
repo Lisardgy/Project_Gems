@@ -456,6 +456,7 @@
 <script>
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
+import { Platform } from "quasar";
 export default {
   computed: {
     ...mapGetters({
@@ -610,29 +611,34 @@ export default {
       });
     },
     async downloadImage() {
-      const storageRef = this.$firebase
-        .storage()
-        .ref(`property/${this.propertyId}`);
+      if (Platform.is.ios) {
+        console.log("open google photo");
+        window.open("https://www.w3schools.com");
+      } else {
+        const storageRef = this.$firebase
+          .storage()
+          .ref(`property/${this.propertyId}`);
 
-      storageRef.listAll().then((res) => {
-        res.items.forEach((itemRef) => {
-          itemRef.getDownloadURL().then((url) => {
-            console.log(url);
-            var xhr = new XMLHttpRequest();
-            xhr.responseType = "blob";
-            xhr.onload = (event) => {
-              var a = document.createElement("a");
-              a.href = window.URL.createObjectURL(xhr.response);
-              a.download = itemRef.name; // Name the file anything you'd like.
-              a.style.display = "none";
-              document.body.appendChild(a);
-              a.click();
-            };
-            xhr.open("GET", url);
-            xhr.send();
+        storageRef.listAll().then((res) => {
+          res.items.forEach((itemRef) => {
+            itemRef.getDownloadURL().then((url) => {
+              console.log(url);
+              var xhr = new XMLHttpRequest();
+              xhr.responseType = "blob";
+              xhr.onload = (event) => {
+                var a = document.createElement("a");
+                a.href = window.URL.createObjectURL(xhr.response);
+                a.download = itemRef.name; // Name the file anything you'd like.
+                a.style.display = "none";
+                document.body.appendChild(a);
+                a.click();
+              };
+              xhr.open("GET", url);
+              xhr.send();
+            });
           });
         });
-      });
+      }
     },
     async downloadSingleImage() {
       const { name } = this.modelImage[this.slide];
