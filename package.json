@@ -6,7 +6,9 @@
   "author": "Lisardgy <62231142+Lisardgy@users.noreply.github.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "deploy": "quasar build -m pwa && firebase deploy",
+    "deploy-review": "quasar build -m pwa && firebase hosting:channel:deploy gems-dev-search1field"
   },
   "dependencies": {
     "@coderstm/quasar-google-maps": "^1.0.4",

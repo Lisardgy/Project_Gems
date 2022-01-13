@@ -17,17 +17,52 @@
           :zoom="14"
           style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"
           ref="mapRef"
+          :disableDefaultUI="true"
         >
           <GmapMarker :position="myPosition.position" :icon="myPosition.icon" />
           <GmapMarker
+            style="font-size: 32px"
             :key="index"
             v-for="(m, index) in markers"
             :position="m.position"
             :draggable="false"
             :clickable="true"
-            @click="openInfoWindowTemplate(m)"
+            :label="
+              togglePrice && zoomLevel >= 15
+                ? {
+                    text: `${m.name ? m.name : ''} ${
+                      m.agent.sellPrice ? m.agent.sellPrice : ''
+                    }`,
+                    fontSize: '15px',
+                    fontWeight: 'bold',
+                    color: 'black',
+                    backgroundColor: 'black',
+                  }
+                : ''
+            "
             :icon="m.icon"
-          />
+            @click="openInfoWindowTemplate(m)"
+          >
+            <!-- <gmap-info-window
+              :options="{
+                maxWidth: 200,
+                pixelOffset: { width: 0, height: 0 },
+              }"
+              :position="{
+                lat: m.position.lat,
+                lng: m.position.lng,
+              }"
+            >
+              <div class="column text-center">
+                <div class="text-bold" style="font-size: 12px">
+                  {{ m.name }}
+                </div>
+                <div class="text-bold" style="font-size: 12px">
+                  {{ m.agent.sellPrice }}
+                </div>
+              </div>
+            </gmap-info-window> -->
+          </GmapMarker>
           <gmap-info-window
             :options="{
               maxWidth: 300,
@@ -74,33 +109,160 @@
           </gmap-info-window>
         </GmapMap>
         <div class="fixed-bottom-left text-left q-mb-lg q-pl-sm">
-          <div class="q-mb-md">
-            <q-btn
-              class="mapMenu"
-              rounded
-              :label="statusMarker"
-              icon-right="filter_list"
-              @click="statusModal = true"
-            />
+          <div class="row q-gutter-md q-mb-md">
+            <div>
+              <q-btn
+                class="mapMenu"
+                rounded
+                dense
+                :disable="zoomLevel < 15"
+                :icon-right="togglePrice ? 'visibility' : 'visibility_off'"
+                :label="togglePrice ? 'เปิดราคา' : 'ปิดราคา'"
+                @click="togglePrice = !togglePrice"
+              />
+            </div>
           </div>
-          <div class="q-mb-md">
-            <q-btn
-              class="mapMenu"
-              rounded
-              label="เพิ่มหมุด"
-              icon-right="add"
-              @click="$router.push({ name: 'markermap' })"
-            />
+          <div class="row q-gutter-md q-mb-md">
+            <div>
+              <q-btn
+                class="mapMenu"
+                rounded
+                dense
+                label="ค้นหา"
+                icon-right="search"
+                @click="searchModal = true"
+              />
+            </div>
+            <div>
+              <q-btn
+                class="mapMenu"
+                rounded
+                dense
+                :label="statusMarker"
+                icon-right="filter_list"
+                @click="statusModal = true"
+              />
+            </div>
           </div>
-          <div>
-            <q-btn
-              class="mapMenu"
-              rounded
-              label="ตำแหน่งของคุณ"
-              icon-right="adjust"
-              @click="getCurrentLocation()"
-            />
+          <div class="row q-gutter-md q-mb-md">
+            <div>
+              <q-btn
+                class="mapMenu"
+                dense
+                rounded
+                label="ตำแหน่ง"
+                icon-right="adjust"
+                @click="getCurrentLocation()"
+              />
+            </div>
+            <div>
+              <q-btn
+                class="mapMenu"
+                rounded
+                dense
+                label="เพิ่มหมุด"
+                icon-right="add"
+                @click="$router.push({ name: 'markermap' })"
+              />
+            </div>
           </div>
+          <q-dialog v-model="searchModal">
+            <q-card
+              style="background-color: #010135; color: white; width: 100%"
+            >
+              <q-card-section class="row justify-center q-pb-none">
+                <div class="col-12 text-center">
+                  <div class="text-h4 text-weight-bold" style="color: #ffdd02">
+                    ค้นหาข้อมูลบ้าน
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-section class="q-gutter-md q-pb-none">
+                <div>
+                  <div>ชื่อหมู่บ้าน, โซน, รหัส gems</div>
+                  <q-input
+                    label="ชื่อหมู่บ้าน, โซน, รหัส gems"
+                    label-color="black"
+                    bg-color="white"
+                    dense
+                    outlined
+                    v-model="searchName"
+                    @keyup.enter="searchMarkers"
+                  />
+                </div>
+                <!-- <div class="row q-pb-sm">
+                    <div class="col-6 q-pr-sm">
+                      <div>ตำบล</div>
+                      <q-input
+                        label="ตำบล"
+                        label-color="black"
+                        bg-color="white"
+                        dense
+                        outlined
+                        v-model="searchSubDistinct"
+                      />
+                    </div>
+                    <div class="col-6 q-pl-sm">
+                      <div>อำเภอ</div>
+                      <q-input
+                        label="อำเภอ"
+                        label-color="black"
+                        bg-color="white"
+                        dense
+                        outlined
+                        v-model="searchDistinct"
+                      />
+                    </div>
+                  </div> -->
+
+                <div class="">
+                  <div class="row">
+                    <div class="col-6 q-pr-sm">
+                      <div>ราคาเริ่มต้น</div>
+                      <div>
+                        <q-select
+                          label="ราคาเริ่มต้น"
+                          outlined
+                          v-model="range.min"
+                          :options="priceOptions"
+                          map-options
+                          emit-value
+                          dense
+                          label-color="black"
+                          bg-color="white"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-6 q-pl-sm">
+                      <div>ราคาสูงสุด</div>
+                      <div>
+                        <q-select
+                          label="ราค่าสูงสุด"
+                          outlined
+                          v-model="range.max"
+                          :options="priceOptions"
+                          map-options
+                          emit-value
+                          dense
+                          label-color="black"
+                          bg-color="white"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-section class="q-pb-none">
+                <q-btn
+                  class="font-button-status full-width"
+                  flat
+                  label="ค้นหา"
+                  size="20px"
+                  @click="searchMarkers"
+                />
+              </q-card-section>
+            </q-card>
+          </q-dialog>
           <q-dialog v-model="statusModal">
             <q-card style="background: #010135; color: white">
               <q-card-section class="row justify-center q-pb-none">
@@ -177,7 +339,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import position from "src/store/data/position";
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyDeaWcrpy7wTOoxoxqRZnUs_LxMEo_CBCc",
+    key: "AIzaSyAOYWpAyxSi3qsodJOcLWnI4COxi-F_EE8",
   },
   installComponents: true,
 });
@@ -205,17 +367,32 @@ export default {
           scaledSize: { width: 30, height: 45, f: "px", b: "px" },
         },
       },
+      zoomLevel: 14,
+      togglePrice: false,
       status: null,
       statusMarker: "ทั้งหมด",
       markers: [],
       markersStorage: [],
+      searchOptions: [],
       selectedLocation: null,
       infoBoxOpen: false,
       statusModal: false,
+      searchModal: false,
+      searchName: "",
+      searchDistinct: "",
+      searchSubDistinct: "",
+      priceOptions: [],
+      rangePrice: {
+        min: 0,
+        max: 0,
+      },
+      range: {
+        min: 0,
+        max: 0,
+      },
     };
   },
   created() {
-    //does the user have a saved center? use it instead of the default
     if (localStorage.center) {
       this.myCoordinates = JSON.parse(localStorage.center);
     } else {
@@ -226,15 +403,26 @@ export default {
         })
         .catch((error) => alert(error));
     }
-    // does the user have a saved zoom? use it instead of the default
+
     if (localStorage.zoom) {
       this.zoom = parseInt(localStorage.zoom);
     }
   },
   async mounted() {
-    await this.getCollectionData();
-    // add the map to a data object
-    this.$refs.mapRef.$mapPromise.then((map) => (this.map = map));
+    try {
+      this.$q.loading.show();
+      await this.getCollectionData();
+      this.$refs.mapRef.$mapPromise.then((map) => {
+        this.map = map;
+        this.map.addListener("zoom_changed", () => {
+          this.zoomLevel = this.map.getZoom();
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.$q.loading.hide();
+    }
   },
   methods: {
     ...mapActions({
@@ -268,6 +456,7 @@ export default {
                 icon = {
                   url: require(`../images/Marker_icon/${property.type}.png`),
                   scaledSize: { width: 30, height: 45, f: "px", b: "px" },
+                  labelOrigin: new google.maps.Point(20, -10),
                 };
               }
               const positionObject = {
@@ -289,7 +478,122 @@ export default {
             }
           });
         });
-      this.markers = this.markersStorage.filter((item) => item.type != null);
+      this.markers = this.markersStorage.filter((item) => item.type);
+
+      const sortPrice = this.markersStorage
+        .filter((item) => item.agent.sellPrice)
+        .sort(
+          (a, b) =>
+            Number(a.agent.sellPrice.replace(/,/g, "")) -
+            Number(b.agent.sellPrice.replace(/,/g, ""))
+        )
+        .map((data) => Number(data.agent.sellPrice.replace(/,/g, "")));
+
+      this.rangePrice = {
+        min: sortPrice[0],
+        max: sortPrice[sortPrice.length - 1],
+      };
+
+      const loop = this.rangePrice.max / 1000000;
+
+      for (let i = 0.5; i <= loop; i = i + 0.5) {
+        this.priceOptions.push({
+          label: `${i} ล้าน`,
+          value: i * 1000000,
+        });
+      }
+
+      this.range = {
+        min: 500000,
+        max: loop * 1000000,
+      };
+    },
+    addCommaToNumber(val) {
+      return val
+        .toString()
+        .replace(/\D/g, "")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    searchMarkers() {
+      const name = this.markersStorage
+        .filter((item) => item.name)
+        .filter((item) => item.type)
+        .filter(
+          (item) =>
+            item.name
+              .toString()
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .indexOf(this.searchName.replace(/\s/g, "").toLowerCase()) > -1
+        );
+
+      const documentName = this.markersStorage
+        .filter((item) => item.documentName)
+        .filter((item) => item.type)
+        .filter(
+          (item) =>
+            item.documentName
+              .toString()
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .indexOf(this.searchName.replace(/\s/g, "").toLowerCase()) > -1
+        );
+
+      const distinct = this.markersStorage
+        .filter((item) => item.name)
+        .filter((item) => item.type)
+        .filter((item) =>
+          item.property.distict
+            ? item.property.distict
+                .toString()
+                .replace(/\s/g, "")
+                .toLowerCase()
+                .indexOf(this.searchName.replace(/\s/g, "").toLowerCase()) > -1
+            : false
+        );
+
+      const subDistinct = this.markersStorage
+        .filter((item) => item.name)
+        .filter((item) => item.type)
+        .filter((item) =>
+          item.property.subDistict
+            ? item.property.subDistict
+                .toString()
+                .replace(/\s/g, "")
+                .toLowerCase()
+                .indexOf(this.searchName.replace(/\s/g, "").toLowerCase()) > -1
+            : false
+        );
+
+      let markerFilter = [
+        ...name,
+        ...distinct,
+        ...subDistinct,
+        ...documentName,
+      ];
+
+      if (markerFilter.length > 1) {
+        markerFilter.filter((item) => {
+          let price;
+          if (item.agent.sellPrice) {
+            price = Number(item.agent.sellPrice.replace(/,/g, ""));
+          } else {
+            price = Number(item.agent.appraisalPrice.replace(/,/g, ""));
+          }
+          return this.range.min <= price && price <= this.range.max;
+        });
+      }
+
+      this.markers = markerFilter;
+
+      if (this.markers.length) {
+        const { lat, lng } = this.markers[0].position;
+
+        this.map.setCenter({ lat, lng });
+      }
+
+      this.searchModal = false;
+      this.searchName = "";
     },
     setStatus(status) {
       this.statusMarker = status;
@@ -380,6 +684,11 @@ html,
 ::ng-deep .gm-style .gm-style-iw-c button {
   display: none !important;
 }
+
+.marker-label {
+  bottom: 6px;
+}
+
 .headFontColor {
   color: #ffdd02;
   font-size: 32px;

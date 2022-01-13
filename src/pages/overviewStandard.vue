@@ -602,6 +602,7 @@ export default {
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
+            console.log("🚀 ~ url", url);
             this.modelImage.push({
               url,
               name: itemRef.name,
