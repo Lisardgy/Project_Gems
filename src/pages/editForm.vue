@@ -1151,6 +1151,7 @@ export default {
         });
     },
     async getImage() {
+      console.log(`property/${this.getDocumentId}`);
       const storageRef = this.$firebase
         .storage()
         .ref(`property/${this.getDocumentId}`);
@@ -1195,13 +1196,11 @@ export default {
       file.map((data) => {
         this.file_selected.push(data);
       });
-      console.log(this.file_selected);
     },
     removedFile(file) {
       this.file_selected = this.file_selected.filter(
         (data) => data.name != file[0].name
       );
-      console.log(this.file_selected);
     },
   },
   watch: {

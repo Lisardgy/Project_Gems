@@ -599,10 +599,11 @@ export default {
         .storage()
         .ref(`property/${this.propertyId}`);
 
+      console.log(`property/${this.propertyId}`);
+
       storageRef.listAll().then((res) => {
         res.items.forEach((itemRef) => {
           itemRef.getDownloadURL().then((url) => {
-            console.log("🚀 ~ url", url);
             this.modelImage.push({
               url,
               name: itemRef.name,
@@ -613,7 +614,6 @@ export default {
     },
     async downloadImage() {
       if (Platform.is.ios) {
-        console.log("open google photo");
         window.open("https://www.w3schools.com");
       } else {
         const storageRef = this.$firebase

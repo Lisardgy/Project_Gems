@@ -575,11 +575,17 @@ export default {
       if (markerFilter.length > 1) {
         markerFilter.filter((item) => {
           let price;
+
           if (item.agent.sellPrice) {
-            price = Number(item.agent.sellPrice.replace(/,/g, ""));
+            price = Number(item.agent.sellPrice?.replace(/,/g, "")) || 0;
           } else {
-            price = Number(item.agent.appraisalPrice.replace(/,/g, ""));
+            price = Number(item.agent.appraisalPrice?.replace(/,/g, "")) || 0;
           }
+
+          if (!price) {
+            return true;
+          }
+
           return this.range.min <= price && price <= this.range.max;
         });
       }
